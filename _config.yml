@@ -15,16 +15,16 @@ links:
     url:          /
     external:     false
   - name:         Code|代码
-    url:          /Code
+    url:          /code
     external:     false
   - name:         Paper|文章
-    url:          /Paper
+    url:          /paper
     external:     false
   - name:         Favour|兴趣
-    url:          /Favour
+    url:          /favour
     external:     false
-  - name:         Archives|归档
-    url:          /archives
+  - name:         Sorts|归档
+    url:          /sorts
     external:     false
   - name:         Tags|标签
     url:          /tags

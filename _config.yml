@@ -1,8 +1,8 @@
 # ----------- CONFIGURABLE START -----------
 title:            "Joe ZhouMan's blog"
-description:      "Full Stack独立开发者|欢迎来到 LiberXue「角落」侃侃理想、谈谈人生、敲敲代码。"
+description:      "Welcome to my blog--where there is a will there is a way|欢迎来到我的博客--路漫漫其修远兮，吾将上下而求索"
 url:              https://www.joezhouman.com # 域名
-signoff:          "Joe ZhouMan" # Your name
+signoff:          "Joe ZhouMan 周漫" # Your name
 facebook_appid:   #liberxue
 google_analytics: UA-143789738-1
 share:            true 
@@ -14,19 +14,22 @@ links:
   - name:         首页
     url:          /
     external:     false
-  - name:         书籍
-    url:          /book
+  - name:         Code|代码
+    url:          /Code
     external:     false
-  - name:         旅游
-    url:          /road
+  - name:         Paper|文章
+    url:          /Paper
     external:     false
-  - name:         归档
+  - name:         Favour|兴趣
+    url:          /Favour
+    external:     false
+  - name:         Archives|归档
     url:          /archives
     external:     false
-  - name:         标签
+  - name:         Tags|标签
     url:          /tags
     external:     false
-  - name:         关于
+  - name:         About|关于
     url:          /about
     external:     false
 # ------------ CONFIGURABLE END ------------

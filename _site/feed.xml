@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>LiberXue|FullStack|独立开发者|jekyll blog|GitHub blog</title>
-    <description>Full Stack独立开发者|欢迎来到 LiberXue「角落」侃侃理想、谈谈人生、敲敲代码。</description>
+    <title>joezhouman|FullStack|独立开发者|jekyll blog|GitHub blog</title>
+    <description>Full Stack独立开发者|欢迎来到 joezhouman「角落」侃侃理想、谈谈人生、敲敲代码。</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
@@ -79,7 +79,7 @@
       </item>
     
       <item>
-        <title>瓦尔登湖liberxue一些所感所想和笔记书签</title>
+        <title>瓦尔登湖joezhouman一些所感所想和笔记书签</title>
         <category>书籍</category>
         <description>这就是作者写瓦尔登湖的目的，他希望每人各显其面、各行其事，找到各自的独特性和价值取向，万千世界要有不一样的面貌，不一样的味道，人是，更应是。当我们看到和自身不同的观点、习俗、人、事、物，不是驳斥...</description>
         <pubDate>2017-07-04 07:13:54 </pubDate>
@@ -106,7 +106,7 @@
       </item>
     
       <item>
-        <title>毛姆《寻欢作乐》（百读文库）liberxue一些所感所想和笔记书签</title>
+        <title>毛姆《寻欢作乐》（百读文库）joezhouman一些所感所想和笔记书签</title>
         <category>书籍</category>
         <description>背景来源《寻欢作乐》，并不是专门为了描述爱德华·德里菲尔德和阿尔罗伊·基尔这两个人物。年轻的时候，我跟本书中我称作罗西的那个年轻女人关系十分密切。她有重大的、令人恼怒的过错，但是她长得很美，人也...</description>
         <pubDate>2017-06-28 07:43:54 </pubDate>

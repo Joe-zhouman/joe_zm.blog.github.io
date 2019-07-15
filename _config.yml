@@ -8,7 +8,7 @@ google_analytics: UA-143789738-1
 share:            true 
 # 分页
 paginate: 15
-paginate_path: "jzm:num"
+paginate_path: "joezhouman:num"
 gems: [jekyll-paginate]
 links:
   - name:         首页

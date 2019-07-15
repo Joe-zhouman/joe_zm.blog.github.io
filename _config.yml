@@ -11,7 +11,7 @@ paginate: 15
 paginate_path: "joezhouman:num"
 gems: [jekyll-paginate]
 links:
-  - name:         首页
+  - name:         Homepage|首页
     url:          /
     external:     false
   - name:         Code|代码

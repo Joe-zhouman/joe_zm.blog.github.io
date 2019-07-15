@@ -3,12 +3,12 @@ title:            "Joe ZhouMan's blog"
 description:      "Welcome to my blog--where there is a will there is a way|欢迎来到我的博客--路漫漫其修远兮，吾将上下而求索"
 url:              https://www.joezhouman.com # 域名
 signoff:          "Joe ZhouMan 周漫" # Your name
-facebook_appid:   #liberxue
+facebook_appid:   #Joe_zm
 google_analytics: UA-143789738-1
 share:            true 
 # 分页
 paginate: 15
-paginate_path: "liberxuepage:num"
+paginate_path: "jzm:num"
 gems: [jekyll-paginate]
 links:
   - name:         首页

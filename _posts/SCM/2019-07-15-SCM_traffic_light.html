@@ -1,0 +1,1274 @@
+---
+layout: code
+istop : true
+book : true
+title: 单片机交通灯控制-C语言实现
+category: code
+tags: C SCM lessen
+code: true
+---
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=x-cp20936">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>���ֵ��ӿƼ���ѧ</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:����;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"���� Light";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:������;
+	panose-1:2 1 6 9 3 1 1 1 1 1;}
+@font-face
+	{font-family:����;
+	panose-1:2 1 6 9 6 1 1 1 1 1;}
+@font-face
+	{font-family:"\@����";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@���� Light";}
+@font-face
+	{font-family:"\@������";}
+@font-face
+	{font-family:"\@����";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-link:"���� 1 �ַ�";
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:240%;
+	page-break-after:avoid;
+	font-size:22.0pt;
+	font-family:"Times New Roman",serif;}
+h2
+	{mso-style-link:"���� 2 �ַ�";
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:173%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"���� Light";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"ҳü �ַ�";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	layout-grid-mode:char;
+	border:none;
+	padding:0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"ҳ�� �ַ�";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"��ע���ı� �ַ�";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:9.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	font-size:10.5pt;
+	font-family:"Times New Roman",serif;}
+span.a
+	{mso-style-name:"ҳ�� �ַ�";
+	mso-style-link:ҳ��;}
+span.a0
+	{mso-style-name:"ҳü �ַ�";
+	mso-style-link:ҳü;}
+span.1
+	{mso-style-name:"���� 1 �ַ�";
+	mso-style-link:"���� 1";
+	font-weight:bold;}
+span.2
+	{mso-style-name:"���� 2 �ַ�";
+	mso-style-link:"���� 2";
+	font-family:"���� Light";
+	font-weight:bold;}
+span.a1
+	{mso-style-name:"��ע���ı� �ַ�";
+	mso-style-link:��ע���ı�;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	layout-grid:15.6pt 0pt;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	layout-grid:15.6pt;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body bgcolor=white lang=ZH-CN style='text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></b></p>
+
+<h2><span style='font-size:12.0pt;line-height:173%'>һ��ʵ��Ŀ��</span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>1</span><span
+style='font-size:12.0pt;font-family:����'>��ѧϰ�ڵ�Ƭ��ϵͳ����չ��</span><span lang=EN-US
+style='font-size:12.0pt'>1/0</span><span style='font-size:12.0pt;font-family:
+����'>�ӿڵķ�����</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>2</span><span
+style='font-size:12.0pt;font-family:����'>��ѧϰ��������������Ʒ�����</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
+
+<h2><span style='font-size:12.0pt;line-height:173%'>����ʵ������</span></h2>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-indent:-3.0pt'><span
+lang=EN-US style='font-size:12.0pt'>1</span><span style='font-size:12.0pt;
+font-family:����'>����</span><span lang=EN-US style='font-size:12.0pt'>741S276</span><span
+style='font-size:12.0pt;font-family:����'>��Ϊ����ڣ�����ʮ������������ܵ�����ģ�⽻ͨ�ƿ��ƣ�</span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt;text-indent:-24.0pt'><span
+lang=EN-US style='font-size:12.0pt'>2</span><span style='font-size:12.0pt;
+font-family:����'>���۲췢������ܵ�״̬�Ƿ�����ʵ��Ҫ��</span></p>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;font-family:����'>ʵ��˵����</span></b></p>
+
+<p class=MsoNormal style='margin-left:10.5pt;text-indent:12.0pt'><span
+style='font-size:12.0pt;font-family:����'>��ʵ����ģ�⽻ͨ�ƿ��ƣ���ʵ��ǰ����Ӧ���˽⽻ͨ�Ƶ�������ɡ�</span></p>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-indent:18.0pt'><span
+style='font-size:12.0pt;font-family:����'>��ĳʮ��·��</span><span lang=EN-US
+style='font-size:12.0pt'>2</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>4</span><span
+style='font-size:12.0pt;font-family:����'>Ϊ�ϡ�������</span><span lang=EN-US
+style='font-size:12.0pt'>1</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>3</span><span
+style='font-size:12.0pt;font-family:����'>Ϊ���������򡣳�ʼ״̬Ϊ�ĸ�·�ڵĺ��ȫ����Ȼ�󣬶�����·���̵������ϡ���·�ں������������·��ͨ�����ӳ�һ��ʱ��󣬶�����·���̵��𣬻Ƶƿ�ʼ��˸���Ƶ���˸���ɴκ󣬶�����·�ں�������ϡ���·���̵������ϡ�������ͨ�����ӳ�һ��ʱ����ϡ���·���̵��𣬻Ƶ���˸���Ƶ���˸���ɴκ����л���������·�ڷ���&middot;&middot;&middot;&middot;&middot;&middot;</span></p>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-indent:18.0pt'><span
+style='font-size:12.0pt;font-family:����'>��ʵ�����÷��������Ϊ��������������������������ţ�������ߵ�ƽ����</span></p>
+
+<h2><span style='font-size:12.0pt;line-height:173%'>����ʵ��ο���·ͼ</span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
+style='font-size:12.0pt;font-family:����'><img width=553 height=299 id="ͼƬ 34"
+src="{{ site.url }}/style/SCM_traffic_light.files/image001.jpg"></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
+style='font-size:12.0pt;font-family:����'><img width=553 height=299 id="ͼƬ 44"
+src="{{ site.url }}/style/SCM_traffic_light.files/image002.jpg"></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
+style='font-size:12.0pt;font-family:����'><img width=554 height=445 id="ͼƬ 103"
+src="{{ site.url }}/style/SCM_traffic_light.files/image003.jpg"></span></b></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;font-family:
+����'>&nbsp;</span></b></p>
+
+<h2><span style='font-size:12.0pt;line-height:173%'>�ġ�ʵ������ͼ</span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+width=248 height=866 src="{{ site.url }}/style/SCM_traffic_light.files/image004.png"></span></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;font-family:
+����'>&nbsp;</span></b></p>
+
+<h2><span style='font-size:12.0pt;line-height:173%'>�塢ʵ�鲽��</span></h2>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>���Ӻø�λ��·</span><span
+lang=EN-US style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;
+font-family:����'>���뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>RST</span><span style='font-size:12.0pt;font-family:
+����'>������</span><span lang=EN-US style='font-size:12.0pt'>;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt'><span lang=EN-US
+style='font-size:12.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>���Ӻþ����·</span><span
+lang=EN-US style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;
+font-family:����'>���뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>XTAL1</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>XTAL2</span><span
+style='font-size:12.0pt;font-family:����'>������</span><span lang=EN-US
+style='font-size:12.0pt'>;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>��</span><span
+lang=EN-US style='font-size:12.0pt'>U1(74LS273),U2(74LS273)</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>D0~D7</span><span style='font-size:12.0pt;font-family:
+����'>�뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>P1.0~P1.7</span><span style='font-size:12.0pt;
+font-family:����'>����</span><span lang=EN-US style='font-size:12.0pt'>;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>�������</span><span
+lang=EN-US style='font-size:12.0pt'>U4:A(74LS02)</span><span style='font-size:
+12.0pt;font-family:����'>�������һ�˽ӵ�</span><span lang=EN-US style='font-size:12.0pt'>,
+</span><span style='font-size:12.0pt;font-family:����'>��һ���뵥Ƭ��</span><span
+lang=EN-US style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;
+font-family:����'>��</span><span lang=EN-US style='font-size:12.0pt'>P2.6/A14</span><span
+style='font-size:12.0pt;font-family:����'>����</span><span lang=EN-US
+style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;font-family:
+����'>�������</span><span lang=EN-US style='font-size:12.0pt'>U1</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>MR</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
+style='font-size:12.0pt;font-family:����'>������</span><span lang=EN-US
+style='font-size:12.0pt'>;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>�������</span><span
+lang=EN-US style='font-size:12.0pt'>U6:A(74LS02)</span><span style='font-size:
+12.0pt;font-family:����'>�������һ�˽ӵ�</span><span lang=EN-US style='font-size:12.0pt'>,
+</span><span style='font-size:12.0pt;font-family:����'>��һ���뵥Ƭ��</span><span
+lang=EN-US style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;
+font-family:����'>��</span><span lang=EN-US style='font-size:12.0pt'>P2.7/A15</span><span
+style='font-size:12.0pt;font-family:����'>����</span><span lang=EN-US
+style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;font-family:
+����'>�������</span><span lang=EN-US style='font-size:12.0pt'>U2</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>MR</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
+style='font-size:12.0pt;font-family:����'>������</span><span lang=EN-US
+style='font-size:12.0pt'>;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>������</span><span
+lang=EN-US style='font-size:12.0pt'>U3</span><span style='font-size:12.0pt;
+font-family:����'>��</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
+style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt'>,U7</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
+style='font-size:12.0pt;font-family:����'>�����������</span><span lang=EN-US
+style='font-size:12.0pt'>U1,U2</span><span style='font-size:12.0pt;font-family:
+����'>��</span><span lang=EN-US style='font-size:12.0pt'>Q0~Q7</span><span
+style='font-size:12.0pt;font-family:����'>����</span><span lang=EN-US
+style='font-size:12.0pt'>, </span><span style='font-size:12.0pt;font-family:
+����'>��������Ӧ�ķ�������ܵ���������</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-size:12.0pt'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;font-family:����'>����������ܵ�������������������</span><span
+lang=EN-US style='font-size:12.0pt'>, </span><span style='font-size:12.0pt;
+font-family:����'>����ߵ�ƽ������</span></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></b></p>
+
+<h2><span style='font-size:12.0pt;line-height:173%'>���������嵥</span></h2>
+
+</div>
+
+<span lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection2 style='layout-grid:15.6pt 0pt'>
+
+<div style='border:none;border-left:solid windowtext 4.5pt;padding:0cm 0cm 0cm 30.0pt;
+margin-left:42.0pt;margin-right:0cm'>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:gray'>#include</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:black'> </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#A31515'>&quot;reg51.h&quot;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:gray'>#include</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:black'> </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#A31515'>&lt;intrins.h&gt;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:gray'>#define</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:black'> </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>unsigned</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>char</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// delay for (time) s</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// send data to the first 74LS273</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// send data to the second 74LS273</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// all red on, others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// time : this stage lasts for (time)
+seconds</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> allred(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// west and east are passable</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// west and east : green on, others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// north and south : red on others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// time : this stage lasts for (time)
+seconds</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> we_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// north and south are passable</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// west and east : red on, others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// north and south : green on, others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// time : this stage lasts for (time)
+seconds</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> ns_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// west and east are waiting for red on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// west and east : yellow flicker, others
+off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// flicker every 2 seconds (yellow on for
+1s, yellow off for 1s)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// north and south : red on, others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// time : this stage lasts for (time * 2)
+seconds</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> we_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// north and south are waiting for red on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// north and south : yellow flicker, others
+off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// flicker every 2 seconds (yellow on for
+1s, yellow off for 1s)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// west and east : red on, others off</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// time : this stage lasts for (time *</span><span
+style='font-size:9.5pt;font-family:������;color:green'>��<span lang=EN-US>) seconds</span></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> ns_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>sbit sw1 = P2 ^ 6;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//use P2.6 to
+contral the first 74LS273</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>sbit sw2 = P2 ^ 7;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//use P2.7 to
+contral the second 74LS273</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> main() {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:green'>//start : all red on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; allred(1);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:green'>// loop on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:blue'>while</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (1) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// 1st</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// west and
+east, green on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// north and
+south, red on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we_passable(30);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//2st</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// west and
+east, green off, yellow flicker</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we_wait(3);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//3rd</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//west and east,
+red on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//north and
+south, red off, green on</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ns_passable(30);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//4th</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//north and
+south, green off, yellow flicker</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ns_wait(3);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// send data to the first 74LS273</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> senddata_1() {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw1 = 1;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw1 = 0;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>// send data to the second 74LS273</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> senddata_2() {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw2 = 1;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw2 = 0;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:green'>//delay time s</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> i, j, k;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:black'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>--) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (k = 10; k &gt;
+0; k--) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (i = 250; i
+&gt; 0; i--) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (j = 133; j
+&gt; 0; j--) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _nop_();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> allred(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x49;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x02;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> we_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x0C;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x03;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> ns_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x61;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x08;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> we_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:black'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>--) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x8A;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x02;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x08;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x02;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'> ns_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;color:black'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>--) {</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x51;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x04;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x41;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
+= 0x00;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
+text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
+9.5pt;font-family:������;color:black'>}</span></p>
+
+</div>
+
+</div>
+
+<span lang=EN-US style='font-size:9.5pt;font-family:������;color:black'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<div class=WordSection3 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='margin-left:42.0pt;text-align:left;
+text-autospace:none'><span lang=EN-US style='font-size:9.5pt;font-family:������;
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt'>&nbsp;</span></p>
+
+<h2 style='margin-left:24.0pt'><span style='font-size:12.0pt;line-height:173%'>�ߡ�ʵ�����</span></h2>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:12.0pt;font-family:����'>������<span lang=EN-US>74LS273</span>�Ĺ�������Ϊ����<span
+lang=EN-US>MR</span>��Ϊ�͵�ƽʱ������<span lang=EN-US>CLK</span>���������壬���ݶˣ�<span
+lang=EN-US>D</span>�ˣ��Ǹ߻�͵�ƽ������ˣ�<span lang=EN-US>Q</span>�ˣ���Ϊ�͵�ƽ<span
+lang=EN-US>;</span>����<span lang=EN-US>MR</span>��Ϊ�ߵ�ƽʱ����<span lang=EN-US>D</span>���˵�����������������ڼ䱻���͵���<span
+lang=EN-US>Q</span>����<span lang=EN-US>, </span>���±���ʾ<span lang=EN-US>:</span></span></p>
+
+<p class=MsoNormal align=left style='margin-left:42.0pt;text-align:left'><span
+lang=EN-US style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='margin-left:128.8pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td colspan=4 valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:12.0pt'>Tabel 1.</span></b><span lang=EN-US
+  style='font-size:12.0pt'>truth table of 74LS273</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>MR</span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>CLK</span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>Di</span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>Qi</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>L</span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>X</span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>X</span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>L</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>H</span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='position:absolute;z-index:251659264;left:0px;margin-left:16px;
+  margin-top:4px;width:27px;height:14px'><img width=27 height=14
+  src="{{ site.url }}/style/SCM_traffic_light.files/image005.png"></span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>H</span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>H</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>H</span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='position:absolute;z-index:251661312;left:0px;margin-left:16px;
+  margin-top:3px;width:27px;height:14px'><img width=27 height=14
+  src="{{ site.url }}/style/SCM_traffic_light.files/image005.png"></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>L</span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����'>L</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.35pt'>
+  <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:11.35pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
+  style='font-size:6.5pt'>i = 0~7 </span></p>
+  </td>
+ </tr>
+ <tr style='height:11.35pt'>
+  <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:11.35pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
+  style='font-size:6.5pt'>L &#8211; low logic level, H &#8211; high logic level </span></p>
+  </td>
+ </tr>
+ <tr style='height:11.35pt'>
+  <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:11.35pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
+  style='font-size:6.5pt'>X &#8211; immaterial</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left'><span
+style='font-size:12.0pt;font-family:����'>�ʶ��ڸõ�·�У�<span lang=EN-US>P2.6/A14</span>��<span
+lang=EN-US>P2.7/A15</span>���ɸߵ�ƽ��Ϊ�͵�ƽʱ��<span lang=EN-US>P1</span>�ŵ�״̬�����<span
+lang=EN-US>U1</span>��<span lang=EN-US>U2</span>����<span lang=EN-US>Q</span>�ˡ�</span></p>
+
+<p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left'><span
+lang=EN-US style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:12.0pt;font-family:����'>��ʵ���в�ȡ������ʱ������ѭ���в��Ϸ���<span lang=EN-US>NOP</span>ָ���Դﵽ��ʱ��Ŀ�ġ���<span
+lang=EN-US>C</span>������ʹ��������ʱ��Ϊ��߾�׼�ȣ���Ҫע�⣺</span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>a)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;font-family:����'>ѭ�����Ʊ�������Ϊ<span lang=EN-US>unsigned char</span>��</span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>b)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;font-family:����'>ʹ���Լ�ѭ����</span></p>
+
+</div>
+
+</body>
+
+</html>

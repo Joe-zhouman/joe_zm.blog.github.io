@@ -1,0 +1,3155 @@
+---
+layout: code
+istop : true
+book : true
+title: c语言实现单片机交通灯控制
+category: code
+tags: c SCM lessen
+code:true
+---
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=x-cp20936">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<link rel=File-List href="2017-07-15-SCM_traffic_light.files/filelist.xml">
+<link rel=Edit-Time-Data href="2017-07-15-SCM_traffic_light.files/editdata.mso">
+<link rel=OLE-Object-Data href="2017-07-15-SCM_traffic_light.files/oledata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>���ֵ��ӿƼ���ѧ</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>LEO</o:Author>
+  <o:LastAuthor>man</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>3</o:TotalTime>
+  <o:Created>2019-07-15T12:18:00Z</o:Created>
+  <o:LastSaved>2019-07-15T12:18:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>593</o:Words>
+  <o:Characters>3384</o:Characters>
+  <o:Lines>28</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>3970</o:CharactersWithSpaces>
+  <o:Version>16.00</o:Version>
+ </o:DocumentProperties>
+ <o:CustomDocumentProperties>
+  <o:KSOProductBuildVer dt:dt="string">2052-10.1.0.6929</o:KSOProductBuildVer>
+ </o:CustomDocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=dataStoreItem href="2017-07-15-SCM_traffic_light.files/item0001.xml"
+target="2017-07-15-SCM_traffic_light.files/props002.xml">
+<link rel=themeData href="2017-07-15-SCM_traffic_light.files/themedata.thmx">
+<link rel=colorSchemeMapping
+href="2017-07-15-SCM_traffic_light.files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>5.25 ��</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>7.8 ��</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas>false</w:ValidateAgainstSchemas>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotUnderlineInvalidXML/>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>ZH-CN</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" LatentStyleCount="371">
+  <w:LsdException Locked="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="No List"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Outline List 1"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Outline List 2"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="99" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="99" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="99" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="99" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:����;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:"���� Light";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610612033 953122042 22 0 262159 0;}
+@font-face
+	{font-family:������;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:����;
+	panose-1:2 1 6 9 6 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482945 953122042 22 0 262145 0;}
+@font-face
+	{font-family:"\@����";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:"\@���� Light";
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610612033 953122042 22 0 262159 0;}
+@font-face
+	{font-family:"\@������";
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:"\@����";
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482945 953122042 22 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:����;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"���� 1 �ַ�";
+	mso-style-next:����;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:22.0pt;
+	font-family:"Times New Roman",serif;
+	mso-font-kerning:22.0pt;}
+h2
+	{mso-style-qformat:yes;
+	mso-style-link:"���� 2 �ַ�";
+	mso-style-next:����;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:173%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:16.0pt;
+	font-family:"���� Light";
+	mso-ascii-font-family:"���� Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"���� Light";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"���� Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	mso-font-kerning:1.0pt;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-unhide:no;
+	mso-style-link:"ҳü �ַ�";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:����;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-unhide:no;
+	mso-style-link:"ҳ�� �ַ�";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:����;
+	mso-font-kerning:1.0pt;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-unhide:no;
+	mso-style-link:"��ע���ı� �ַ�";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:9.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:����;
+	mso-font-kerning:1.0pt;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	mso-char-indent-count:2.0;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:����;
+	mso-font-kerning:1.0pt;}
+span.a
+	{mso-style-name:"ҳ�� �ַ�";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-parent:"";
+	mso-style-link:ҳ��;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	mso-font-kerning:1.0pt;}
+span.a0
+	{mso-style-name:"ҳü �ַ�";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-parent:"";
+	mso-style-link:ҳü;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	mso-font-kerning:1.0pt;}
+span.1
+	{mso-style-name:"���� 1 �ַ�";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"���� 1";
+	mso-ansi-font-size:22.0pt;
+	mso-bidi-font-size:22.0pt;
+	mso-font-kerning:22.0pt;
+	font-weight:bold;}
+span.2
+	{mso-style-name:"���� 2 �ַ�";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"���� 2";
+	mso-ansi-font-size:16.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:"���� Light";
+	mso-ascii-font-family:"���� Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"���� Light";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"���� Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+span.a1
+	{mso-style-name:"��ע���ı� �ַ�";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:��ע���ı�;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	mso-font-kerning:1.0pt;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	mso-ascii-font-family:"Times New Roman";
+	mso-fareast-font-family:����;
+	mso-hansi-font-family:"Times New Roman";
+	mso-font-kerning:0pt;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-footnote-separator:url("2017-07-15-SCM_traffic_light.files/header.html") fs;
+	mso-footnote-continuation-separator:url("2017-07-15-SCM_traffic_light.files/header.html") fcs;
+	mso-endnote-separator:url("2017-07-15-SCM_traffic_light.files/header.html") es;
+	mso-endnote-continuation-separator:url("2017-07-15-SCM_traffic_light.files/header.html") ecs;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-even-header:url("2017-07-15-SCM_traffic_light.files/header.html") eh1;
+	mso-header:url("2017-07-15-SCM_traffic_light.files/header.html") h1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-line-numbers-count-by:1;
+	mso-line-numbers-distance:5.65pt;
+	mso-line-numbers-restart:continuous;
+	mso-even-header:url("2017-07-15-SCM_traffic_light.files/header.html") eh1;
+	mso-header:url("2017-07-15-SCM_traffic_light.files/header.html") h1;
+	mso-paper-source:0;
+	layout-grid:15.6pt 0pt;
+	mso-layout-grid-char-alt:0;}
+div.WordSection2
+	{page:WordSection2;}
+@page WordSection3
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-even-header:url("2017-07-15-SCM_traffic_light.files/header.html") eh1;
+	mso-header:url("2017-07-15-SCM_traffic_light.files/header.html") h1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.WordSection3
+	{page:WordSection3;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1;
+	mso-list-type:simple;
+	mso-list-template-ids:1;}
+@list l0:level1
+	{mso-level-start-at:5;
+	mso-level-number-format:chinese-counting;
+	mso-level-suffix:none;
+	mso-level-text:%1��;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1
+	{mso-list-id:340596073;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1917448624 -1988692704 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-start-at:7;
+	mso-level-number-format:japanese-counting;
+	mso-level-text:%1��;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:24.0pt;
+	text-indent:-24.0pt;}
+@list l1:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l1:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l1:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l1:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l1:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l1:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l1:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l1:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l2
+	{mso-list-id:892086056;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-338379450 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l2:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l2:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l2:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l2:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l2:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l2:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l2:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l2:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:210.0pt;
+	text-indent:-21.0pt;}
+@list l3
+	{mso-list-id:912660664;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1552192056 1455850302 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l3:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-18.0pt;}
+@list l3:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:66.0pt;
+	text-indent:-21.0pt;}
+@list l3:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:87.0pt;
+	text-indent:-21.0pt;}
+@list l3:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:108.0pt;
+	text-indent:-21.0pt;}
+@list l3:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:129.0pt;
+	text-indent:-21.0pt;}
+@list l3:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:150.0pt;
+	text-indent:-21.0pt;}
+@list l3:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:171.0pt;
+	text-indent:-21.0pt;}
+@list l3:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:192.0pt;
+	text-indent:-21.0pt;}
+@list l3:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:213.0pt;
+	text-indent:-21.0pt;}
+@list l4
+	{mso-list-id:952828761;
+	mso-list-type:hybrid;
+	mso-list-template-ids:648475448 1732276378 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l4:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l4:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l4:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l4:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l4:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l4:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l4:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l4:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+@list l5
+	{mso-list-id:1042250718;
+	mso-list-type:simple;
+	mso-list-template-ids:0;}
+@list l5:level1
+	{mso-level-start-at:7;
+	mso-level-number-format:chinese-counting;
+	mso-level-suffix:none;
+	mso-level-text:%1��;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l6
+	{mso-list-id:1286696685;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1804984504 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l6:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;}
+@list l6:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:42.0pt;
+	text-indent:-21.0pt;}
+@list l6:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:63.0pt;
+	text-indent:-21.0pt;}
+@list l6:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:84.0pt;
+	text-indent:-21.0pt;}
+@list l6:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:105.0pt;
+	text-indent:-21.0pt;}
+@list l6:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:126.0pt;
+	text-indent:-21.0pt;}
+@list l6:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:147.0pt;
+	text-indent:-21.0pt;}
+@list l6:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:168.0pt;
+	text-indent:-21.0pt;}
+@list l6:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:189.0pt;
+	text-indent:-21.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:��ͨ����;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+table.MsoTableGrid
+	{mso-style-name:������;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-unhide:no;
+	border:solid windowtext 1.0pt;
+	mso-border-alt:solid windowtext .5pt;
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-border-insideh:.5pt solid windowtext;
+	mso-border-insidev:.5pt solid windowtext;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2049"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+  <o:rules v:ext="edit">
+   <o:r id="V:Rule1" type="connector" idref="#���ӷ�_x003a__x0020_����_x0020_14"/>
+   <o:r id="V:Rule2" type="connector" idref="#���ӷ�_x003a__x0020_����_x0020_13"/>
+  </o:rules>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<h2><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%'>һ��ʵ��Ŀ��<span
+lang=EN-US><o:p></o:p></span></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>1</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��ѧϰ�ڵ�Ƭ��ϵͳ����չ��</span><span lang=EN-US
+style='font-size:12.0pt'>1/0</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>�ӿڵķ�����</span><span
+lang=EN-US style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>2</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��ѧϰ��������������Ʒ�����</span><span
+lang=EN-US style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<h2><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%'>����ʵ������<span
+lang=EN-US><o:p></o:p></span></span></h2>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-indent:-3.0pt;mso-char-indent-count:
+-.25'><span lang=EN-US style='font-size:12.0pt'>1</span><span style='font-size:
+12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>����</span><span lang=EN-US style='font-size:12.0pt'>741S276</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��Ϊ����ڣ�����ʮ������������ܵ�����ģ�⽻ͨ�ƿ��ƣ�</span><span
+lang=EN-US style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt;text-indent:-24.0pt;mso-char-indent-count:
+-2.0'><span lang=EN-US style='font-size:12.0pt'>2</span><span style='font-size:
+12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>���۲췢������ܵ�״̬�Ƿ�����ʵ��Ҫ��</span><span lang=EN-US
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;font-family:����;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>ʵ��˵����</span></b><b><span
+lang=EN-US style='font-size:12.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:10.5pt;mso-para-margin-left:1.0gd;
+text-indent:12.0pt;mso-char-indent-count:1.0'><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";mso-bidi-font-weight:bold'>��ʵ����ģ�⽻ͨ�ƿ��ƣ���ʵ��ǰ����Ӧ���˽⽻ͨ�Ƶ�������ɡ�</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-indent:18.0pt'><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-weight:bold'>��ĳʮ��·��</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'>2</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-weight:bold'>��</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'>4</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-weight:bold'>Ϊ�ϡ�������</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'>1</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-weight:bold'>��</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'>3</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-weight:bold'>Ϊ���������򡣳�ʼ״̬Ϊ�ĸ�·�ڵĺ��ȫ����Ȼ�󣬶�����·���̵������ϡ���·�ں������������·��ͨ�����ӳ�һ��ʱ��󣬶�����·���̵��𣬻Ƶƿ�ʼ��˸���Ƶ���˸���ɴκ󣬶�����·�ں�������ϡ���·���̵������ϡ�������ͨ�����ӳ�һ��ʱ����ϡ���·���̵��𣬻Ƶ���˸���Ƶ���˸���ɴκ����л���������·�ڷ���&middot;&middot;&middot;&middot;&middot;&middot;</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-indent:18.0pt'><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-weight:bold'>��ʵ�����÷��������Ϊ��������������������������ţ�������ߵ�ƽ����</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+
+<h2><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%;
+mso-ascii-font-family:����;mso-hansi-font-family:����'>����ʵ��ο���·ͼ</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%;
+font-family:����;mso-fareast-font-family:"���� Light";mso-fareast-theme-font:major-fareast'><o:p></o:p></span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;font-family:����;mso-no-proof:
+yes'><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="ͼƬ_x0020_34" o:spid="_x0000_i1028" type="#_x0000_t75"
+ style='width:414.75pt;height:224.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="2017-07-15-SCM_traffic_light.files/image001.png" o:title="ʵ��һ CPU"/>
+</v:shape><![endif]--><![if !vml]><img width=553 height=299
+src="2017-07-15-SCM_traffic_light.files/image002.jpg" v:shapes="ͼƬ_x0020_34"><![endif]></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+font-family:����'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;font-family:����;mso-no-proof:
+yes'><!--[if gte vml 1]><v:shape id="ͼƬ_x0020_44" o:spid="_x0000_i1027" type="#_x0000_t75"
+ style='width:414.75pt;height:224.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="2017-07-15-SCM_traffic_light.files/image003.png" o:title="ʵ��һ ��չ"/>
+</v:shape><![endif]--><![if !vml]><img width=553 height=299
+src="2017-07-15-SCM_traffic_light.files/image004.jpg" v:shapes="ͼƬ_x0020_44"><![endif]></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+font-family:����'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;font-family:����;mso-no-proof:
+yes'><!--[if gte vml 1]><v:shape id="ͼƬ_x0020_103" o:spid="_x0000_i1026"
+ type="#_x0000_t75" style='width:415.5pt;height:333.75pt;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="2017-07-15-SCM_traffic_light.files/image005.png" o:title="ʵ��һ ��ͨ��"/>
+</v:shape><![endif]--><![if !vml]><img width=554 height=445
+src="2017-07-15-SCM_traffic_light.files/image006.jpg" v:shapes="ͼƬ_x0020_103"><![endif]></span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+font-family:����'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:12.0pt;font-family:����'><o:p>&nbsp;</o:p></span></b></p>
+
+<h2><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%;
+mso-ascii-font-family:����;mso-hansi-font-family:����'>�ġ�ʵ������ͼ</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%;
+font-family:����;mso-fareast-font-family:"���� Light";mso-fareast-theme-font:major-fareast'><o:p></o:p></span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><!--[if gte vml 1]><v:shape
+ id="_x0000_i1025" type="#_x0000_t75" style='width:186pt;height:649.5pt' o:ole="">
+ <v:imagedata src="2017-07-15-SCM_traffic_light.files/image007.emz" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=248 height=866
+src="2017-07-15-SCM_traffic_light.files/image008.png" v:shapes="_x0000_i1025"><![endif]><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.15" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1624727083">
+ </o:OLEObject>
+</xml><![endif]--></span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;font-family:����'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:12.0pt;font-family:����'><o:p>&nbsp;</o:p></span></b></p>
+
+<h2><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%'>�塢ʵ�鲽��<span
+lang=EN-US><o:p></o:p></span></span></h2>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>���Ӻø�λ��·</span><span
+lang=EN-US style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>���뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��</span><span lang=EN-US
+style='font-size:12.0pt'>RST</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>������</span><span
+lang=EN-US style='font-size:12.0pt'>;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt'><span lang=EN-US
+style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>���Ӻþ����·</span><span
+lang=EN-US style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>���뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��</span><span lang=EN-US
+style='font-size:12.0pt'>XTAL1</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>XTAL2</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>������</span><span lang=EN-US style='font-size:12.0pt'>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>U1(74LS273),U2(74LS273)</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��</span><span lang=EN-US
+style='font-size:12.0pt'>D0~D7</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>�뵥Ƭ��</span><span
+lang=EN-US style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>��</span><span lang=EN-US style='font-size:12.0pt'>P1.0~P1.7</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>����</span><span lang=EN-US
+style='font-size:12.0pt'>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>�������</span><span
+lang=EN-US style='font-size:12.0pt'>U4:A(74LS02)</span><span style='font-size:
+12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>�������һ�˽ӵ�</span><span lang=EN-US style='font-size:12.0pt'>, </span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��һ���뵥Ƭ��</span><span lang=EN-US
+style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>P2.6/A14</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>����</span><span lang=EN-US style='font-size:12.0pt'>,</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>�������</span><span lang=EN-US
+style='font-size:12.0pt'>U1</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>MR</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>��</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>������</span><span lang=EN-US
+style='font-size:12.0pt'>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>�������</span><span
+lang=EN-US style='font-size:12.0pt'>U6:A(74LS02)</span><span style='font-size:
+12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>�������һ�˽ӵ�</span><span lang=EN-US style='font-size:12.0pt'>, </span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��һ���뵥Ƭ��</span><span lang=EN-US
+style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>P2.7/A15</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>����</span><span lang=EN-US style='font-size:12.0pt'>,</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>�������</span><span lang=EN-US
+style='font-size:12.0pt'>U2</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>MR</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>��</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>������</span><span lang=EN-US
+style='font-size:12.0pt'>;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>������</span><span
+lang=EN-US style='font-size:12.0pt'>U3</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>��</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��</span><span lang=EN-US
+style='font-size:12.0pt'>,U7</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>��</span><span
+lang=EN-US style='font-size:12.0pt'>74LS04</span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>�����������</span><span lang=EN-US style='font-size:12.0pt'>U1,U2</span><span
+style='font-size:12.0pt;font-family:����;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>��</span><span lang=EN-US
+style='font-size:12.0pt'>Q0~Q7</span><span style='font-size:12.0pt;font-family:
+����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>����</span><span
+lang=EN-US style='font-size:12.0pt'>, </span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>��������Ӧ�ķ�������ܵ���������</span><span lang=EN-US style='font-size:
+12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo4'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:12.0pt;font-family:����;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>����������ܵ�������������������</span><span
+lang=EN-US style='font-size:12.0pt'>, </span><span style='font-size:12.0pt;
+font-family:����;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>����ߵ�ƽ������</span><span lang=EN-US style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<h2><span style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%'>���������嵥<span
+lang=EN-US><o:p></o:p></span></span></h2>
+
+</div>
+
+<span lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:
+"Times New Roman";mso-bidi-font-family:������;color:gray;mso-ansi-language:EN-US;
+mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always;mso-break-type:section-break'>
+</span>
+
+<div class=WordSection2 style='layout-grid:15.6pt 0pt;mso-layout-grid-char-alt:
+0'>
+
+<div style='mso-element:para-border-div;border:none;border-left:solid windowtext 4.5pt;
+padding:0cm 0cm 0cm 30.0pt;margin-left:42.0pt;margin-right:0cm'>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>#include</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#A31515;mso-font-kerning:0pt'>&quot;reg51.h&quot;</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>#include</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#A31515;mso-font-kerning:0pt'>&lt;<span
+class=SpellE>intrins.h</span>&gt;</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>#define</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>unsigned</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>char</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// delay for (time)
+s</span><span lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:
+"Times New Roman";mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// send data to the
+first 74LS273</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// send data to the
+second 74LS273</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// all red on,
+others off</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// time : this stage
+lasts for (time) seconds</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>allred</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east are
+passable</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east :
+green on, others off</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south :
+red on others off</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// time : this stage
+lasts for (time) seconds</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>we_passable</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south
+are passable</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east :
+red on, others off</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south :
+green on, others off</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// time : this stage
+lasts for (time) seconds</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>ns_passable</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east are
+waiting for red on</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east :
+yellow flicker, others off</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// flicker every 2
+seconds (yellow on for 1s, yellow off for 1s)</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south :
+red on, others off</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// time : this stage
+lasts for (time * 2) seconds</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>we_wait</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south
+are waiting for red on</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south :
+yellow flicker, others off</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// flicker every 2
+seconds (yellow on for 1s, yellow off for 1s)</span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east :
+red on, others off</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// time : this stage
+lasts for (time *</span><span style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:green;
+mso-font-kerning:0pt'>��<span lang=EN-US>) seconds</span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>ns_wait</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+class=SpellE><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'>sbit</span></span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'> sw1 = P2 ^ 6;<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:green;mso-font-kerning:0pt'>//use P2.6 to <span class=SpellE>contral</span>
+the first 74LS273</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+class=SpellE><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'>sbit</span></span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'> sw2 = P2 ^ 7;<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:green;mso-font-kerning:0pt'>//use P2.7 to <span class=SpellE>contral</span>
+the second 74LS273</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> main() {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//start : all red on</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span class=SpellE>allred</span>(1);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// loop on</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>while</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (1) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// 1st</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east,
+green on</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// north and south,
+red on</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>we_passable</span>(30);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//2st</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// west and east,
+green off, yellow flicker</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>we_wait</span>(3);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//3rd</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//west and east, red
+on</span><span lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:
+"Times New Roman";mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//north and south,
+red off, green on</span><span lang=EN-US style='font-size:9.5pt;font-family:
+������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;
+color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>ns_passable</span>(30);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//4th</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//north and south,
+green off, yellow flicker</span><span lang=EN-US style='font-size:9.5pt;
+font-family:������;mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:
+������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=SpellE>ns_wait</span>(3);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// send data to the
+first 74LS273</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> senddata_1() {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>sw1 = 1;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>sw1 = 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>// send data to the
+second 74LS273</span><span lang=EN-US style='font-size:9.5pt;font-family:������;
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:������;color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> senddata_2() {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>sw2 = 1;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>sw2 = 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:green;mso-font-kerning:0pt'>//delay time s</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>i</span>,
+j, k;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>--) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (k = 10; k &gt; 0;
+k--) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (<span
+class=SpellE>i</span> = 250; <span class=SpellE>i</span> &gt; 0; <span
+class=SpellE>i</span>--) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (j = 133; j &gt; 0;
+j--) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>_<span
+class=SpellE>nop</span>_();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>allred</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>P1 = 0x49;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>P1 = 0x02;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>we_passable</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>P1 = 0x0C;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>P1 = 0x03;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>ns_passable</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>P1 = 0x61;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>P1 = 0x08;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>delay(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>we_wait</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>--) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x8A;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x02;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>delay(1);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x08;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x02;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>delay(1);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>void</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> <span class=SpellE>ns_wait</span>(</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:#6F008A;mso-font-kerning:0pt'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:blue;mso-font-kerning:0pt'>for</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:gray;mso-font-kerning:0pt'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>--) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x51;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x04;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>delay(1);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x41;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_1();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>P1 =
+0x00;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>senddata_2();<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>delay(1);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:0cm;mso-para-margin-left:4.0gd;
+text-align:left;mso-layout-grid-align:none;text-autospace:none;border:none;
+mso-border-left-alt:solid windowtext 4.5pt;padding:0cm;mso-padding-alt:0cm 0cm 0cm 30.0pt'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<span lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:
+"Times New Roman";mso-bidi-font-family:������;color:black;mso-ansi-language:EN-US;
+mso-fareast-language:ZH-CN;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always;mso-break-type:section-break'>
+</span>
+
+<div class=WordSection3 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='margin-left:42.0pt;mso-para-margin-left:
+4.0gd;text-align:left;mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-size:9.5pt;font-family:������;mso-hansi-font-family:"Times New Roman";
+mso-bidi-font-family:������;color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-weight:bold'><o:p>&nbsp;</o:p></span></p>
+
+<h2 style='margin-left:24.0pt'><span style='font-size:12.0pt;mso-bidi-font-size:
+16.0pt;line-height:173%;mso-ascii-font-family:����;mso-hansi-font-family:����'>�ߡ�ʵ�����</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:16.0pt;line-height:173%;
+font-family:����;mso-fareast-font-family:"���� Light";mso-fareast-theme-font:major-fareast'><o:p></o:p></span></h2>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l4 level1 lfo7'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-family:����;
+mso-bidi-font-weight:bold'><span style='mso-list:Ignore'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>������<span
+lang=EN-US>74LS273</span>�Ĺ�������Ϊ����<span lang=EN-US>MR</span>��Ϊ�͵�ƽʱ������<span
+lang=EN-US>CLK</span>���������壬���ݶˣ�<span lang=EN-US>D</span>�ˣ��Ǹ߻�͵�ƽ������ˣ�<span
+lang=EN-US>Q</span>�ˣ���Ϊ�͵�ƽ<span lang=EN-US>;</span>����<span lang=EN-US>MR</span>��Ϊ�ߵ�ƽʱ����<span
+lang=EN-US>D</span>���˵�����������������ڼ䱻���͵���<span lang=EN-US>Q</span>����<span
+lang=EN-US>, </span>���±���ʾ<span lang=EN-US>:<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='margin-left:42.0pt;text-align:left'><span
+lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='margin-left:128.8pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td colspan=4 valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span class=SpellE><b><span
+  lang=EN-US style='font-size:12.0pt'>Tabel</span></b></span><b><span
+  lang=EN-US style='font-size:12.0pt'> 1.</span></b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-weight:bold'>truth table of 74LS273<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;
+  mso-border-bottom-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>MR<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;
+  mso-border-bottom-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>CLK<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;
+  mso-border-bottom-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>Di<sub><o:p></o:p></sub></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext 1.5pt;mso-border-top-alt:solid windowtext 1.5pt;
+  mso-border-bottom-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>Qi<sub><o:p></o:p></sub></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td valign=top style='border:none;mso-border-top-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>L<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;mso-border-top-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>X<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;mso-border-top-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>X<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;mso-border-top-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>L<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>H<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t34" coordsize="21600,21600" o:spt="34" o:oned="t" adj="10800"
+   path="m,l@0,0@0,21600,21600,21600e" filled="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="val #0"/>
+   </v:formulas>
+   <v:path arrowok="t" fillok="f" o:connecttype="none"/>
+   <v:handles>
+    <v:h position="#0,center"/>
+   </v:handles>
+   <o:lock v:ext="edit" shapetype="t"/>
+  </v:shapetype><v:shape id="���ӷ�_x003a__x0020_����_x0020_13" o:spid="_x0000_s1027"
+   type="#_x0000_t34" style='position:absolute;left:0;text-align:left;
+   margin-left:11.7pt;margin-top:3.05pt;width:19.2pt;height:9.45pt;flip:y;
+   z-index:251659264;visibility:visible;mso-wrap-style:square;
+   mso-width-percent:0;mso-height-percent:0;mso-wrap-distance-left:9pt;
+   mso-wrap-distance-top:0;mso-wrap-distance-right:9pt;
+   mso-wrap-distance-bottom:0;mso-position-horizontal:absolute;
+   mso-position-horizontal-relative:text;mso-position-vertical:absolute;
+   mso-position-vertical-relative:text;mso-width-percent:0;
+   mso-height-percent:0;mso-width-relative:margin;mso-height-relative:margin'
+   o:gfxdata="UEsDBBQABgAIAAAAIQC2gziS/gAAAOEBAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbJSRQU7DMBBF
+90jcwfIWJU67QAgl6YK0S0CoHGBkTxKLZGx5TGhvj5O2G0SRWNoz/78nu9wcxkFMGNg6quQqL6RA
+0s5Y6ir5vt9lD1JwBDIwOMJKHpHlpr69KfdHjyxSmriSfYz+USnWPY7AufNIadK6MEJMx9ApD/oD
+OlTrorhX2lFEilmcO2RdNtjC5xDF9pCuTyYBB5bi6bQ4syoJ3g9WQ0ymaiLzg5KdCXlKLjvcW893
+SUOqXwnz5DrgnHtJTxOsQfEKIT7DmDSUCaxw7Rqn8787ZsmRM9e2VmPeBN4uqYvTtW7jvijg9N/y
+JsXecLq0q+WD6m8AAAD//wMAUEsDBBQABgAIAAAAIQA4/SH/1gAAAJQBAAALAAAAX3JlbHMvLnJl
+bHOkkMFqwzAMhu+DvYPRfXGawxijTi+j0GvpHsDYimMaW0Yy2fr2M4PBMnrbUb/Q94l/f/hMi1qR
+JVI2sOt6UJgd+ZiDgffL8ekFlFSbvV0oo4EbChzGx4f9GRdb25HMsYhqlCwG5lrLq9biZkxWOiqY
+22YiTra2kYMu1l1tQD30/bPm3wwYN0x18gb45AdQl1tp5j/sFB2T0FQ7R0nTNEV3j6o9feQzro1i
+OWA14Fm+Q8a1a8+Bvu/d/dMb2JY5uiPbhG/ktn4cqGU/er3pcvwCAAD//wMAUEsDBBQABgAIAAAA
+IQDQCQ2nEAIAAEkEAAAOAAAAZHJzL2Uyb0RvYy54bWysVMuO0zAU3SPxD5b3NElnOqJR01l0NGwQ
+VLz2rh+NkV+yTZtu+QDWrFggwYpfQHwNMJ/BtZOmI0BIIDZXftxzfM+5N1lcdlqhHfdBWtPgalJi
+xA21TJptg58/u753H6MQiWFEWcMbfOABXy7v3lnsXc2ntrWKcY+AxIR67xrcxujqogi05ZqEiXXc
+wKWwXpMIW78tmCd7YNeqmJblRbG3njlvKQ8BTq/6S7zM/EJwGh8LEXhEqsFQW8zR57hJsVguSL31
+xLWSDmWQf6hCE2ng0ZHqikSCXnn5C5WW1NtgRZxQqwsrhKQ8awA1VfmTmqctcTxrAXOCG20K/4+W
+PtqtPZIMeneGkSEaenTz5d23Nx++f/pYo5vXb79+fo/gDozau1BD/sqs/bALbu2T6k54jYSS7gXw
+ZB9AGeqyzYfRZt5FROFwen5eVRcYUbiqqvl8nttQ9DSJzvkQH3CrUVo0eMNNXFljoJnWn2V6snsY
+YvabDUUT9rLCSGgF7dsRhWbVbDZPVQPvkA2rI3OCKpNisEqya6lU3qSx4yvlEVA0OHbVwHArC1gS
+skhu9PrzKh4U71mfcAGGgs7eiTzKJ05CKcg58ioD2QkmoIIRWGaNfwQO+QnK85j/DXhE5JetiSNY
+S2P9714/WSH6/KMDve5kwcayQ56MbA3Ma/Z++LbSB3F7n+GnP8DyBwAAAP//AwBQSwMEFAAGAAgA
+AAAhAENs/KTdAAAABgEAAA8AAABkcnMvZG93bnJldi54bWxMj8FOwzAQRO9I/IO1SFwQdVKaCEKc
+CkF74VBE2wPHbWziiHgdxU4a/p7lBMfZGc28Ldez68RkhtB6UpAuEhCGaq9bahQcD9vbexAhImns
+PBkF3ybAurq8KLHQ/kzvZtrHRnAJhQIV2Bj7QspQW+MwLHxviL1PPziMLIdG6gHPXO46uUySXDps
+iRcs9ubZmvprPzoFfnTT6/Bgt/i22cU+23xkNy8rpa6v5qdHENHM8S8Mv/iMDhUznfxIOohOwfJu
+xUkFeQqC7TzlR058zhKQVSn/41c/AAAA//8DAFBLAQItABQABgAIAAAAIQC2gziS/gAAAOEBAAAT
+AAAAAAAAAAAAAAAAAAAAAABbQ29udGVudF9UeXBlc10ueG1sUEsBAi0AFAAGAAgAAAAhADj9If/W
+AAAAlAEAAAsAAAAAAAAAAAAAAAAALwEAAF9yZWxzLy5yZWxzUEsBAi0AFAAGAAgAAAAhANAJDacQ
+AgAASQQAAA4AAAAAAAAAAAAAAAAALgIAAGRycy9lMm9Eb2MueG1sUEsBAi0AFAAGAAgAAAAhAENs
+/KTdAAAABgEAAA8AAAAAAAAAAAAAAAAAagQAAGRycy9kb3ducmV2LnhtbFBLBQYAAAAABAAEAPMA
+AAB0BQAAAAA=
+" adj="11137" strokecolor="black [3213]" strokeweight=".5pt"/><![endif]--><![if !vml]><span
+  style='mso-ignore:vglayout;position:absolute;z-index:251659264;left:0px;
+  margin-left:15px;margin-top:3px;width:27px;height:15px'><img width=27
+  height=15 src="2017-07-15-SCM_traffic_light.files/image009.png" v:shapes="���ӷ�_x003a__x0020_����_x0020_13"></span><![endif]><span
+  lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>H<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>H<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>H<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shape
+   id="���ӷ�_x003a__x0020_����_x0020_14" o:spid="_x0000_s1026" type="#_x0000_t34"
+   style='position:absolute;left:0;text-align:left;margin-left:12.2pt;
+   margin-top:2.15pt;width:19.2pt;height:9.45pt;flip:y;z-index:251661312;
+   visibility:visible;mso-wrap-style:square;mso-width-percent:0;
+   mso-height-percent:0;mso-wrap-distance-left:9pt;mso-wrap-distance-top:0;
+   mso-wrap-distance-right:9pt;mso-wrap-distance-bottom:0;
+   mso-position-horizontal:absolute;mso-position-horizontal-relative:text;
+   mso-position-vertical:absolute;mso-position-vertical-relative:text;
+   mso-width-percent:0;mso-height-percent:0;mso-width-relative:margin;
+   mso-height-relative:margin' o:gfxdata="UEsDBBQABgAIAAAAIQC2gziS/gAAAOEBAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbJSRQU7DMBBF
+90jcwfIWJU67QAgl6YK0S0CoHGBkTxKLZGx5TGhvj5O2G0SRWNoz/78nu9wcxkFMGNg6quQqL6RA
+0s5Y6ir5vt9lD1JwBDIwOMJKHpHlpr69KfdHjyxSmriSfYz+USnWPY7AufNIadK6MEJMx9ApD/oD
+OlTrorhX2lFEilmcO2RdNtjC5xDF9pCuTyYBB5bi6bQ4syoJ3g9WQ0ymaiLzg5KdCXlKLjvcW893
+SUOqXwnz5DrgnHtJTxOsQfEKIT7DmDSUCaxw7Rqn8787ZsmRM9e2VmPeBN4uqYvTtW7jvijg9N/y
+JsXecLq0q+WD6m8AAAD//wMAUEsDBBQABgAIAAAAIQA4/SH/1gAAAJQBAAALAAAAX3JlbHMvLnJl
+bHOkkMFqwzAMhu+DvYPRfXGawxijTi+j0GvpHsDYimMaW0Yy2fr2M4PBMnrbUb/Q94l/f/hMi1qR
+JVI2sOt6UJgd+ZiDgffL8ekFlFSbvV0oo4EbChzGx4f9GRdb25HMsYhqlCwG5lrLq9biZkxWOiqY
+22YiTra2kYMu1l1tQD30/bPm3wwYN0x18gb45AdQl1tp5j/sFB2T0FQ7R0nTNEV3j6o9feQzro1i
+OWA14Fm+Q8a1a8+Bvu/d/dMb2JY5uiPbhG/ktn4cqGU/er3pcvwCAAD//wMAUEsDBBQABgAIAAAA
+IQBvYi6HEAIAAEkEAAAOAAAAZHJzL2Uyb0RvYy54bWysVMuO0zAU3SPxD5b3NElpRzRqOouOhg2C
+Chj2rmM3Rn7JNk265QNYs2KBxKz4BcTXDMxncO2k6QgQEojNlR/3HN9z7k2W552SaM+cF0ZXuJjk
+GDFNTS30rsJXLy8fPMLIB6JrIo1mFT4wj89X9+8tW1uyqWmMrJlDQKJ92doKNyHYMss8bZgifmIs
+03DJjVMkwNbtstqRFtiVzKZ5fpa1xtXWGcq8h9OL/hKvEj/njIZnnHsWkKww1BZSdCluY8xWS1Lu
+HLGNoEMZ5B+qUERoeHSkuiCBoDdO/EKlBHXGGx4m1KjMcC4oSxpATZH/pOZFQyxLWsAcb0eb/P+j
+pU/3G4dEDb2bYaSJgh7dfv3w7d2n75+vS3T79v3Nl48I7sCo1voS8td644adtxsXVXfcKcSlsK+A
+J/kAylCXbD6MNrMuIAqH09msKM4wonBVFIvFIrUh62kinXU+PGZGobio8JbpsDZaQzONe5joyf6J
+D8nveiia1K8LjLiS0L49kWhezOeLWDXwDtmwOjJHqNQxeiNFfSmkTJs4dmwtHQKKCoeuGBjuZAFL
+RGbRjV5/WoWDZD3rc8bBUNDZO5FG+cRJKAU5R16pITvCOFQwAvOk8Y/AIT9CWRrzvwGPiPSy0WEE
+K6GN+93rJyt4n390oNcdLdia+pAmI1kD85q8H76t+EHc3Sf46Q+w+gEAAP//AwBQSwMEFAAGAAgA
+AAAhAFqwYu3cAAAABgEAAA8AAABkcnMvZG93bnJldi54bWxMj8FOwzAQRO9I/IO1SFwQdUjTCkKc
+CkF74VBE4cBxGy9xRGxHtpOGv2c5wXF2RjNvq81sezFRiJ13Cm4WGQhyjdedaxW8v+2ub0HEhE5j
+7x0p+KYIm/r8rMJS+5N7pemQWsElLpaowKQ0lFLGxpDFuPADOfY+fbCYWIZW6oAnLre9zLNsLS12
+jhcMDvRoqPk6jFaBH+30HO7MDl+2+zSsth+rq6dCqcuL+eEeRKI5/YXhF5/RoWamox+djqJXkBcF
+JxUUSxBsr3N+5MjnZQ6yruR//PoHAAD//wMAUEsBAi0AFAAGAAgAAAAhALaDOJL+AAAA4QEAABMA
+AAAAAAAAAAAAAAAAAAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECLQAUAAYACAAAACEAOP0h/9YA
+AACUAQAACwAAAAAAAAAAAAAAAAAvAQAAX3JlbHMvLnJlbHNQSwECLQAUAAYACAAAACEAb2IuhxAC
+AABJBAAADgAAAAAAAAAAAAAAAAAuAgAAZHJzL2Uyb0RvYy54bWxQSwECLQAUAAYACAAAACEAWrBi
+7dwAAAAGAQAADwAAAAAAAAAAAAAAAABqBAAAZHJzL2Rvd25yZXYueG1sUEsFBgAAAAAEAAQA8wAA
+AHMFAAAAAA==
+" adj="11137" strokecolor="black [3213]" strokeweight=".5pt"/><![endif]--><![if !vml]><span
+  style='mso-ignore:vglayout;position:absolute;z-index:251661312;left:0px;
+  margin-left:15px;margin-top:2px;width:28px;height:14px'><img width=28
+  height=14 src="2017-07-15-SCM_traffic_light.files/image010.png" v:shapes="���ӷ�_x003a__x0020_����_x0020_14"></span><![endif]><span
+  lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>L<o:p></o:p></span></p>
+  </td>
+  <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>L<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;height:11.35pt'>
+  <td colspan=4 valign=top style='border:none;mso-border-top-alt:solid windowtext 1.5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:11.35pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span class=SpellE><span
+  lang=EN-US style='font-size:6.5pt;mso-fareast-font-family:����;mso-bidi-font-weight:
+  bold'>i</span></span><span lang=EN-US style='font-size:6.5pt;mso-fareast-font-family:
+  ����;mso-bidi-font-weight:bold'> = 0~7 <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;height:11.35pt'>
+  <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:11.35pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
+  style='font-size:6.5pt;mso-fareast-font-family:����;mso-bidi-font-weight:bold'>L
+  &#8211; low logic level, H &#8211; high logic level <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7;mso-yfti-lastrow:yes;height:11.35pt'>
+  <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:11.35pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
+  style='font-size:6.5pt;mso-fareast-font-family:����;mso-bidi-font-weight:bold'>X
+  &#8211; immaterial<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left'><span
+style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>�ʶ��ڸõ�·�У�<span
+lang=EN-US>P2.6/A14</span>��<span lang=EN-US>P2.7/A15</span>���ɸߵ�ƽ��Ϊ�͵�ƽʱ��<span
+lang=EN-US>P1</span>�ŵ�״̬�����<span lang=EN-US>U1</span>��<span lang=EN-US>U2</span>����<span
+lang=EN-US>Q</span>�ˡ�<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left'><span
+lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
+text-indent:-18.0pt;mso-char-indent-count:0;mso-list:l4 level1 lfo7'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-family:����;
+mso-bidi-font-weight:bold'><span style='mso-list:Ignore'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
+style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'>��ʵ���в�ȡ������ʱ������ѭ���в��Ϸ���<span
+lang=EN-US>NOP</span>ָ���Դﵽ��ʱ��Ŀ�ġ���<span lang=EN-US>C</span>������ʹ��������ʱ��Ϊ��߾�׼�ȣ���Ҫע�⣺<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l4 level2 lfo7'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-family:����;
+mso-bidi-font-weight:bold'><span style='mso-list:Ignore'>a)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-size:12.0pt;font-family:����;mso-bidi-font-family:����;mso-font-kerning:
+0pt'>ѭ�����Ʊ�������Ϊ<span lang=EN-US>unsigned char</span>��</span><span lang=EN-US
+style='font-size:12.0pt;font-family:����;mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
+text-indent:-21.0pt;mso-char-indent-count:0;mso-list:l4 level2 lfo7'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;font-family:����;mso-bidi-font-family:����;
+mso-bidi-font-weight:bold'><span style='mso-list:Ignore'>b)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-size:12.0pt;font-family:����;mso-bidi-font-family:����;mso-font-kerning:
+0pt'>ʹ���Լ�ѭ����</span><span lang=EN-US style='font-size:12.0pt;font-family:����;
+mso-bidi-font-weight:bold'><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,45 +1,45 @@
----
 layout: code
 istop : true
 book : true
-title: 单片机交通灯控制-C语言实现
+title: 单片机控制交通灯--C语言实现
 category: code
 tags: C SCM lessen
 code: true
----
+
+
 <html>
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=x-cp20936">
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=Generator content="Microsoft Word 15 (filtered)">
-<title>���ֵ��ӿƼ���ѧ</title>
+<title>单片机--交通灯</title>
 <style>
 <!--
  /* Font Definitions */
  @font-face
-	{font-family:����;
+	{font-family:宋体;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:0 0 0 0 0 0 0 0 0 0;}
 @font-face
-	{font-family:"���� Light";
+	{font-family:"等线 Light";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:������;
+	{font-family:新宋体;
 	panose-1:2 1 6 9 3 1 1 1 1 1;}
 @font-face
-	{font-family:����;
+	{font-family:仿宋;
 	panose-1:2 1 6 9 6 1 1 1 1 1;}
 @font-face
-	{font-family:"\@����";
+	{font-family:"\@宋体";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:"\@���� Light";}
+	{font-family:"\@等线 Light";}
 @font-face
-	{font-family:"\@������";}
+	{font-family:"\@新宋体";}
 @font-face
-	{font-family:"\@����";}
+	{font-family:"\@仿宋";}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0cm;
@@ -49,7 +49,7 @@ code: true
 	font-size:10.5pt;
 	font-family:"Times New Roman",serif;}
 h1
-	{mso-style-link:"���� 1 �ַ�";
+	{mso-style-link:"标题 1 字符";
 	margin-top:17.0pt;
 	margin-right:0cm;
 	margin-bottom:16.5pt;
@@ -61,7 +61,7 @@ h1
 	font-size:22.0pt;
 	font-family:"Times New Roman",serif;}
 h2
-	{mso-style-link:"���� 2 �ַ�";
+	{mso-style-link:"标题 2 字符";
 	margin-top:13.0pt;
 	margin-right:0cm;
 	margin-bottom:13.0pt;
@@ -71,9 +71,9 @@ h2
 	line-height:173%;
 	page-break-after:avoid;
 	font-size:16.0pt;
-	font-family:"���� Light";}
+	font-family:"等线 Light";}
 p.MsoHeader, li.MsoHeader, div.MsoHeader
-	{mso-style-link:"ҳü �ַ�";
+	{mso-style-link:"页眉 字符";
 	margin:0cm;
 	margin-bottom:.0001pt;
 	text-align:center;
@@ -83,14 +83,14 @@ p.MsoHeader, li.MsoHeader, div.MsoHeader
 	font-size:9.0pt;
 	font-family:"Times New Roman",serif;}
 p.MsoFooter, li.MsoFooter, div.MsoFooter
-	{mso-style-link:"ҳ�� �ַ�";
+	{mso-style-link:"页脚 字符";
 	margin:0cm;
 	margin-bottom:.0001pt;
 	layout-grid-mode:char;
 	font-size:9.0pt;
 	font-family:"Times New Roman",serif;}
 p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-link:"��ע���ı� �ַ�";
+	{mso-style-link:"批注框文本 字符";
 	margin:0cm;
 	margin-bottom:.0001pt;
 	text-align:justify;
@@ -106,23 +106,23 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	font-size:10.5pt;
 	font-family:"Times New Roman",serif;}
 span.a
-	{mso-style-name:"ҳ�� �ַ�";
-	mso-style-link:ҳ��;}
+	{mso-style-name:"页脚 字符";
+	mso-style-link:页脚;}
 span.a0
-	{mso-style-name:"ҳü �ַ�";
-	mso-style-link:ҳü;}
+	{mso-style-name:"页眉 字符";
+	mso-style-link:页眉;}
 span.1
-	{mso-style-name:"���� 1 �ַ�";
-	mso-style-link:"���� 1";
+	{mso-style-name:"标题 1 字符";
+	mso-style-link:"标题 1";
 	font-weight:bold;}
 span.2
-	{mso-style-name:"���� 2 �ַ�";
-	mso-style-link:"���� 2";
-	font-family:"���� Light";
+	{mso-style-name:"标题 2 字符";
+	mso-style-link:"标题 2";
+	font-family:"等线 Light";
 	font-weight:bold;}
 span.a1
-	{mso-style-name:"��ע���ı� �ַ�";
-	mso-style-link:��ע���ı�;}
+	{mso-style-name:"批注框文本 字符";
+	mso-style-link:批注框文本;}
 .MsoChpDefault
 	{font-size:10.0pt;}
  /* Page Definitions */
@@ -160,179 +160,179 @@ ul
 
 <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></b></p>
 
-<h2><span style='font-size:12.0pt;line-height:173%'>һ��ʵ��Ŀ��</span></h2>
+<h2><span style='font-size:12.0pt;line-height:173%'>一、实验目的</span></h2>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>1</span><span
-style='font-size:12.0pt;font-family:����'>��ѧϰ�ڵ�Ƭ��ϵͳ����չ��</span><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体'>、学习在单片机系统中扩展简单</span><span lang=EN-US
 style='font-size:12.0pt'>1/0</span><span style='font-size:12.0pt;font-family:
-����'>�ӿڵķ�����</span></p>
+宋体'>接口的方法；</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>2</span><span
-style='font-size:12.0pt;font-family:����'>��ѧϰ��������������Ʒ�����</span></p>
+style='font-size:12.0pt;font-family:宋体'>、学习数据输出程序的设计方法；</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
 
-<h2><span style='font-size:12.0pt;line-height:173%'>����ʵ������</span></h2>
+<h2><span style='font-size:12.0pt;line-height:173%'>二、实验内容</span></h2>
 
 <p class=MsoNormal style='margin-left:3.0pt;text-indent:-3.0pt'><span
 lang=EN-US style='font-size:12.0pt'>1</span><span style='font-size:12.0pt;
-font-family:����'>����</span><span lang=EN-US style='font-size:12.0pt'>741S276</span><span
-style='font-size:12.0pt;font-family:����'>��Ϊ����ڣ�����ʮ������������ܵ�����ģ�⽻ͨ�ƿ��ƣ�</span></p>
+font-family:宋体'>、以</span><span lang=EN-US style='font-size:12.0pt'>741S276</span><span
+style='font-size:12.0pt;font-family:宋体'>做为输出口，控制十二个发光二极管的亮灭，模拟交通灯控制；</span></p>
 
 <p class=MsoNormal style='margin-left:24.0pt;text-indent:-24.0pt'><span
 lang=EN-US style='font-size:12.0pt'>2</span><span style='font-size:12.0pt;
-font-family:����'>���۲췢������ܵ�״̬�Ƿ�����ʵ��Ҫ��</span></p>
+font-family:宋体'>、观察发光二极管的状态是否满足实验要求。</span></p>
 
-<p class=MsoNormal><b><span style='font-size:12.0pt;font-family:����'>ʵ��˵����</span></b></p>
+<p class=MsoNormal><b><span style='font-size:12.0pt;font-family:宋体'>实验说明：</span></b></p>
 
 <p class=MsoNormal style='margin-left:10.5pt;text-indent:12.0pt'><span
-style='font-size:12.0pt;font-family:����'>��ʵ����ģ�⽻ͨ�ƿ��ƣ���ʵ��ǰ����Ӧ���˽⽻ͨ�Ƶ�������ɡ�</span></p>
+style='font-size:12.0pt;font-family:宋体'>本实验是模拟交通灯控制，故实验前首先应该了解交通灯的亮灭规律。</span></p>
 
 <p class=MsoNormal style='margin-left:3.0pt;text-indent:18.0pt'><span
-style='font-size:12.0pt;font-family:����'>��ĳʮ��·��</span><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体'>设某十字路口</span><span lang=EN-US
 style='font-size:12.0pt'>2</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>4</span><span
-style='font-size:12.0pt;font-family:����'>Ϊ�ϡ�������</span><span lang=EN-US
+宋体'>、</span><span lang=EN-US style='font-size:12.0pt'>4</span><span
+style='font-size:12.0pt;font-family:宋体'>为南、北方向，</span><span lang=EN-US
 style='font-size:12.0pt'>1</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>3</span><span
-style='font-size:12.0pt;font-family:����'>Ϊ���������򡣳�ʼ״̬Ϊ�ĸ�·�ڵĺ��ȫ����Ȼ�󣬶�����·���̵������ϡ���·�ں������������·��ͨ�����ӳ�һ��ʱ��󣬶�����·���̵��𣬻Ƶƿ�ʼ��˸���Ƶ���˸���ɴκ󣬶�����·�ں�������ϡ���·���̵������ϡ�������ͨ�����ӳ�һ��ʱ����ϡ���·���̵��𣬻Ƶ���˸���Ƶ���˸���ɴκ����л���������·�ڷ���&middot;&middot;&middot;&middot;&middot;&middot;</span></p>
+宋体'>、</span><span lang=EN-US style='font-size:12.0pt'>3</span><span
+style='font-size:12.0pt;font-family:宋体'>为东、西方向。初始状态为四个路口的红灯全亮。然后，东、西路口绿灯亮，南、北路口红灯亮，东、西路口通车。延迟一段时间后，东、西路口绿灯灭，黄灯开始闪烁。黄灯闪烁若干次后，东、西路口红灯亮，南、北路口绿灯亮，南、北方向通车。延迟一段时间后，南、北路口绿灯灭，黄灯闪烁。黄灯闪烁若干次后，再切换到东、西路口方向。······</span></p>
 
 <p class=MsoNormal style='margin-left:3.0pt;text-indent:18.0pt'><span
-style='font-size:12.0pt;font-family:����'>��ʵ�����÷��������Ϊ��������������������������ţ�������ߵ�ƽ����</span></p>
+style='font-size:12.0pt;font-family:宋体'>本实验所用发光二极管为共阳极，由于阴极处接有与非门，故输出高电平亮。</span></p>
 
-<h2><span style='font-size:12.0pt;line-height:173%'>����ʵ��ο���·ͼ</span></h2>
-
-<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
-style='font-size:12.0pt;font-family:����'><img width=553 height=299 id="ͼƬ 34"
-src="{{ site.url }}/style/SCM_traffic_light.files/image001.jpg"></span></b></p>
+<h2><span style='font-size:12.0pt;line-height:173%'>三、实验参考电路图</span></h2>
 
 <p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
-style='font-size:12.0pt;font-family:����'><img width=553 height=299 id="ͼƬ 44"
-src="{{ site.url }}/style/SCM_traffic_light.files/image002.jpg"></span></b></p>
+style='font-size:12.0pt;font-family:宋体'><img width=553 height=299 id="图片 34"
+src="{{ site.url }}/style/{{ site.url }}/style/SCM_traffic_light.files/image001.jpg"></span></b></p>
 
 <p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
-style='font-size:12.0pt;font-family:����'><img width=554 height=445 id="ͼƬ 103"
-src="{{ site.url }}/style/SCM_traffic_light.files/image003.jpg"></span></b></p>
+style='font-size:12.0pt;font-family:宋体'><img width=553 height=299 id="图片 44"
+src="{{ site.url }}/style/{{ site.url }}/style/SCM_traffic_light.files/image002.jpg"></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体'><img width=554 height=445 id="图片 103"
+src="{{ site.url }}/style/{{ site.url }}/style/SCM_traffic_light.files/image003.jpg"></span></b></p>
 
 <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;font-family:
-����'>&nbsp;</span></b></p>
+宋体'>&nbsp;</span></b></p>
 
-<h2><span style='font-size:12.0pt;line-height:173%'>�ġ�ʵ������ͼ</span></h2>
+<h2><span style='font-size:12.0pt;line-height:173%'>四、实验程序框图</span></h2>
 
 <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
-width=248 height=866 src="{{ site.url }}/style/SCM_traffic_light.files/image004.png"></span></p>
+width=248 height=866 src="{{ site.url }}/style/{{ site.url }}/style/SCM_traffic_light.files/image004.png"></span></p>
 
 <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;font-family:
-����'>&nbsp;</span></b></p>
+宋体'>&nbsp;</span></b></p>
 
-<h2><span style='font-size:12.0pt;line-height:173%'>�塢ʵ�鲽��</span></h2>
+<h2><span style='font-size:12.0pt;line-height:173%'>五、实验步骤</span></h2>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>���Ӻø�λ��·</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>连接好复位电路</span><span
 lang=EN-US style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;
-font-family:����'>���뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+font-family:宋体'>并与单片机</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:宋体'>的</span><span lang=EN-US
 style='font-size:12.0pt'>RST</span><span style='font-size:12.0pt;font-family:
-����'>������</span><span lang=EN-US style='font-size:12.0pt'>;</span></p>
+宋体'>端相连</span><span lang=EN-US style='font-size:12.0pt'>;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt'><span lang=EN-US
 style='font-size:12.0pt'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>���Ӻþ����·</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>连接好晶振电路</span><span
 lang=EN-US style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;
-font-family:����'>���뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+font-family:宋体'>并与单片机</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:宋体'>的</span><span lang=EN-US
 style='font-size:12.0pt'>XTAL1</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>XTAL2</span><span
-style='font-size:12.0pt;font-family:����'>������</span><span lang=EN-US
+宋体'>和</span><span lang=EN-US style='font-size:12.0pt'>XTAL2</span><span
+style='font-size:12.0pt;font-family:宋体'>端相连</span><span lang=EN-US
 style='font-size:12.0pt'>;</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>��</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>将</span><span
 lang=EN-US style='font-size:12.0pt'>U1(74LS273),U2(74LS273)</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体'>的</span><span lang=EN-US
 style='font-size:12.0pt'>D0~D7</span><span style='font-size:12.0pt;font-family:
-����'>�뵥Ƭ��</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+宋体'>与单片机</span><span lang=EN-US style='font-size:12.0pt'>U0</span><span
+style='font-size:12.0pt;font-family:宋体'>的</span><span lang=EN-US
 style='font-size:12.0pt'>P1.0~P1.7</span><span style='font-size:12.0pt;
-font-family:����'>����</span><span lang=EN-US style='font-size:12.0pt'>;</span></p>
+font-family:宋体'>相连</span><span lang=EN-US style='font-size:12.0pt'>;</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>�������</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>将或非门</span><span
 lang=EN-US style='font-size:12.0pt'>U4:A(74LS02)</span><span style='font-size:
-12.0pt;font-family:����'>�������һ�˽ӵ�</span><span lang=EN-US style='font-size:12.0pt'>,
-</span><span style='font-size:12.0pt;font-family:����'>��һ���뵥Ƭ��</span><span
+12.0pt;font-family:宋体'>的输入端一端接地</span><span lang=EN-US style='font-size:12.0pt'>,
+</span><span style='font-size:12.0pt;font-family:宋体'>另一端与单片机</span><span
 lang=EN-US style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;
-font-family:����'>��</span><span lang=EN-US style='font-size:12.0pt'>P2.6/A14</span><span
-style='font-size:12.0pt;font-family:����'>����</span><span lang=EN-US
+font-family:宋体'>的</span><span lang=EN-US style='font-size:12.0pt'>P2.6/A14</span><span
+style='font-size:12.0pt;font-family:宋体'>相连</span><span lang=EN-US
 style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;font-family:
-����'>�������</span><span lang=EN-US style='font-size:12.0pt'>U1</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+宋体'>输出端与</span><span lang=EN-US style='font-size:12.0pt'>U1</span><span
+style='font-size:12.0pt;font-family:宋体'>的</span><span lang=EN-US
 style='font-size:12.0pt'>MR</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
-style='font-size:12.0pt;font-family:����'>������</span><span lang=EN-US
+宋体'>和</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
+style='font-size:12.0pt;font-family:宋体'>端相连</span><span lang=EN-US
 style='font-size:12.0pt'>;</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>�������</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>将或非门</span><span
 lang=EN-US style='font-size:12.0pt'>U6:A(74LS02)</span><span style='font-size:
-12.0pt;font-family:����'>�������һ�˽ӵ�</span><span lang=EN-US style='font-size:12.0pt'>,
-</span><span style='font-size:12.0pt;font-family:����'>��һ���뵥Ƭ��</span><span
+12.0pt;font-family:宋体'>的输入端一端接地</span><span lang=EN-US style='font-size:12.0pt'>,
+</span><span style='font-size:12.0pt;font-family:宋体'>另一端与单片机</span><span
 lang=EN-US style='font-size:12.0pt'>U0</span><span style='font-size:12.0pt;
-font-family:����'>��</span><span lang=EN-US style='font-size:12.0pt'>P2.7/A15</span><span
-style='font-size:12.0pt;font-family:����'>����</span><span lang=EN-US
+font-family:宋体'>的</span><span lang=EN-US style='font-size:12.0pt'>P2.7/A15</span><span
+style='font-size:12.0pt;font-family:宋体'>相连</span><span lang=EN-US
 style='font-size:12.0pt'>,</span><span style='font-size:12.0pt;font-family:
-����'>�������</span><span lang=EN-US style='font-size:12.0pt'>U2</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+宋体'>输出端与</span><span lang=EN-US style='font-size:12.0pt'>U2</span><span
+style='font-size:12.0pt;font-family:宋体'>的</span><span lang=EN-US
 style='font-size:12.0pt'>MR</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
-style='font-size:12.0pt;font-family:����'>������</span><span lang=EN-US
+宋体'>和</span><span lang=EN-US style='font-size:12.0pt'>CLK</span><span
+style='font-size:12.0pt;font-family:宋体'>端相连</span><span lang=EN-US
 style='font-size:12.0pt'>;</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>������</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>将非门</span><span
 lang=EN-US style='font-size:12.0pt'>U3</span><span style='font-size:12.0pt;
-font-family:����'>��</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
-style='font-size:12.0pt;font-family:����'>��</span><span lang=EN-US
+font-family:宋体'>（</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
+style='font-size:12.0pt;font-family:宋体'>）</span><span lang=EN-US
 style='font-size:12.0pt'>,U7</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
-style='font-size:12.0pt;font-family:����'>�����������</span><span lang=EN-US
+宋体'>（</span><span lang=EN-US style='font-size:12.0pt'>74LS04</span><span
+style='font-size:12.0pt;font-family:宋体'>）的输入端与</span><span lang=EN-US
 style='font-size:12.0pt'>U1,U2</span><span style='font-size:12.0pt;font-family:
-����'>��</span><span lang=EN-US style='font-size:12.0pt'>Q0~Q7</span><span
-style='font-size:12.0pt;font-family:����'>����</span><span lang=EN-US
+宋体'>的</span><span lang=EN-US style='font-size:12.0pt'>Q0~Q7</span><span
+style='font-size:12.0pt;font-family:宋体'>相连</span><span lang=EN-US
 style='font-size:12.0pt'>, </span><span style='font-size:12.0pt;font-family:
-����'>��������Ӧ�ķ�������ܵ���������</span></p>
+宋体'>输出端与对应的发光二极管的阴极相连</span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></p>
 
 <p class=MsoNormal style='margin-left:42.0pt;text-indent:-21.0pt'><span
 lang=EN-US style='font-size:12.0pt'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style='font-size:12.0pt;font-family:����'>����������ܵ�������������������</span><span
+</span></span><span style='font-size:12.0pt;font-family:宋体'>将发光二极管的阳极与限流电阻相连</span><span
 lang=EN-US style='font-size:12.0pt'>, </span><span style='font-size:12.0pt;
-font-family:����'>����ߵ�ƽ������</span></p>
+font-family:宋体'>再与高电平相连。</span></p>
 
 <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt'>&nbsp;</span></b></p>
 
-<h2><span style='font-size:12.0pt;line-height:173%'>���������嵥</span></h2>
+<h2><span style='font-size:12.0pt;line-height:173%'>六、程序清单</span></h2>
 
 </div>
 
-<span lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'><br
+<span lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'><br
 clear=all style='page-break-before:always'>
 </span>
 
@@ -343,785 +343,771 @@ margin-left:42.0pt;margin-right:0cm'>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:gray'>#include</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:black'> </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#A31515'>&quot;reg51.h&quot;</span></p>
+9.5pt;font-family:新宋体;color:gray'>#include</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#A31515'>&quot;reg51.h&quot;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:gray'>#include</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:black'> </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#A31515'>&lt;intrins.h&gt;</span></p>
+9.5pt;font-family:新宋体;color:gray'>#include</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#A31515'>&lt;intrins.h&gt;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:gray'>#define</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:black'> </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>unsigned</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>char</span></p>
+9.5pt;font-family:新宋体;color:gray'>#define</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:blue'>unsigned</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:blue'>char</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// delay for (time) s</span></p>
+9.5pt;font-family:新宋体;color:green'>// delay for (time) s</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> delay(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// send data to the first 74LS273</span></p>
+9.5pt;font-family:新宋体;color:green'>// send data to the first 74LS273</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// send data to the second 74LS273</span></p>
+9.5pt;font-family:新宋体;color:green'>// send data to the second 74LS273</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// all red on, others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// all red on, others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// time : this stage lasts for (time)
+9.5pt;font-family:新宋体;color:green'>// time : this stage lasts for (time)
 seconds</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> allred(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> allred(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// west and east are passable</span></p>
+9.5pt;font-family:新宋体;color:green'>// west and east are passable</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// west and east : green on, others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// west and east : green on, others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// north and south : red on others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// north and south : red on others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// time : this stage lasts for (time)
+9.5pt;font-family:新宋体;color:green'>// time : this stage lasts for (time)
 seconds</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> we_passable(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> we_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// north and south are passable</span></p>
+9.5pt;font-family:新宋体;color:green'>// north and south are passable</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// west and east : red on, others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// west and east : red on, others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// north and south : green on, others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// north and south : green on, others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// time : this stage lasts for (time)
+9.5pt;font-family:新宋体;color:green'>// time : this stage lasts for (time)
 seconds</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> ns_passable(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> ns_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// west and east are waiting for red on</span></p>
+9.5pt;font-family:新宋体;color:green'>// west and east are waiting for red on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// west and east : yellow flicker, others
+9.5pt;font-family:新宋体;color:green'>// west and east : yellow flicker, others
 off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// flicker every 2 seconds (yellow on for
+9.5pt;font-family:新宋体;color:green'>// flicker every 2 seconds (yellow on for
 1s, yellow off for 1s)</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// north and south : red on, others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// north and south : red on, others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// time : this stage lasts for (time * 2)
+9.5pt;font-family:新宋体;color:green'>// time : this stage lasts for (time * 2)
 seconds</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> we_wait(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> we_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// north and south are waiting for red on</span></p>
+9.5pt;font-family:新宋体;color:green'>// north and south are waiting for red on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// north and south : yellow flicker, others
+9.5pt;font-family:新宋体;color:green'>// north and south : yellow flicker, others
 off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// flicker every 2 seconds (yellow on for
+9.5pt;font-family:新宋体;color:green'>// flicker every 2 seconds (yellow on for
 1s, yellow off for 1s)</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// west and east : red on, others off</span></p>
+9.5pt;font-family:新宋体;color:green'>// west and east : red on, others off</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// time : this stage lasts for (time *</span><span
-style='font-size:9.5pt;font-family:������;color:green'>��<span lang=EN-US>) seconds</span></span></p>
+9.5pt;font-family:新宋体;color:green'>// time : this stage lasts for (time *</span><span
+style='font-size:9.5pt;font-family:新宋体;color:green'>２<span lang=EN-US>) seconds</span></span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> ns_wait(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> ns_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>sbit sw1 = P2 ^ 6;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//use P2.6 to
+9.5pt;font-family:新宋体;color:black'>sbit sw1 = P2 ^ 6;    </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:green'>//use P2.6 to
 contral the first 74LS273</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>sbit sw2 = P2 ^ 7;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//use P2.7 to
+9.5pt;font-family:新宋体;color:black'>sbit sw2 = P2 ^ 7;    </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:green'>//use P2.7 to
 contral the second 74LS273</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> main() {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> main() {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:green'>//start : all red on</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//start : all red on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; allred(1);</span></p>
+9.5pt;font-family:新宋体;color:black'>    allred(1);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:green'>// loop on</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>// loop on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:blue'>while</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (1) {</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>while</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> (1) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// 1st</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>// 1st</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// west and
-east, green on</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>// west and east, green on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// north and
-south, red on</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>// north and south, red on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we_passable(30);</span></p>
+9.5pt;font-family:新宋体;color:black'>        we_passable(30);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//2st</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//2st</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>// west and
-east, green off, yellow flicker</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>// west and east, green
+off, yellow flicker</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we_wait(3);</span></p>
+9.5pt;font-family:新宋体;color:black'>        we_wait(3);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//3rd</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//3rd</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//west and east,
-red on</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//west and east, red on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//north and
-south, red off, green on</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//north and south, red off,
+green on</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ns_passable(30);</span></p>
+9.5pt;font-family:新宋体;color:black'>        ns_passable(30);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//4th</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//4th</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:green'>//north and
-south, green off, yellow flicker</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:green'>//north and south, green
+off, yellow flicker</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ns_wait(3);</span></p>
+9.5pt;font-family:新宋体;color:black'>        ns_wait(3);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>    }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// send data to the first 74LS273</span></p>
+9.5pt;font-family:新宋体;color:green'>// send data to the first 74LS273</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> senddata_1() {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> senddata_1() {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw1 = 1;</span></p>
+9.5pt;font-family:新宋体;color:black'>    sw1 = 1;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw1 = 0;</span></p>
+9.5pt;font-family:新宋体;color:black'>    sw1 = 0;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>// send data to the second 74LS273</span></p>
+9.5pt;font-family:新宋体;color:green'>// send data to the second 74LS273</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> senddata_2() {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> senddata_2() {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw2 = 1;</span></p>
+9.5pt;font-family:新宋体;color:black'>    sw2 = 1;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; sw2 = 0;</span></p>
+9.5pt;font-family:新宋体;color:black'>    sw2 = 0;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:green'>//delay time s</span></p>
+9.5pt;font-family:新宋体;color:green'>//delay time s</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> delay(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> i, j, k;</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> i, j, k;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:blue'>for</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:black'> (; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> &gt; 0; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>--) {</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>--) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>for</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (k = 10; k &gt;
-0; k--) {</span></p>
+9.5pt;font-family:新宋体;color:black'>        </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> (k = 10; k &gt; 0; k--) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>for</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (i = 250; i
-&gt; 0; i--) {</span></p>
+9.5pt;font-family:新宋体;color:black'>            </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> (i = 250; i &gt; 0; i--) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:blue'>for</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> (j = 133; j
-&gt; 0; j--) {</span></p>
+9.5pt;font-family:新宋体;color:black'>                </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> (j = 133; j &gt; 0; j--) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _nop_();</span></p>
+9.5pt;font-family:新宋体;color:black'>                    _nop_();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>                }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>            }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>        }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>    }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> allred(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> allred(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x49;</span></p>
+9.5pt;font-family:新宋体;color:black'>    P1 = 0x49;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>    senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x02;</span></p>
+9.5pt;font-family:新宋体;color:black'>    P1 = 0x02;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>    senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; delay(</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:black'>    delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> we_passable(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> we_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x0C;</span></p>
+9.5pt;font-family:新宋体;color:black'>    P1 = 0x0C;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>    senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x03;</span></p>
+9.5pt;font-family:新宋体;color:black'>    P1 = 0x03;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>    senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; delay(</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:black'>    delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> ns_passable(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> ns_passable(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x61;</span></p>
+9.5pt;font-family:新宋体;color:black'>    P1 = 0x61;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>    senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; P1 = 0x08;</span></p>
+9.5pt;font-family:新宋体;color:black'>    P1 = 0x08;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>    senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; delay(</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>);</span></p>
+9.5pt;font-family:新宋体;color:black'>    delay(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'>);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> we_wait(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> we_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:blue'>for</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:black'> (; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> &gt; 0; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>--) {</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>--) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x8A;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x8A;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x02;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x02;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+9.5pt;font-family:新宋体;color:black'>        delay(1);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x08;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x08;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x02;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x02;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+9.5pt;font-family:新宋体;color:black'>        delay(1);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>    }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:blue'>void</span><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'> ns_wait(</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:#6F008A'>UCH</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>) {</span></p>
+9.5pt;font-family:新宋体;color:blue'>void</span><span lang=EN-US style='font-size:
+9.5pt;font-family:新宋体;color:black'> ns_wait(</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:#6F008A'>UCH</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; </span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:blue'>for</span><span lang=EN-US
-style='font-size:9.5pt;font-family:������;color:black'> (; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'> &gt; 0; </span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:gray'>time</span><span
-lang=EN-US style='font-size:9.5pt;font-family:������;color:black'>--) {</span></p>
+9.5pt;font-family:新宋体;color:black'>    </span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:blue'>for</span><span lang=EN-US
+style='font-size:9.5pt;font-family:新宋体;color:black'> (; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'> &gt; 0; </span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:gray'>time</span><span
+lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'>--) {</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x51;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x51;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x04;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x04;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+9.5pt;font-family:新宋体;color:black'>        delay(1);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;</span></p>
+9.5pt;font-family:新宋体;color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x41;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x41;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_1();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_1();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P1
-= 0x00;</span></p>
+9.5pt;font-family:新宋体;color:black'>        P1 = 0x00;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; senddata_2();</span></p>
+9.5pt;font-family:新宋体;color:black'>        senddata_2();</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay(1);</span></p>
+9.5pt;font-family:新宋体;color:black'>        delay(1);</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+9.5pt;font-family:新宋体;color:black'>    }</span></p>
 
 <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
 text-autospace:none;border:none;padding:0cm'><span lang=EN-US style='font-size:
-9.5pt;font-family:������;color:black'>}</span></p>
+9.5pt;font-family:新宋体;color:black'>}</span></p>
 
 </div>
 
 </div>
 
-<span lang=EN-US style='font-size:9.5pt;font-family:������;color:black'><br
+<span lang=EN-US style='font-size:9.5pt;font-family:新宋体;color:black'><br
 clear=all style='page-break-before:always'>
 </span>
 
 <div class=WordSection3 style='layout-grid:15.6pt'>
 
 <p class=MsoNormal align=left style='margin-left:42.0pt;text-align:left;
-text-autospace:none'><span lang=EN-US style='font-size:9.5pt;font-family:������;
+text-autospace:none'><span lang=EN-US style='font-size:9.5pt;font-family:新宋体;
 color:black'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
 style='font-size:12.0pt'>&nbsp;</span></p>
 
-<h2 style='margin-left:24.0pt'><span style='font-size:12.0pt;line-height:173%'>�ߡ�ʵ�����</span></h2>
+<h2 style='margin-left:24.0pt'><span style='font-size:12.0pt;line-height:173%'>七、实验分析</span></h2>
 
 <p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
-text-indent:-18.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>1.<span
+text-indent:-18.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:宋体'>1.<span
 style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
-style='font-size:12.0pt;font-family:����'>������<span lang=EN-US>74LS273</span>�Ĺ�������Ϊ����<span
-lang=EN-US>MR</span>��Ϊ�͵�ƽʱ������<span lang=EN-US>CLK</span>���������壬���ݶˣ�<span
-lang=EN-US>D</span>�ˣ��Ǹ߻�͵�ƽ������ˣ�<span lang=EN-US>Q</span>�ˣ���Ϊ�͵�ƽ<span
-lang=EN-US>;</span>����<span lang=EN-US>MR</span>��Ϊ�ߵ�ƽʱ����<span lang=EN-US>D</span>���˵�����������������ڼ䱻���͵���<span
-lang=EN-US>Q</span>����<span lang=EN-US>, </span>���±���ʾ<span lang=EN-US>:</span></span></p>
+style='font-size:12.0pt;font-family:宋体'>锁存器<span lang=EN-US>74LS273</span>的工作机制为：当<span
+lang=EN-US>MR</span>脚为低电平时，无论<span lang=EN-US>CLK</span>脚有无脉冲，数据端（<span
+lang=EN-US>D</span>端）是高或低电平，输出端（<span lang=EN-US>Q</span>端）都为低电平<span
+lang=EN-US>;</span>仅当<span lang=EN-US>MR</span>脚为高电平时，“<span lang=EN-US>D</span>”端的数据在脉冲的上升期间被传送到“<span
+lang=EN-US>Q</span>”端<span lang=EN-US>, </span>如下表所示<span lang=EN-US>:</span></span></p>
 
 <p class=MsoNormal align=left style='margin-left:42.0pt;text-align:left'><span
-lang=EN-US style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
+lang=EN-US style='font-size:12.0pt;font-family:宋体'>&nbsp;</span></p>
 
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
  style='margin-left:128.8pt;border-collapse:collapse;border:none'>
@@ -1137,84 +1123,84 @@ lang=EN-US style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>MR</span></p>
+  style='font-size:12.0pt;font-family:宋体'>MR</span></p>
   </td>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>CLK</span></p>
+  style='font-size:12.0pt;font-family:宋体'>CLK</span></p>
   </td>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>Di</span></p>
+  style='font-size:12.0pt;font-family:宋体'>Di</span></p>
   </td>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>Qi</span></p>
+  style='font-size:12.0pt;font-family:宋体'>Qi</span></p>
   </td>
  </tr>
  <tr>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>L</span></p>
+  style='font-size:12.0pt;font-family:宋体'>L</span></p>
   </td>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>X</span></p>
+  style='font-size:12.0pt;font-family:宋体'>X</span></p>
   </td>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>X</span></p>
+  style='font-size:12.0pt;font-family:宋体'>X</span></p>
   </td>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>L</span></p>
+  style='font-size:12.0pt;font-family:宋体'>L</span></p>
   </td>
  </tr>
  <tr>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>H</span></p>
+  style='font-size:12.0pt;font-family:宋体'>H</span></p>
   </td>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span
   style='position:absolute;z-index:251659264;left:0px;margin-left:16px;
   margin-top:4px;width:27px;height:14px'><img width=27 height=14
-  src="{{ site.url }}/style/SCM_traffic_light.files/image005.png"></span></p>
+  src="{{ site.url }}/style/{{ site.url }}/style/SCM_traffic_light.files/image005.png"></span></p>
   </td>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>H</span></p>
+  style='font-size:12.0pt;font-family:宋体'>H</span></p>
   </td>
   <td valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>H</span></p>
+  style='font-size:12.0pt;font-family:宋体'>H</span></p>
   </td>
  </tr>
  <tr>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>H</span></p>
+  style='font-size:12.0pt;font-family:宋体'>H</span></p>
   </td>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span
   style='position:absolute;z-index:251661312;left:0px;margin-left:16px;
   margin-top:3px;width:27px;height:14px'><img width=27 height=14
-  src="{{ site.url }}/style/SCM_traffic_light.files/image005.png"></span></p>
+  src="{{ site.url }}/style/{{ site.url }}/style/SCM_traffic_light.files/image005.png"></span></p>
   </td>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>L</span></p>
+  style='font-size:12.0pt;font-family:宋体'>L</span></p>
   </td>
   <td valign=top style='border:none;border-bottom:solid windowtext 1.5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-size:12.0pt;font-family:����'>L</span></p>
+  style='font-size:12.0pt;font-family:宋体'>L</span></p>
   </td>
  </tr>
  <tr style='height:11.35pt'>
@@ -1228,44 +1214,44 @@ lang=EN-US style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
   <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
   height:11.35pt'>
   <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
-  style='font-size:6.5pt'>L &#8211; low logic level, H &#8211; high logic level </span></p>
+  style='font-size:6.5pt'>L – low logic level, H – high logic level </span></p>
   </td>
  </tr>
  <tr style='height:11.35pt'>
   <td colspan=4 valign=top style='border:none;padding:0cm 5.4pt 0cm 5.4pt;
   height:11.35pt'>
   <p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
-  style='font-size:6.5pt'>X &#8211; immaterial</span></p>
+  style='font-size:6.5pt'>X – immaterial</span></p>
   </td>
  </tr>
 </table>
 
 <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
-style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
+style='font-size:12.0pt;font-family:宋体'>&nbsp;</span></p>
 
 <p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left'><span
-style='font-size:12.0pt;font-family:����'>�ʶ��ڸõ�·�У�<span lang=EN-US>P2.6/A14</span>��<span
-lang=EN-US>P2.7/A15</span>���ɸߵ�ƽ��Ϊ�͵�ƽʱ��<span lang=EN-US>P1</span>�ŵ�״̬�����<span
-lang=EN-US>U1</span>��<span lang=EN-US>U2</span>����<span lang=EN-US>Q</span>�ˡ�</span></p>
+style='font-size:12.0pt;font-family:宋体'>故而在该电路中，<span lang=EN-US>P2.6/A14</span>（<span
+lang=EN-US>P2.7/A15</span>）由高电平变为低电平时，<span lang=EN-US>P1</span>脚的状态输出至<span
+lang=EN-US>U1</span>（<span lang=EN-US>U2</span>）的<span lang=EN-US>Q</span>端。</span></p>
 
 <p class=MsoNormal align=left style='margin-left:18.0pt;text-align:left'><span
-lang=EN-US style='font-size:12.0pt;font-family:����'>&nbsp;</span></p>
+lang=EN-US style='font-size:12.0pt;font-family:宋体'>&nbsp;</span></p>
 
 <p class=MsoListParagraph align=left style='margin-left:18.0pt;text-align:left;
-text-indent:-18.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>2.<span
+text-indent:-18.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:宋体'>2.<span
 style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
-style='font-size:12.0pt;font-family:����'>��ʵ���в�ȡ������ʱ������ѭ���в��Ϸ���<span lang=EN-US>NOP</span>ָ���Դﵽ��ʱ��Ŀ�ġ���<span
-lang=EN-US>C</span>������ʹ��������ʱ��Ϊ��߾�׼�ȣ���Ҫע�⣺</span></p>
+style='font-size:12.0pt;font-family:宋体'>本实验中采取软件延时，即在循环中不断发出<span lang=EN-US>NOP</span>指令以达到延时的目的。在<span
+lang=EN-US>C</span>语言中使用软件计时，为提高精准度，需要注意：</span></p>
 
 <p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
-text-indent:-21.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>a)<span
+text-indent:-21.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:宋体'>a)<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:12.0pt;font-family:����'>ѭ�����Ʊ�������Ϊ<span lang=EN-US>unsigned char</span>��</span></p>
+style='font-size:12.0pt;font-family:宋体'>循环控制变量类型为<span lang=EN-US>unsigned char</span>；</span></p>
 
 <p class=MsoListParagraph align=left style='margin-left:42.0pt;text-align:left;
-text-indent:-21.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:����'>b)<span
+text-indent:-21.0pt'><span lang=EN-US style='font-size:12.0pt;font-family:宋体'>b)<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:12.0pt;font-family:����'>ʹ���Լ�ѭ����</span></p>
+style='font-size:12.0pt;font-family:宋体'>使用自减循环。</span></p>
 
 </div>
 

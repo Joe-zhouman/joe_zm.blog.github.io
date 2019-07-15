@@ -32,6 +32,10 @@ links:
   - name:         About|关于
     url:          /about
     external:     false
+
+# --------------- abstract -----------------
+
+excerpt_separator:  '<!-- more -->'
 # ------------ CONFIGURABLE END ------------
 
 #permalink:        /:categories/:title.html
@@ -39,3 +43,4 @@ permalink: /:year/:month/:day/:title.html
 defaults:
   - values:
       layout: "default"
+

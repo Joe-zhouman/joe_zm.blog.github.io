@@ -11,7 +11,7 @@
 						style="background-image:url('{{posts.background-image }}');"></div>
 					<a href="{{ posts.url }}">
 						<div class="item-desc">
-							<p>{{ posts.content | strip_html | strip_newlines | truncate: 100 }}</p>
+							<p>{{post.excerpt | strip_html}}</p>
 						</div>
 					</a>
 					<div class="item-slant reverse-slant  bg-{{ posts.background }}"></div>

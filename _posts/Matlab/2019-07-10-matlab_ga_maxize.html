@@ -1,49 +1,1168 @@
 ---
 layout: blog
-istop : true
+istop : fales
 book : true
 title: Matlab-遗传算法求解最值问题
-categories: code
+category: code
 tags: matlab GA Optimic
 date: 2019-07-10 19:25:23 + 0800
+
+code true
 ---
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB R2019a"><title>遗传算法求最大值</title><style type="text/css">.rtcContent { padding: 30px; } .S0 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 28.7999992370605px; min-height: 0px; white-space: pre-wrap; color: rgb(213, 80, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 24px; font-weight: normal; text-align: left;  }
-.S1 { margin: 2px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: normal; text-align: left;  }
-.S2 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: bold; text-align: left;  }
-.CodeBlock { background-color: #F7F7F7; margin: 10px 0 10px 0;}
-.S3 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 0px none rgb(0, 0, 0); border-radius: 4px 4px 0px 0px; padding: 6px 45px 0px 13px; line-height: 17.2339992523193px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px;  }
-.S4 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 0px none rgb(0, 0, 0); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 0px 45px 0px 13px; line-height: 17.2339992523193px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px;  }
-.S5 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 0px none rgb(0, 0, 0); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 0px; padding: 0px 45px 4px 13px; line-height: 17.2339992523193px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px;  }
-.S6 { color: rgb(64, 64, 64); padding: 10px 0px 6px 17px; background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px; overflow-x: hidden; line-height: 17.2339992523193px;  }
-.embeddedOutputsErrorElement {min-height: 18px; max-height: 250px; overflow: auto;}
-.embeddedOutputsErrorElement.inlineElement {}
-.embeddedOutputsErrorElement.rightPaneElement {}
-.embeddedOutputsWarningElement{min-height: 18px; max-height: 250px; overflow: auto;}
-.embeddedOutputsWarningElement.inlineElement {}
-.embeddedOutputsWarningElement.rightPaneElement {}
-.diagnosticMessage-wrapper {font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;}
-.diagnosticMessage-wrapper.diagnosticMessage-warningType {color: rgb(255,100,0);}
-.diagnosticMessage-wrapper.diagnosticMessage-warningType a {color: rgb(255,100,0); text-decoration: underline;}
-.diagnosticMessage-wrapper.diagnosticMessage-errorType {color: rgb(230,0,0);}
-.diagnosticMessage-wrapper.diagnosticMessage-errorType a {color: rgb(230,0,0); text-decoration: underline;}
-.diagnosticMessage-wrapper .diagnosticMessage-messagePart {white-space: pre-wrap;}
-.diagnosticMessage-wrapper .diagnosticMessage-stackPart {white-space: pre;}
-.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement {white-space: pre; word-wrap: initial; min-height: 18px; max-height: 250px; overflow: auto;}
-.textElement,.rtcDataTipElement .textElement {padding-top: 3px;}
-.embeddedOutputsTextElement.inlineElement,.embeddedOutputsVariableStringElement.inlineElement {}
-.inlineElement .textElement {}
-.embeddedOutputsTextElement.rightPaneElement,.embeddedOutputsVariableStringElement.rightPaneElement {min-height: 16px;}
-.rightPaneElement .textElement {padding-top: 2px; padding-left: 9px;}
-.S7 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 0px; padding: 6px 45px 4px 13px; line-height: 17.2339992523193px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px;  }
-.S8 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 6px 45px 0px 13px; line-height: 17.2339992523193px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px;  }
-.S9 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 0px none rgb(0, 0, 0); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 0px 0px 4px 4px; padding: 0px 45px 4px 13px; line-height: 17.2339992523193px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 14px;  }
-.S10 { margin: 20px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: bold; text-align: left;  }
-.S11 { margin: 15px 10px 5px 4px; padding: 0px; line-height: 18px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 17px; font-weight: bold; text-align: left;  }</style></head><body><div class = rtcContent><h1  class = 'S0'><span>遗传算法求最大值</span></h1><div  class = 'S1'><span texencoding="g(x) = 11sin(6x) + 7cos(5x)\\
-x\in[-\pi,\pi]" style="vertical-align:-14px"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWUAAABQCAYAAADBRWQRAAAaRUlEQVR4Xu2dB9AtTVGGH4RCREFBEEEkKBQgKDlIzkiWJEmCgJJRQJIkiZKj5AySJEgQQUDBAAqICkbAQqJEAUlKth5qmppaNsyec/aE7+utuvXf/54Ns+/0vNP9ds/sCcgjEUgEEoFEYG8QOMHetCQbkggkAolAIkCSchpBIpAIJAJ7hECS8h51RjYlEUgEEoEk5bSBRCARSAT2CIFtkvIPAZcA/hL4vzUx+AHgMsA/AJ9b8155+X4ioG1eGPg48NEdN/EcwImAf9pxO/Lx0wgcvN1si5RPDdwHeCrwb9O4Np3xU8BdgccDH266Ik86FAQkwFuXCfclwHcaG+5k/ZOAJHou4K+Av2+8duy0HwTuAPwr8IYZ7dnAo/MWMxBY1W7iEfLhRYDPAh+Y8dyhU1eym22Q8mmA3wWesEFCDhC89z2OGDGfAbhjIZMXzzSMda5teZRGfyfgt4HHlj/fbLlwxjk+4zeB/wJaCFkbPiNwE+DmwF8DzwDeCXx9xnOnTrVd9su/HxAxXxt4xdSLld9fDtwK+J/G8/fttFa7+YliH9cYeIHnlgn4Kxt6wdl2szQpK1k8HPhbQIJp9Xjm4HEx4AbAPYFNATnn+Zs6V0K9HfDrwCmBXwVe2Hjzda5tfMR3T/vx0qYrAe8Brg+8b84NGs61Ly9eJtup/vxh4C7A3YC/Ae5VJK0l7MymG/Fpz49cwMFogGbWKWLz+2WiarnQqNOJdinsWtqwzjmtdjM1UV0HeOU6Dem5dpbdLE3KAnXpIjNMDbBVcTghcHfgq8UbPzSj+rHioRh6n754Y2LRQsrrXLsK3k6yjyiexLMKIX5xlRsNXHPWQgyS7JTMZZT0ROB6xfNxUt5GfuGSwG+Ufvr8Bt9907e6EPBs4DHA64ChiEasbwr8cokuNt2Obdyv1W5OATyt5AaUtrrHl8tvX1ug0c12syQpn7YMFgexyb0ljzMDTynk/y9LPmiBexvefLv8OTvwh8DPN5LyOteu+ipOHicrUckmpQsn1/sD/1uI/1sjDZSQHVzXBF5d9OdPrfpCM69TJ9Sm3ws4MW3yOD/w0EKOD1kjIS6W9wPeBrxxpIGnAl5Qflf+UUs9tGOO3VyuRNTKXCaQt3k0282SpHxL4FLA7YEvLfz2dsyDijfwAGBsQC/clLVufzbgpcC5G0m5ftg6167V6A1dfE7g6cBtC+EN3dawXFJU6lFCuWGDV72hJn7vNlco0Zke5ic2eHOlODVxJ5w7lwlqldsb0VwU+IsRD9n7+rzXFzydBA4tyvQd5tiNco4VNLuSaZrsZilS/lHgmcCbi4GtYlhzr/GFJWYH6X/OvXhPzl+HWNe5dh9eXxI6b8Mkrnesd6e3visd9HRFW1c+2aT+uClSbulPx/69y+Ry5eJVt1y3b+e02o3ygYljI3hLaZUv/gh41xZzUU12sxQpG4aZ9VVTNsm3jeMsBfQHAq/ZxgMXeMY6xLrOtS2vomxhok+J5WcKxpvSVGMSt3zt90YaoyaoZHCt4h2rJ+9CrjoJ8GhA7VEte1NVHtsk5aMgXbTaTUgHVg51D/MQDy5R2lJ5r3hmk920kLKZfcn1isB/lFnF8PpV5Y8aoPJEbZjWmBra3aixhtjBZrjlIDMx6OKSGwPvLm9j7alkazsclL/TE9pFBzlIlTAOMRRbh1hXudassGVeam1vBcTQcPzEJWlmDfhJSz+Kved51OG1NmTC0eefD7ggoJxkWZukfaZSRmfW26Sg9erdSfMXAEuyLLUbm1B9vt6NXrLVPM8HrgtcvpTFWQliUssozdK1PhtQ/rCNErtVJGKgxvja8m7e2+SXstubCj6f6RnMemhXKdj0/d4y0XXP2SYpz5Uu9DCtTLAyxkjUCiET005ObxnA2oncBUC/UmxL3V+P1SSuttW3GMdrLluiIMvz7FMnkH8GfhG4b8UprXYjKRuF+Q46jL6D0mp9GH0ZeQ315dbsZoyUBceBaIhmuZGzzAfhu5sYaZB2Rhy+pEkFj9B3zYi21j167hdKx6krulpPj8kOsEN8luSvRKHnbfa7m/WXSB5Wzp+rY9elXqsMprhmXS1wFWKNZ8+9NjLR9l1k3u1zS/Jc5KNMUBPkeUr0o5d8m0qWksScSCW5XyuN0bgfVyZy+1DtVwKznrivHtZ+fR5w9Woi7vZDhNtKVB56OA5s5QMnkp8tRKoz4G/agPp8l5glEo9vlNI2E1wOSM834ardqclKJt7H+32kxyisc31UmRRM+m3i2BYp19KF/fZnI40XC/vbMW8i9kUlQohQ3CS7E+Pfde7x08UD1YET27eXvjCitRbYfrhZ0b3rS0Oeek6RVoxGdAy95r87nNJiN32vFrXttksHUhv2UHO2kkuu6R5bs5sxUg5wLBORnOsKCr3YPyjelX+30D8OPSsHi8m2ucmKIHTrTfV4TOb8Vsmwm7SYOiQAZ2I99Dney3EkZT0GvUMz7noyepYeDjb71miklp4kISsdJMA+8gxCMWpSo7QyxKSdBC25mVxxAAQB1slfic9647G6Z8kh7mE7nZj1iGvSrZOArvLsI4vahmyPE5ARmeTse32ssaY+3lePa1PVRdsi5ZAu7KOxZKXesI6O419irtcaXBX44wKmvzsBxqFHazWUEVSXeOsx3l2oEY6VvGG0W0e89pWesfYU2zS02M0YZ8h/RuhPKsl1bdKclNwzdixqN0Ok7MxhQzXUvhUu0ai+BQRBcOqDkuTcSogY/IY23l+D7w6+IcAkcwf2EosapiaETfw+19utnzn32iBlQ7qa4CQ/V2C6Kk65ykM70Uvyj8uM+8qnwib8XW/TAWMiyZBVr1wydiD3Jee0E0PW7gRfv189cep1DUljZuNfVpZaS+Jjmm+NgVGOE5Tv3lLq53Jcy82ceFoX+UzZyLZIOaQLo5mhaqV6grN/JOcaF2UfidqI1fEZeqxL3PVyjTS0E7HpRiveTznSyVBCDzurSVlJxOujdM0263DVOYcWu5nC3N+dWI3UjOSmbMbzF7WbIVKOpJkP14OxoXHUwFld0fVKY/AoZ0So2QJMnBM6kZKGmqGaZ+sCBQe1emCS8jRR1EmzdxTpYWjBRuj1ep4hK9WTbe3FSuYnL6F9hLRRf62+3Jfpd3A56Ow/Q9S+oyblPx05t3Yo9Hgc2EMJyQjBlV+6JDBlszEJurqvlZTriXPq/mO/W4O8ytiKCTaqLsakC8lSKdH9PlormkISMzfkxOhE3cW+9pT7nLp6xZ0TqtLl0CTZYjctONeJwCmb8X6L2k0LKXdXlqkhGcY4E6q/uGKoHqDrknLtVXUnhCmAk5Tn1TjX5WVjizDqibKrNdsnehhqjYaCyhvaRe0hRfTjJN4XLrcMrppsx0h5atDXNhTZcGWyFg+pLzI5NFIO6cJ3H4pM6v0hJP/W2v+aUIeWK09NmjWxKyd0ZZO6D1rsZooz4vew0THbinMXtZshUq7XzddJHTUoZy87amgQrytfOGuZQHFXrrmJMztJ0qhDotZO2Yfz5koQfSQxZ+FJ3Z/eayjRYeRhjac7Z+ktdxNbJlxi5ZiesppghLM1SfZ52T63JQytIzQrRcakjgiPp/bn0P6NrNzPYkiWGbKLkBq6euo6drQN+SKkC/t6SF6McyTQvkm47x1rzhjrn9rGhwhfCUTHT1s2N2BfRyFBl5SnZK/W/gjs+3Ie3XssajdjiT7Bs/zMRJ8Eqbaj12xNn6K+2lvfXgPrJPp8+dp7mxp8XbBWnTmPY6IvsKuXLOuZdEPamlT7Kifqqgi95O4eCuGZ/dLIAG9N2LhKVP3SfEOdnOyzAzXLPnmtPvcCpRpET39owpki5bryqJUApu451xlpfW7dV5a4WvLXd0R+YA4mteQ5FnVEH44lYm2nkolJWCeGoZ3bWu2mBZ8g5ZaIaVG7GSNlf1OisK7UbRAtTXGzcVfCmKEeqgNepSQuQHOG1JuyFtX//siABtkHcuiaUSPrBkWtx3EiZRNU6rb1frH1aqeuN1vLSU563eW4td7cRyaRFPn0iNbfWtpUJ/GGPLjao35yJ1tf24OTkVVCEtMtivTSsglU3EPvzW1jxyaHVvuL85b2lFuki4hcnNSmIo36/aLt/tuQ7FjnMdzjw8SxerHj3GSbfRHrHeo8xViENlVK2doHMRFN7RK3uN0MkXI9U+klm3Cbc2iw6nSti0e8t+GPGV69MReAGEboXYV8Yqht/bJJqb7EX5CHYc7YqrA577Htc7chX0Txfd2ntc7XJbJaT9a70vuUvMTZuvX69z6DDmOPsFA9TqJW7rAu2CPe2wTW2OKROiHj/txq190dvWrPfGiAaUte+6Eiw5lMsp0xIdkuv5LjwoWhjY6s9JGIxhKJc+1naVJukS5ss/KTuaIxT9nJWOL8ZHnJqEbRlvomNzlFXtAOutKn/e8kINfUpawhixnBaXvd1cGtdjPVDy5OMwLTketLTsb1W7GbIVKuvSPXhiv0KyW0LkN0oKpBuhChTwvyJV2oYMdac2ghv6VSDgaNwUO9ScPX+/I3PSM9WrWwPi89nmm1xlgx/FQH7fL3pUk5EhRKTA6A6M/aK3HBT737WQwMy9AcVEYzVlO4qEgvJ2rWnSy7Wfr6vnpPGr45Ceug60qPmBTe3+OJd/sjQkf/vU9rdPA6sRttReWOdm5FiAlp39l2SiJ6ui4UqMv5JFk9cu8jUfRt4xjtldRbk2AtdrUkKdfSxZROXK+c7NqD76Hc43urxUc/1sneOg8V7x1lZ0bZShj1Ptz2hUStE1eP3cBjKEHcYjfaoF65z9QmlF/rKNGJXtsUExc/1Xa5E7sZImUlABvqblz1YbG49cuWD43tORqi/9iOTNasKuZLyC7bdFDrvQRRRCbXWdIkjDOyJD00MThAXS676Z27WgbTps6xXOxPys3mbrbTcm0YsbqvRf0ulXeCi8SKJCNB1d5hkK6hrPuZuLrKhSV6NLVU0Cdd1LKQk6lhqvpg30IgB4024X/H9tTQZl0ebY2tdcUuLrLeNd5D+3R1qN5efCbM1Yi+q4shJH5X6FlfHO/p3sP+bs225GAeRfyHvGQnT6tLJPVNOgBLknJEEE5OUxFsdyc+x+WfF31X27laqUGPBUeabB1de27YUb1Aw36yHC+86xg3MfHryLlyWNuKJLTPHqvAmLKbWl7zedqEk62lb0oR9rOHMm33W5A7sZs+UvbfXJGj/KBeo4CvZ2E4F4cZ9qlNxSVVw5ihQaZhO4Bck+5/LS2qV3lZnO6/6bFYjG6IObSJeUwC/3iAG907U5tBdqa2vlPi8PBdJTC3clTH79vrdu618QUEJ1eJ2PJGCVDv032clTS6k14si/V8Ey91P9T1mn0ha+j7JoXNSyhPuGS/L9KxLbG01nOnDt/FCdjJyJVj6uRips12nQYHn+227MmBbztqYtCbUt/0fjoA/n3sY63atBPDWKg71f6+35ck5ZAuIlqZ2kRJTCRgCdxSR8emjpPepitB+5wjo189Yic8l+OrETsxu4eF/WLNc0hW9fuLu562XqoTsyuEtTcnV3V/q32GclgtduOSbydv5U/5xsOd4iRmJ2P/3teundhNl5Qd5G4kYzhRexKC/XOlfEgAPQwN9X6GDiUQl1rqDet9LHno6RhOGWpte/PqJd/rON1bW9RLcgDpTS3x9YdN4Kldu6hCx2RsA/lVnrWpTe5XefahXnPk7KZLyoaqeqdDn4aRtA0ndP9bynacNfUqYsewJTreGV0d2pBYLyiPw0UgMtvWqXc3uNmXt3KM6LQMbVyzL+08Tu04UnZTk3IkgQxzxpYpR4g1tBCgNobQpv237sq/TRhN6FiGJGpC++pdbeJdj8s9tC9373Iin7Op1DbwMaQ2UaQOqf6ex/4gcGTspiblqC82Kz/2JQI9X8uqhlbZdLtJT1Y9Rz1qaN/VVbvWcE/t2lK6pT85tWob87p5CGiTlkIqlymP7ctEq9ZvYs+SLvf2zWO/EDgydtOVL5xtLIcyq6q3Uuuz6sqStUkQSVDBv3UjeYlZDVrB3rXlrdeNdbuEHHvaJiHv1wBZtzVRYWGZo6V3ffvbrvuMOddLyHrH7u+xiy+dzGnrcT73SNhNX/VFfGnEigAz1GZErWv1382cm610ddbcQ1J3lzDLkVq2Rhy7v1692V3vtS+e1Fw88vxpBCzql5DN3u/ycINz2zG0g90u25bP/n4EDtpuxpZZZ2cnAolAIpAIbBmBJOUtA56PSwQSgURgDIEk5bSPRCARSAT2CIEk5T3qjGxKIpAIJAJJymkDiUAikAjsEQJJynvUGdmURCARSASSlNMGEoFEIBHYIwSSlPeoM7IpiUAikAgkKacNJAKJQCKwRwgkKe9RZ2RTEoFEIBFIUk4bSAQSgURgjxBIUt6jzsimJAKJQCKQpJw2kAgkAonAHiFwXEjZD3b6DTk/otg9/GJJ99Ple9RFO22Ku23dAPCLM93jlZ2vAu+0ofnwROCoIHBcSNmPN/pZez+w2t2b98lb+IbgodqL26P6hRk/TBqHW7CedcZHDg713bPdicBOEDhOpOxXLPyq8vt2gvTReagfLHhs+QLH247Oa+WbJAL7gUCS8n70wyG1Ikn5kHor23pwCCQpH1yX7bzBSco774JswFFGIEn5KPfuMu+WpLwMrnnXROC7CCQppyHMRSBJeS5ieX4iMAOBfSDlkwNXAa4FXBg440T73wNcf2bCzuqLTPTNMIyRU5OUN4Nj3iUR6EVgl6R8IuB6wP2Bs83onyTlGWAtcGqS8gKg5i0TgUBgV6QsId8ZuC9wMuDFgPXC7wS+vkD3pKe8OVCTlDeHZd4pEfg+BMZI2YUWFyyywpWAUwM3B15b7iKZ3g24PfAm4I7AZxoxdpXY08u5kvPzgG82XrvKaftAymcAbgpcFbjIxEt8Arg68O5VXrZzjX18duBWwGWA807c8+3AjYAPD5yXpLyBTslbJAJDCIyR8unLRd8AHgncpCwYkIS/XVZ6OUDVgT9XCOcjDVCfFng+cPlyzxcC32m4bp1TdknKYqxe/pgGvTze8Q0Fm8+u89KAEcltgIeWiKTldk8rUUx35WNcm6TcgmKekwisiECrfHFr4KnFc5Oc9eI+VmSHuYR6jbKs+WWA9/38im2fc9kuSflSxUuV7HxXI4RPF+L7EnD+Mtm5Su4Z5aWMGr645mRl394QuGh5pvt+PBd4PfCgEpnYj88pnvEby7O/Bnx5BNwk5TmWl+cmAjMRaCVliUPZQi9XctGDc8nyXMnhhIUQ7lU2CNJL3saxK1IWLzdCUi//CnBt4BXAXcpSZfG/N3B34MrAJpctnwu4GPAs4FtlEng0cE3gNUCQq1LKnGqWJOVtWGw+49gi0ErKpwMk0EsDbymh9cdXQC0GtB7yqseS1Rc3LhsXrdo2r7v4ALmq0VuWpz4fenFIOV6n3qyWvMQRzzlppRefEzBaeQdwhzJptDw7SbkFpTwnEVgRgVZSPgmgl3W74uHdc8UqieNMyhFtuE3oLYuUcQVA2cCd2KxE0aNd4gjJ6AnFK1eiCElKzdnop/VIUm5FKs9LBFZAoJWUPc9Ki4cD6yShavkiwugVmj37kl3JF9FQ8bPKxIlN8n0IcGLgEcCdKklh9os1XOBeyPEcpRQjnlMUWUPpYm6VR5JyA+h5SiKwKgKtpHwB4OWleuADwHWB96740PDQaq9txVs1X7ZrUg75wEqV0I7PXBKlRiFzNN3mly4nhkxh/Xc850LAqwClIBO3c6o8kpTn9kCenwjMQKCFlE8DPL7UIt+iZPPD45rxqO+dGiThP1ivvCq5z3n2rkk5tOo6ylDCeGZVZmglhrXgliB+Yc7LjZxrZGIS0ZK4KHWTnF1FqccesokljvazbTAhOXYkKW+oc/I2iUAfAlOkbJ2rg/pDpYzN8FtPtx7Mlyj7UHyqEWLDacP3u5YSMMP6KSJovPXgabskZasgJF+9ZN/Z0jcxCI0+sHQPEInSmvC+hJ9f/LCsTdIeK1kLEOxbF4s8u0Q41wH8hJPSxQvKIpbQk89U8gUPaOiLJOV1rTGvTwRGEOiSsv8vOZhwkiitc1V3vEf5jFJID+Hx6fVeEXggYPKo9ThHqY+VqJ5YysL00pY6dkHKPtOEqNHFKUtFhhGGE1xNjFY/WDJ3tRKNSODd2m8nRwn9YcWbtc5Ych8qSXRTJ/vERSuuvKxrws8CvKTUR7+u/N2VmurOUaucnvJSlpj3TQQmEOiS8nmK1iiJvB9whd5tgfCCQ4tUI3118dgki1YvuW6OiypcXi2BvAvQS3trg6e2SqfugpQvB7y5NNYJR6/UPT4kXEvTlIRc+hyHHq1Rg4tGuoftN0FnOZ3HVFlgSCOe63LpmwF+INZDieRFZUVlPEc5wyRuy8SanvIqFpjXJAKNCHRJWV3RsNoSKr2p+wGfrO7lgHQAW1Ort+zfP9r4rL7TzgeY8HORQ+sxRUh999kFKYulUYDkfJ8i1dSerbLPk0oVhoT8lOIF97VfT9kqDReaOGF6DNVD+5u77rlo5FSAC3VM6oX3bZ+7O5+esX3rCkMJv4WQvXeScqul5nmJwAoITGnKK9xy9iUOcgnKTXBcnJL7KY9DqKfrIhQnzF18BDZJebaJ5wWJQDsC+0DK7a1d/cxdeMqrt3b8yssClwQevMIy9020KUl5EyjmPRKBAQSSlA/LNEyQquErY6yi42/ibZOUN4Fi3iMRSFI++M9BuQ+yi3YeN2Pf6iUMP0l5CVTznolAQeA4ecqWnT0K+GCn979ayv3SKL4fAROMltRZIx2HKxAtyTORuMld7RL/RCAROGZfs65LyurOX2d14lE3Iqs4Xgqcu+dFx6o/jjou+X6JwGIIHBdPeTEA88aJQCKQCGwSgSTlTaKZ90oEEoFEYE0EkpTXBDAvTwQSgURgkwgkKW8SzbxXIpAIJAJrIpCkvCaAeXkikAgkAptE4P8BQW0SuqUjBCEAAAAASUVORK5CYII=" width="178.5" height="40" /></span></div><h2  class = 'S2'><span>主程序</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>clc,clear,close </span><span style="color: rgb(160, 32, 240);">all</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>lb = -1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>ub = 2;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(34, 139, 34);">%f = @(x) 11 * sin(6*x) + 7 * cos(5*x);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>f = @(x) 10 + x.*cos(5*pi*x);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>popsize = 20;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>chromlength = 16;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pc = 0.7;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pm = 0.02;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>generation = 20;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pop = initpop(popsize,chromlength);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>fplot(f,[lb,ub])</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>hold </span><span style="color: rgb(160, 32, 240);">on</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>BestIndividual = zeros(generation,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>BestFitness = zeros(generation,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i = 1:generation</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    [~,phenotype] = gene2pheno(pop,f,lb,ub,chromlength);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    fitvalue = fitness(phenotype,popsize);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    pop = select(pop,fitvalue);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    pop = crossover(pop,pc);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    pop = mutate(pop,pm);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    [BestIndividual(i),BestFitness(i)] = FindBest(pop,f,lb,ub,chromlength);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    disp([</span><span style="color: rgb(160, 32, 240);">'第'</span><span>,num2str(i),</span><span style="color: rgb(160, 32, 240);">'代'</span><span>])</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    disp([</span><span style="color: rgb(160, 32, 240);">'最大值点：'</span><span>,num2str(BestIndividual(i))])</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    disp([</span><span style="color: rgb(160, 32, 240);">'最大值：'</span><span>,num2str(BestFitness(i))])</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    plot(BestIndividual(i),BestFitness(i),</span><span style="color: rgb(160, 32, 240);">'r*'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="51A5046D" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_0" style="max-height: 261px; width: 1254px;"><div class="textElement">第1代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8A07D263" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_1" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="47DC8508" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_2" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="2B867751" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_3" style="max-height: 261px; width: 1254px;"><div class="textElement">第2代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="A770A0EE" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_4" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9729</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="D51166B2" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_5" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7968</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="7240AE94" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_6" style="max-height: 261px; width: 1254px;"><div class="textElement">第3代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8ED5A651" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_7" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="E089E847" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_8" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="19C86C5F" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_9" style="max-height: 261px; width: 1254px;"><div class="textElement">第4代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="53FD6803" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_10" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="113E366E" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_11" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="CB71B630" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_12" style="max-height: 261px; width: 1254px;"><div class="textElement">第5代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="ACC63A89" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_13" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="22158173" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_14" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C2E3C2AD" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_15" style="max-height: 261px; width: 1254px;"><div class="textElement">第6代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="030791DC" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_16" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C255108F" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_17" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="5716464E" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_18" style="max-height: 261px; width: 1254px;"><div class="textElement">第7代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="6FE4FE4A" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_19" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="0AFFFC19" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_20" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="2DBF1B7B" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_21" style="max-height: 261px; width: 1254px;"><div class="textElement">第8代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="1CD0C672" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_22" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8DF98AFF" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_23" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C3451BC3" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_24" style="max-height: 261px; width: 1254px;"><div class="textElement">第9代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="540CC015" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_25" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="59F16180" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_26" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="489F926D" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_27" style="max-height: 261px; width: 1254px;"><div class="textElement">第10代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="60806022" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_28" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.975</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="B541E3A4" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_29" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8247</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="825CF722" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_30" style="max-height: 261px; width: 1254px;"><div class="textElement">第11代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="815E4615" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_31" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9743</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="DC978F03" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_32" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.8152</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="9C42092C" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_33" style="max-height: 261px; width: 1254px;"><div class="textElement">第12代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="845F2E3E" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_34" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="6D90DD9E" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_35" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="ECB589D4" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_36" style="max-height: 261px; width: 1254px;"><div class="textElement">第13代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="0CDB63FA" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_37" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="D9A7FEA3" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_38" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="9C9ECBCC" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_39" style="max-height: 261px; width: 1254px;"><div class="textElement">第14代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="774D969D" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_40" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="2F2F9EBB" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_41" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C0AD2296" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_42" style="max-height: 261px; width: 1254px;"><div class="textElement">第15代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="7A135F58" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_43" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="CC0082C2" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_44" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="24382759" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_45" style="max-height: 261px; width: 1254px;"><div class="textElement">第16代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="407CB113" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_46" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C57A2FFF" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_47" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="3AE81F30" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_48" style="max-height: 261px; width: 1254px;"><div class="textElement">第17代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="D658A643" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_49" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="496627AE" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_50" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="4D002DC7" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_51" style="max-height: 261px; width: 1254px;"><div class="textElement">第18代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="4785DC36" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_52" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="DBD41029" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_53" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="1FF422FD" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_54" style="max-height: 261px; width: 1254px;"><div class="textElement">第19代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="038D32EA" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_55" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9714</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="34286AF2" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_56" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7763</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="AEDB922C" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_57" style="max-height: 261px; width: 1254px;"><div class="textElement">第20代</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="82242EA9" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_58" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值点：1.9722</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="740D0F69" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_59" style="max-height: 261px; width: 1254px;"><div class="textElement">最大值：11.7867</div></div></div></div><div class="inlineWrapper outputs"><div  class = 'S7'><span style="white-space: pre;"><span>f2 = @(x) -f(x) ;   </span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsVariableStringElement" uid="62F49E33" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="34" data-hashorizontaloverflow="false" data-testid="output_60" style="max-height: 261px; width: 1254px;"><div class="textElement"><div><span class="variableNameElement">f2 = <span class="headerElement">function_handle with value:</span></span></div><div>    @(x)-f(x)
-</div></div></div></div></div><div class="inlineWrapper outputs"><div  class = 'S7'><span style="white-space: pre;"><span>[x,fval] = ga(f2,1,[],[],[],[],lb,ub) </span><span style="color: rgb(34, 139, 34);">%matlab自带遗传算法工具箱</span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="086AC29C" data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18" data-hashorizontaloverflow="false" data-testid="output_61" style="max-height: 261px; width: 1254px;"><div class="textElement">Optimization terminated: average change in the fitness value less than options.FunctionTolerance.</div></div><div class='variableElement' style='font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; '>x = 2.0000</div><div class='variableElement' style='font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; '>fval = -12.0000</div></div></div><div class="inlineWrapper"><div  class = 'S8'><span style="white-space: pre;"><span>plot(x,-fval,</span><span style="color: rgb(160, 32, 240);">'gd'</span><span>)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>xlim(</span><span style="color: rgb(160, 32, 240);">'auto'</span><span>)</span></span></div></div><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre;"><span>ylim(</span><span style="color: rgb(160, 32, 240);">'auto'</span><span>)</span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsFigure" uid="C200BF4F" data-scroll-top="null" data-scroll-left="null" data-testid="output_64" style="width: 1254px;"><div class="figureElement"><div class="figureContainingNode" style="width: 560px; max-width: 100%; display: inline-block;"><div class="GraphicsView" data-dojo-attach-point="graphicsViewNode,backgroundColorNode" id="uniqName_218_177" widgetid="uniqName_218_177" style="width: 100%; height: auto;"><img class="ImageView figureImage" data-dojo-attach-point="imageViewNode" draggable="false" ondragstart="return false;" id="uniqName_218_179" widgetid="uniqName_218_179" src="data:image/png;base64,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" style="width: 100%; height: auto;"></div></div></div></div></div></div></div><h2  class = 'S2'><span>初始化种群</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>pop = initpop(popsize, chromlength)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pop = round(rand(popsize,chromlength));</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div></div><h2  class = 'S10'><span>由基因型计算表现型</span></h2><h3  class = 'S11'><span style=' font-family: monospace;'>基因逆转录</span></h3><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>pop2 = decodebinary(pop)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>py = size(pop,2);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pop1 = pop*2.^(0:(py-1))';</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pop2 = sum(pop1,2);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'></div></div></div><h3  class = 'S11'><span>染色体逆转录</span></h3><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>pop2 = decodechrom(pop,spoint,genelength)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pop1 = pop(:,spoint:spoint + genelength - 1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>pop2 = decodebinary(pop1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div></div><h3  class = 'S11'><span>计算表现型</span></h3><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>[genetype,phenotype] = gene2pheno(pop,f,lb,ub,chromlength)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>temp1 = decodechrom(pop,1,chromlength);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>genetype = lb + (ub-lb)/(2^chromlength-1) *temp1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>phenotype = f(genetype);</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div></div><h2  class = 'S10'><span>计算个体适应度</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>fitvalue = fitness(phenotype,popsize)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>Cmin = 0;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>fitvalue = zeros(popsize,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i = 1:popsize</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">if </span><span>phenotype(i) + Cmin &gt; 0</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        fitvalue(i) = Cmin + phenotype(i);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'></div></div></div><h2  class = 'S10'><span>选择复制</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>newpop = select(pop,fitvalue)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>fitvalue = cumsum(fitvalue/sum(fitvalue));</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>px = size(pop,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>newpop = pop;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>SelectRate = sort(rand(px,1));</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>FitIdx = 1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>NewIdx = 1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">while </span><span>NewIdx &lt;= px</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">if </span><span>SelectRate(NewIdx) &lt; fitvalue(FitIdx)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        newpop(NewIdx,:) = pop(FitIdx,:);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        NewIdx = NewIdx + 1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">else</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        FitIdx = FitIdx + 1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'></div></div></div><h2  class = 'S10'><span>交叉</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>newpop = crossover(pop,pc)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>[px,py] = size(pop);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>newpop = pop;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i = 1:2:px-1</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">if </span><span>rand &lt; pc</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        cpoint = ceil(rand * py);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        newpop(i,cpoint+1:end) = pop(i+1,cpoint+1:end);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        newpop(i+1,cpoint+1:end) = pop(1,cpoint+1:end);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'></div></div></div><h2  class = 'S10'><span>变异</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>newpop = mutate(pop,pm)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>[px,py] = size(pop);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>newpop = pop;</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i = 1:px</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">if</span><span>(rand &lt; pm)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        mpoint = ceil(rand * py);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>        newpop(i,mpoint) = ~pop(i,mpoint);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>    </span><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'></div></div><div class="inlineWrapper"><div  class = 'S9'></div></div></div><h2  class = 'S10'><span>求出最大适应值及个体</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function </span><span>[BestIndividual,BestFitness] = FindBest(pop,f,lb,ub,chromlength)</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>[genetype,phenotype] = gene2pheno(pop,f,lb,ub,chromlength);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>[BestFitness, BestIdx] = max(phenotype);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span>BestIndividual = genetype(BestIdx);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'></div></div></div></div>
-<br>
-<!-- 
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1">
+    <meta name="generator" content="MATLAB R2019a">
+    <title>遗传算法求最大值</title>
+    <style type="text/css">
+        .rtcContent {
+            padding: 30px;
+        }
+
+        .S0 {
+            margin: 3px 10px 5px 4px;
+            padding: 0px;
+            line-height: 28.7999992370605px;
+            min-height: 0px;
+            white-space: pre-wrap;
+            color: rgb(213, 80, 0);
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-size: 24px;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .S1 {
+            margin: 2px 10px 9px 4px;
+            padding: 0px;
+            line-height: 21px;
+            min-height: 0px;
+            white-space: pre-wrap;
+            color: rgb(0, 0, 0);
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-size: 14px;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .S2 {
+            margin: 3px 10px 5px 4px;
+            padding: 0px;
+            line-height: 20px;
+            min-height: 0px;
+            white-space: pre-wrap;
+            color: rgb(60, 60, 60);
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .CodeBlock {
+            background-color: #F7F7F7;
+            margin: 10px 0 10px 0;
+        }
+
+        .S3 {
+            border-left: 1px solid rgb(233, 233, 233);
+            border-right: 1px solid rgb(233, 233, 233);
+            border-top: 1px solid rgb(233, 233, 233);
+            border-bottom: 0px none rgb(0, 0, 0);
+            border-radius: 4px 4px 0px 0px;
+            padding: 6px 45px 0px 13px;
+            line-height: 17.2339992523193px;
+            min-height: 18px;
+            white-space: nowrap;
+            color: rgb(0, 0, 0);
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .S4 {
+            border-left: 1px solid rgb(233, 233, 233);
+            border-right: 1px solid rgb(233, 233, 233);
+            border-top: 0px none rgb(0, 0, 0);
+            border-bottom: 0px none rgb(0, 0, 0);
+            border-radius: 0px;
+            padding: 0px 45px 0px 13px;
+            line-height: 17.2339992523193px;
+            min-height: 18px;
+            white-space: nowrap;
+            color: rgb(0, 0, 0);
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .S5 {
+            border-left: 1px solid rgb(233, 233, 233);
+            border-right: 1px solid rgb(233, 233, 233);
+            border-top: 0px none rgb(0, 0, 0);
+            border-bottom: 1px solid rgb(233, 233, 233);
+            border-radius: 0px;
+            padding: 0px 45px 4px 13px;
+            line-height: 17.2339992523193px;
+            min-height: 18px;
+            white-space: nowrap;
+            color: rgb(0, 0, 0);
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .S6 {
+            color: rgb(64, 64, 64);
+            padding: 10px 0px 6px 17px;
+            background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: hidden;
+            line-height: 17.2339992523193px;
+        }
+
+        .embeddedOutputsErrorElement {
+            min-height: 18px;
+            max-height: 250px;
+            overflow: auto;
+        }
+
+        .embeddedOutputsErrorElement.inlineElement {}
+
+        .embeddedOutputsErrorElement.rightPaneElement {}
+
+        .embeddedOutputsWarningElement {
+            min-height: 18px;
+            max-height: 250px;
+            overflow: auto;
+        }
+
+        .embeddedOutputsWarningElement.inlineElement {}
+
+        .embeddedOutputsWarningElement.rightPaneElement {}
+
+        .diagnosticMessage-wrapper {
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+            font-size: 12px;
+        }
+
+        .diagnosticMessage-wrapper.diagnosticMessage-warningType {
+            color: rgb(255, 100, 0);
+        }
+
+        .diagnosticMessage-wrapper.diagnosticMessage-warningType a {
+            color: rgb(255, 100, 0);
+            text-decoration: underline;
+        }
+
+        .diagnosticMessage-wrapper.diagnosticMessage-errorType {
+            color: rgb(230, 0, 0);
+        }
+
+        .diagnosticMessage-wrapper.diagnosticMessage-errorType a {
+            color: rgb(230, 0, 0);
+            text-decoration: underline;
+        }
+
+        .diagnosticMessage-wrapper .diagnosticMessage-messagePart {
+            white-space: pre-wrap;
+        }
+
+        .diagnosticMessage-wrapper .diagnosticMessage-stackPart {
+            white-space: pre;
+        }
+
+        .embeddedOutputsTextElement,
+        .embeddedOutputsVariableStringElement {
+            white-space: pre;
+            word-wrap: initial;
+            min-height: 18px;
+            max-height: 250px;
+            overflow: auto;
+        }
+
+        .textElement,
+        .rtcDataTipElement .textElement {
+            padding-top: 3px;
+        }
+
+        .embeddedOutputsTextElement.inlineElement,
+        .embeddedOutputsVariableStringElement.inlineElement {}
+
+        .inlineElement .textElement {}
+
+        .embeddedOutputsTextElement.rightPaneElement,
+        .embeddedOutputsVariableStringElement.rightPaneElement {
+            min-height: 16px;
+        }
+
+        .rightPaneElement .textElement {
+            padding-top: 2px;
+            padding-left: 9px;
+        }
+
+        .S7 {
+            border-left: 1px solid rgb(233, 233, 233);
+            border-right: 1px solid rgb(233, 233, 233);
+            border-top: 1px solid rgb(233, 233, 233);
+            border-bottom: 1px solid rgb(233, 233, 233);
+            border-radius: 0px;
+            padding: 6px 45px 4px 13px;
+            line-height: 17.2339992523193px;
+            min-height: 18px;
+            white-space: nowrap;
+            color: rgb(0, 0, 0);
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .S8 {
+            border-left: 1px solid rgb(233, 233, 233);
+            border-right: 1px solid rgb(233, 233, 233);
+            border-top: 1px solid rgb(233, 233, 233);
+            border-bottom: 0px none rgb(0, 0, 0);
+            border-radius: 0px;
+            padding: 6px 45px 0px 13px;
+            line-height: 17.2339992523193px;
+            min-height: 18px;
+            white-space: nowrap;
+            color: rgb(0, 0, 0);
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .S9 {
+            border-left: 1px solid rgb(233, 233, 233);
+            border-right: 1px solid rgb(233, 233, 233);
+            border-top: 0px none rgb(0, 0, 0);
+            border-bottom: 1px solid rgb(233, 233, 233);
+            border-radius: 0px 0px 4px 4px;
+            padding: 0px 45px 4px 13px;
+            line-height: 17.2339992523193px;
+            min-height: 18px;
+            white-space: nowrap;
+            color: rgb(0, 0, 0);
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .S10 {
+            margin: 20px 10px 5px 4px;
+            padding: 0px;
+            line-height: 20px;
+            min-height: 0px;
+            white-space: pre-wrap;
+            color: rgb(60, 60, 60);
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .S11 {
+            margin: 15px 10px 5px 4px;
+            padding: 0px;
+            line-height: 18px;
+            min-height: 0px;
+            white-space: pre-wrap;
+            color: rgb(60, 60, 60);
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=rtcContent>
+        <h1 class='S0'><span>遗传算法求最大值</span></h1>
+        <div class='S1'><span texencoding="g(x) = 11sin(6x) + 7cos(5x)\\
+x\in[-\pi,\pi]" style="vertical-align:-14px"><img
+                    src="data:image/png;base64,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"
+                    width="178.5" height="40" /></span></div>
+                    <!-- more -->
+        <h2 class='S2'><span>主程序</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>clc,clear,close </span><span
+                            style="color: rgb(160, 32, 240);">all</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>lb = -1;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>ub = 2;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(34, 139, 34);">%f = @(x) 11 *
+                            sin(6*x) + 7 * cos(5*x);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>f = @(x) 10 + x.*cos(5*pi*x);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>popsize = 20;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>chromlength = 16;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pc = 0.7;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pm = 0.02;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>generation = 20;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pop = initpop(popsize,chromlength);</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>fplot(f,[lb,ub])</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>hold </span><span
+                            style="color: rgb(160, 32, 240);">on</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>BestIndividual =
+                            zeros(generation,1);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>BestFitness = zeros(generation,1);</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i
+                            = 1:generation</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> [~,phenotype] =
+                            gene2pheno(pop,f,lb,ub,chromlength);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> fitvalue =
+                            fitness(phenotype,popsize);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> pop = select(pop,fitvalue);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> pop = crossover(pop,pc);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> pop = mutate(pop,pm);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> [BestIndividual(i),BestFitness(i)] =
+                            FindBest(pop,f,lb,ub,chromlength);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> disp([</span><span
+                            style="color: rgb(160, 32, 240);">'第'</span><span>,num2str(i),</span><span
+                            style="color: rgb(160, 32, 240);">'代'</span><span>])</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> disp([</span><span
+                            style="color: rgb(160, 32, 240);">'最大值点：'</span><span>,num2str(BestIndividual(i))])</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> disp([</span><span
+                            style="color: rgb(160, 32, 240);">'最大值：'</span><span>,num2str(BestFitness(i))])</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>
+                            plot(BestIndividual(i),BestFitness(i),</span><span
+                            style="color: rgb(160, 32, 240);">'r*'</span><span>)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper outputs">
+                <div class='S5'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+                <div class='S6'>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="51A5046D"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_0"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第1代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8A07D263"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_1"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="47DC8508"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_2"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="2B867751"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_3"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第2代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="A770A0EE"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_4"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9729</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="D51166B2"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_5"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7968</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="7240AE94"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_6"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第3代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8ED5A651"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_7"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="E089E847"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_8"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="19C86C5F"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_9"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第4代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="53FD6803"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_10"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="113E366E"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_11"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="CB71B630"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_12"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第5代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="ACC63A89"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_13"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="22158173"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_14"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C2E3C2AD"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_15"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第6代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="030791DC"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_16"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C255108F"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_17"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="5716464E"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_18"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第7代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="6FE4FE4A"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_19"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="0AFFFC19"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_20"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="2DBF1B7B"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_21"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第8代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="1CD0C672"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_22"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="8DF98AFF"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_23"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C3451BC3"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_24"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第9代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="540CC015"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_25"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="59F16180"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_26"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="489F926D"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_27"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第10代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="60806022"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_28"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.975</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="B541E3A4"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_29"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8247</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="825CF722"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_30"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第11代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="815E4615"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_31"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9743</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="DC978F03"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_32"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.8152</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="9C42092C"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_33"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第12代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="845F2E3E"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_34"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="6D90DD9E"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_35"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="ECB589D4"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_36"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第13代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="0CDB63FA"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_37"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="D9A7FEA3"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_38"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="9C9ECBCC"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_39"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第14代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="774D969D"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_40"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="2F2F9EBB"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_41"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C0AD2296"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_42"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第15代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="7A135F58"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_43"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="CC0082C2"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_44"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="24382759"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_45"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第16代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="407CB113"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_46"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="C57A2FFF"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_47"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="3AE81F30"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_48"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第17代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="D658A643"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_49"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="496627AE"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_50"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="4D002DC7"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_51"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第18代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="4785DC36"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_52"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="DBD41029"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_53"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="1FF422FD"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_54"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第19代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="038D32EA"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_55"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9714</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="34286AF2"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_56"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7763</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="AEDB922C"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_57"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">第20代</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="82242EA9"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_58"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值点：1.9722</div>
+                    </div>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="740D0F69"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_59"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">最大值：11.7867</div>
+                    </div>
+                </div>
+            </div>
+            <div class="inlineWrapper outputs">
+                <div class='S7'><span style="white-space: pre;"><span>f2 = @(x) -f(x) ; </span></span></div>
+                <div class='S6'>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsVariableStringElement" uid="62F49E33"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="34"
+                        data-hashorizontaloverflow="false" data-testid="output_60"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">
+                            <div><span class="variableNameElement">f2 = <span class="headerElement">function_handle with
+                                        value:</span></span></div>
+                            <div> @(x)-f(x)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="inlineWrapper outputs">
+                <div class='S7'><span style="white-space: pre;"><span>[x,fval] = ga(f2,1,[],[],[],[],lb,ub) </span><span
+                            style="color: rgb(34, 139, 34);">%matlab自带遗传算法工具箱</span></span></div>
+                <div class='S6'>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="086AC29C"
+                        data-scroll-top="null" data-scroll-left="null" data-width="1224" data-height="18"
+                        data-hashorizontaloverflow="false" data-testid="output_61"
+                        style="max-height: 261px; width: 1254px;">
+                        <div class="textElement">Optimization terminated: average change in the fitness value less than
+                            options.FunctionTolerance.</div>
+                    </div>
+                    <div class='variableElement'
+                        style='font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; '>
+                        x = 2.0000</div>
+                    <div class='variableElement'
+                        style='font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; '>
+                        fval = -12.0000</div>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S8'><span style="white-space: pre;"><span>plot(x,-fval,</span><span
+                            style="color: rgb(160, 32, 240);">'gd'</span><span>)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>xlim(</span><span
+                            style="color: rgb(160, 32, 240);">'auto'</span><span>)</span></span></div>
+            </div>
+            <div class="inlineWrapper outputs">
+                <div class='S5'><span style="white-space: pre;"><span>ylim(</span><span
+                            style="color: rgb(160, 32, 240);">'auto'</span><span>)</span></span></div>
+                <div class='S6'>
+                    <div class="inlineElement eoOutputWrapper embeddedOutputsFigure" uid="C200BF4F"
+                        data-scroll-top="null" data-scroll-left="null" data-testid="output_64" style="width: 1254px;">
+                        <div class="figureElement">
+                            <div class="figureContainingNode"
+                                style="width: 560px; max-width: 100%; display: inline-block;">
+                                <div class="GraphicsView" data-dojo-attach-point="graphicsViewNode,backgroundColorNode"
+                                    id="uniqName_218_177" widgetid="uniqName_218_177"
+                                    style="width: 100%; height: auto;"><img class="ImageView figureImage"
+                                        data-dojo-attach-point="imageViewNode" draggable="false"
+                                        ondragstart="return false;" id="uniqName_218_179" widgetid="uniqName_218_179"
+                                        src="data:image/png;base64,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"
+                                        style="width: 100%; height: auto;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class='S2'><span>初始化种群</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>pop = initpop(popsize, chromlength)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pop =
+                            round(rand(popsize,chromlength));</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+        </div>
+        <h2 class='S10'><span>由基因型计算表现型</span></h2>
+        <h3 class='S11'><span style=' font-family: monospace;'>基因逆转录</span></h3>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>pop2 = decodebinary(pop)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>py = size(pop,2);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pop1 = pop*2.^(0:(py-1))';</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pop2 = sum(pop1,2);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'></div>
+            </div>
+        </div>
+        <h3 class='S11'><span>染色体逆转录</span></h3>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>pop2 = decodechrom(pop,spoint,genelength)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pop1 = pop(:,spoint:spoint + genelength -
+                            1);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>pop2 = decodebinary(pop1);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+        </div>
+        <h3 class='S11'><span>计算表现型</span></h3>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>[genetype,phenotype] = gene2pheno(pop,f,lb,ub,chromlength)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>temp1 =
+                            decodechrom(pop,1,chromlength);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>genetype = lb + (ub-lb)/(2^chromlength-1)
+                            *temp1;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>phenotype = f(genetype);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+        </div>
+        <h2 class='S10'><span>计算个体适应度</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>fitvalue = fitness(phenotype,popsize)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>Cmin = 0;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>fitvalue = zeros(popsize,1);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i
+                            = 1:popsize</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span style="color: rgb(0, 0, 255);">if
+                        </span><span>phenotype(i) + Cmin &gt; 0</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> fitvalue(i) = Cmin + phenotype(i);</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span
+                            style="color: rgb(0, 0, 255);">end</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'></div>
+            </div>
+        </div>
+        <h2 class='S10'><span>选择复制</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>newpop = select(pop,fitvalue)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>fitvalue =
+                            cumsum(fitvalue/sum(fitvalue));</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>px = size(pop,1);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>newpop = pop;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>SelectRate = sort(rand(px,1));</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>FitIdx = 1;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>NewIdx = 1;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">while
+                        </span><span>NewIdx &lt;= px</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span style="color: rgb(0, 0, 255);">if
+                        </span><span>SelectRate(NewIdx) &lt; fitvalue(FitIdx)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> newpop(NewIdx,:) = pop(FitIdx,:);</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> NewIdx = NewIdx + 1;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span
+                            style="color: rgb(0, 0, 255);">else</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> FitIdx = FitIdx + 1;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span
+                            style="color: rgb(0, 0, 255);">end</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'></div>
+            </div>
+        </div>
+        <h2 class='S10'><span>交叉</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>newpop = crossover(pop,pc)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>[px,py] = size(pop);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>newpop = pop;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i
+                            = 1:2:px-1</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span style="color: rgb(0, 0, 255);">if
+                        </span><span>rand &lt; pc</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> cpoint = ceil(rand * py);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> newpop(i,cpoint+1:end) =
+                            pop(i+1,cpoint+1:end);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> newpop(i+1,cpoint+1:end) =
+                            pop(1,cpoint+1:end);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span
+                            style="color: rgb(0, 0, 255);">end</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'></div>
+            </div>
+        </div>
+        <h2 class='S10'><span>变异</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>newpop = mutate(pop,pm)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>[px,py] = size(pop);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>newpop = pop;</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">for </span><span>i
+                            = 1:px</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span
+                            style="color: rgb(0, 0, 255);">if</span><span>(rand &lt; pm)</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> mpoint = ceil(rand * py);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> newpop(i,mpoint) = ~pop(i,mpoint);</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span> </span><span
+                            style="color: rgb(0, 0, 255);">end</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'></div>
+            </div>
+        </div>
+        <h2 class='S10'><span>求出最大适应值及个体</span></h2>
+        <div class="CodeBlock">
+            <div class="inlineWrapper">
+                <div class='S3'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">function
+                        </span><span>[BestIndividual,BestFitness] = FindBest(pop,f,lb,ub,chromlength)</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>[genetype,phenotype] =
+                            gene2pheno(pop,f,lb,ub,chromlength);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>[BestFitness, BestIdx] =
+                            max(phenotype);</span></span></div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span>BestIndividual = genetype(BestIdx);</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S4'><span style="white-space: pre;"><span style="color: rgb(0, 0, 255);">end</span></span>
+                </div>
+            </div>
+            <div class="inlineWrapper">
+                <div class='S9'></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- 
 ##### SOURCE BEGIN #####
 %% 遗传算法求最大值
 % $$g(x) = 11sin(6x) + 7cos(5x)\\x\in[-\pi,\pi]$$
@@ -189,4 +1308,7 @@ function [BestIndividual,BestFitness] = FindBest(pop,f,lb,ub,chromlength)
 BestIndividual = genetype(BestIdx);
 end
 ##### SOURCE END #####
---></body></html>
+-->
+</body>
+
+</html>

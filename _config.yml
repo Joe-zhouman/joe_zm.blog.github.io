@@ -23,8 +23,8 @@ links:
   - name:         Favour|兴趣
     url:          /favour
     external:     false
-  - name:         Categories|归档
-    url:          /cate
+  - name:         Archives|归档
+    url:          /archives
     external:     false
   - name:         Tags|标签
     url:          /tags

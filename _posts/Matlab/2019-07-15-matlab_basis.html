@@ -25,10 +25,14 @@ background-image: matlab.jpg
       }
    </style>
    <script type="text/x-mathjax-config">
-                  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-                </script>
-   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      MathJax.Hub.Config({
+        tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          inlineMath: [['$','$']]
+        }
+      });
    </script>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
 
 <body>
@@ -1656,8 +1660,8 @@ y4=interp1(xdata,ydata,x,<span style="color: #d69d85; line-height: 160%; box-siz
                <li style="line-height: 160%; box-sizing: content-box; position: relative;"><strong
                      style="line-height: 160%; box-sizing: content-box; font-weight: 700;">推导</strong></li>
             </ul>
-            <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">已知数据点 $$（x_1,
-               y_1) （x_2, y_2) （x_3, y_3) ... （x_n,y_n) $$
+            <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">已知数据点 $$(x_1,
+               y_1) (x_2, y_2) (x_3, y_3) ... (x_n,y_n) $$
                <br />
                其最小二乘解为函数 $$ y^* = a + bx $$
                <br />

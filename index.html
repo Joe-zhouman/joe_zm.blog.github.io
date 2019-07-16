@@ -14,14 +14,14 @@
 							<p>{{post.excerpt | strip_html}}</p>
 						</div>
 					</a>
-					{% if {{ posts.category }} == 'code' %}
-					posts.backgroundcolor = 'blue'
-					{% elsif {{ posts.category }} == 'favour' %}
-					posts.backgroundcolor = 'red'
+					{% if posts.code %}
+					<div class="item-slant reverse-slant  bg-blue"></div>
+					{% elsif posts.favour %}
+					<div class="item-slant reverse-slant  bg-red"></div>
 					{% else %}
-					posts.backgroundcolor = 'yellow'
+					<div class="item-slant reverse-slant  bg-yellow"></div>
 					{% endif %}
-					<div class="item-slant reverse-slant  bg-{{ posts.backgroundcolor }}"></div>
+					
 					<div class="item-slant">
 						<div class="joezhouman-title">
 							原创

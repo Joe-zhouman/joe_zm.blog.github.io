@@ -15,11 +15,11 @@
 						</div>
 					</a>
 					{% if {{ posts.category }} == 'code' %}
-					posts.backgroundcolor == 'blue'
-					{% elseif {{ posts.category }} == 'favour' %}
-					posts.backgroundcolor == 'red'
+					posts.backgroundcolor = 'blue'
+					{% elsif {{ posts.category }} == 'favour' %}
+					posts.backgroundcolor = 'red'
 					{% else %}
-					posts.backgroundcolor == 'yellow'
+					posts.backgroundcolor = 'yellow'
 					{% endif %}
 					<div class="item-slant reverse-slant  bg-{{ posts.backgroundcolor }}"></div>
 					<div class="item-slant">

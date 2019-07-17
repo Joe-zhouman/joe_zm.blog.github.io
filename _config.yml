@@ -32,9 +32,14 @@ links:
   - name:         About|关于
     url:          /about
     external:     false
+#------------- ABSTRACT --------------------
+
+excerpt_separator:  '<!-- more -->'
 
 # ------------ BACKGROUND ------------------
+
 bgtext: "αβγδεζηθικλμνξοπρστυφχψω∷∫∮∝∞∧∨∑∏∪∩∈∵∴⊥‖∠⌒⊙≌∽√"
+
 # ------------ CONFIGURABLE END ------------
 
 #permalink:        /:categories/:title.html

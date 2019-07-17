@@ -6,7 +6,7 @@ title: 大型工程CFD仿真--经历,体会与感悟(一)
 category: favour
 tags: CFD fluent
 background-image: CFD.jpg
-data: 2019-07-17 19:07:46 + 0800
+date: 2019-07-17 19:07:46 + 0800
 favour: true
 ---
 做了一次很复杂的工程问题的仿真。讲讲经历，谈谈体会。<!-- more -->

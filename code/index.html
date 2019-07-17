@@ -14,7 +14,7 @@ description: "我变强了，也变秃了QAQ"
 						style="background-image:url('{{site.url}}/style/images/{{posts.background-image }}');"></div>
 					<a href="{{ posts.url }}">
 						<div class="item-desc">
-							<p>{{ posts.content | strip_html | strip_newlines | truncate: 100 }}</p>
+							<p>{{ post.content ||split:'<!-- more -->' | first }}</p>
 						</div>
 					</a>
 					<div class="item-slant reverse-slant  bg-blue"></div>

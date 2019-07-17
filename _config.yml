@@ -33,9 +33,8 @@ links:
     url:          /about
     external:     false
 
-# --------------- abstract -----------------
+# ------------ BACKGROUND ------------------
 bgtext: "αβγδεζηθικλμνξοπρστυφχψω∷∫∮∝∞∧∨∑∏∪∩∈∵∴⊥‖∠⌒⊙≌∽√"
-excerpt_separator:  '<!-- more -->'
 # ------------ CONFIGURABLE END ------------
 
 #permalink:        /:categories/:title.html

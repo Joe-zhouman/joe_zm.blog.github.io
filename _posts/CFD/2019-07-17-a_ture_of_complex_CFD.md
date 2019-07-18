@@ -63,8 +63,8 @@ favour: true
 
 ### 漫话CFD
 
-如何求解一个CFD问题？首先要知道什么是`CFD`。我常戏称`CFD`为<font color=red>Color</font>
-<font color=#008000>Ful</font> <font color=Blue>Drawing</font>，
+如何求解一个CFD问题？首先要知道什么是`CFD`。我常戏称`CFD`为 <font color=red> Color </font>
+<font color=#008000>Ful</font> <font color=Blue>Drawing</font> ，
 对于很多人来说，CFD就是得到一张张花花绿绿的图，但除此之外呢？
 我们常常又称CFD为`仿真`，又有何道理呢？
 
@@ -89,4 +89,4 @@ favour: true
 
 而事实也是如此。以我的经验，前处理，计算，后处理所耗费的`人`的时间的比例为7：1：2。
 
-其中种种细节，我将结合本次仿真的经历，边聊边谈。
+其中种种细节，咱们结合本次仿真的经历，边聊边谈。

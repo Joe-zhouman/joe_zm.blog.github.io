@@ -4,7 +4,7 @@ istop : true
 book : true
 title: python自动联网的脚本
 category: code
-tags: CFD fluent
+tags: python 爬虫
 background-image: python.jpeg
 date: 2019-07-19 10:28:09 + 0800
 code: true
@@ -33,17 +33,17 @@ code: true
 
 1. 用`Chrome`打开校园网登陆页面，并按`F12`进入开发者模式
 
-[]{{site.ulc}}/style/auto_connector/ac1.png
+[]{{site.url}}/style/auto_connector/ac1.png
 
 2. 进入`network`选项卡，并勾选`Preserve log`选项
 
-[]{{site.ulc}}/style/auto_connector/ac2.png
+[]{{site.url}}/style/auto_connector/ac2.png
 
 3. 登陆校园网，可以看到下面出来很多东西，这些其实是我们登陆过程中发送和接受到的所有请求
 
 4. 找到含`login`的请求，点击查看，打开header选项卡，找到`Request Headers`和`Query String Parameters`两部分
 
-[]{{site.ulc}}/style/auto_connector/header.png
+[]{{site.url}}/style/auto_connector/header.png
 
 ## 程序
 
@@ -146,4 +146,4 @@ login.main()
 
 本程序针对校园网的登陆请求为`get`，一般还有很多使用`post`请求的。请求类型同样可以在上面的header里查看。
 
-[]{{site.ulc}}/style/auto_connector/get.png
+[]{{site.url}}/style/auto_connector/get.png

@@ -38,7 +38,7 @@ code: true
 2. 进入`network`选项卡，并勾选`Preserve log`选项
 
 ![]({{site.url}}/style/auto_connector/ac2.png)
-* 
+
 3. 登陆校园网，可以看到下面出来很多东西，这些其实是我们登陆过程中发送和接受到的所有请求
 
 4. 找到含`login`的请求，点击查看，打开header选项卡，找到`Request Headers`和`Query String Parameters`两部分

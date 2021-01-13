@@ -6,7 +6,7 @@ title: python自动联网的脚本
 category: code
 tags: python 爬虫
 background-image: python.jpeg
-date: 2019-07-19 10:28:09 + 0800
+date: 2021-1-13 10:15:16 + 0800
 code: true
 ---
 更新后的校园网老断，用python写了个自动联网的脚本。<!-- more -->
@@ -52,54 +52,58 @@ code: true
 ```python
 
 #-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 __author__ = 'joe_zhouman'
 
-import time
-import requests
 import os
+import time
+
+import requests
+
 class Login:
 
-    #初始化
+    # 初始化
     def __init__(self):
-        #检测间隔时间，单位为秒
-        self.every = 1800
+        # 检测间隔时间，单位为秒
+        self.every = 60
 
-    #模拟登录
+    # 模拟登录
     def login(self):
         print(self.getCurrentTime(), u"拼命连网中...")
 
-        url="http://10.36.254.11/drcom/login"
-        #消息头
-        headers={
-            'Accept':"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01",
-            'Accept-Encoding':"gzip, deflate",
-            'Accept-Language':"zh-CN,zh;q=0.9,zh-TW;q=0.8",
-            'Connection':"keep-alive",
-            'Cookie':"",
-            'Host':"",
-            'Referer':"",
-            'User-Agent':"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36",
-            'X-Requested-With':"XMLHttpRequest"
+        url = "http://10.36.254.11/drcom/login"
+        # 消息头
+        headers = {
+            'Accept': "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01",
+            'Accept-Encoding': "gzip, deflate",
+            'Accept-Language': "zh-CN,zh;q=0.9",
+            'Connection': "keep-alive",
+            'Cookie': "PHPSESSID=p743j2ds11nc93vn0vg8f5vs46",
+            'Host': "10.36.254.11",
+            'Referer': "http://10.36.254.11/a79.htm?isReback=1",
+            'User-Agent': "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36",
+            'X-Requested-With': "XMLHttpRequest"
         }
-        #key value
+        # key value
         kv = {
-            'callback':"",
-            'DDDDD':"",    
-            'upass':"",
-            '0MKKey':"",
-            'R1':"0",
-            'R3':"0",
-            'R6':"0",
-            'para':"00",
-            'v6ip':"",
-            '_':""
+            'callback': "dr1356976306480",
+            'DDDDD': "1601201023",##改成自己的账号
+            'upass': "104419",##改成自己的密码
+            '0MKKey': "123456",
+            'R1': "0",
+            'R3': "0",
+            'R6': "0",
+            'para': "00",
+            'v6ip': "",
+            '_': "1356976296832"
         }
         try:
-            requests.get(url, params = kv, headers = headers)
-            print( self.getCurrentTime(),u'连上了...现在开始看连接是否正常')
+            requests.get(url, params=kv, headers=headers)
+            print(self.getCurrentTime(), u'连上了...现在开始看连接是否正常')
         except:
             print("error")
-    #判断当前是否可以连网
+    # 判断当前是否可以连网
+
     def CanConnect(self):
         try:
             exit_code = os.system('ping www.baidu.com')
@@ -108,26 +112,24 @@ class Login:
             else:
                 return False
         except:
-            print( 'error')
+            print('error')
 
-    #获取当前时间
+    # 获取当前时间
     def getCurrentTime(self):
-        return time.strftime('[%Y-%m-%d %H:%M:%S]',time.localtime(time.time()))
+        return time.strftime('[%Y-%m-%d %H:%M:%S]', time.localtime(time.time()))
 
-    #主函数
+    # 主函数
     def main(self):
-        print( self.getCurrentTime(), u"Hi，欢迎使用自动登陆系统")
-        while True:
+        print(self.getCurrentTime(), u"Hi，欢迎使用自动登陆系统")
+        can_connect = self.CanConnect()
+        while not can_connect:
+            print(self.getCurrentTime(), u"未能连接网络,请重试...")
             self.login()
-            while True:
-                can_connect = self.CanConnect()
-                if not can_connect:
-                    print( self.getCurrentTime(),u"断网了...")
-                    self.login()
-                else:
-                    print( self.getCurrentTime(), u"一切正常...")
-                time.sleep(self.every)
+        
+            can_connect = self.CanConnect()            
             time.sleep(self.every)
+        print(self.getCurrentTime(), u"联网成功...")
+
 
 login = Login()
 login.main()
@@ -138,10 +140,19 @@ login.main()
 
 ## 开机启动
 
-用python的`installer`模块将程序打包成exe，将其快捷方式放入启动中，就可以开机启动啦~~~
+建立一个`.bat`文件,在里面写上 
+```bat
+python "{PyFilePath}"
+```
+如我的
+![bat]({{site.url}}/style/auto_connector/bat.png)
+在windows的`任务计划程序`中新建一个定时启动的任务,按下图设置:
+![计划任务设置-常规]({{site.url}}/style/auto_connector/TimerGeneral.png)
+![计划任务设置-触发器]({{site.url}}/style/auto_connector/TimerTrigger.png)
+![计划任务设置-操作]({{site.url}}/style/auto_connector/TimerTrigger.png)
+这里的`启动程序`就是你之前建立的`.bat`文件.
 
-反正我是很久没进过登陆页面了。
-
+其余的按默认设置即可.
 ## 说明
 
 本程序针对校园网的登陆请求为`get`，一般还有很多使用`post`请求的。请求类型同样可以在上面的header里查看。

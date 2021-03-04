@@ -11,13 +11,11 @@ code: true
 ---
 更新后的校园网老断，用python写了个自动联网的脚本。<!-- more -->
 
-# python自动联网的脚本
-
-## 问题简述
+# 问题简述
 
 本问题的实质是利用python的requests模块模拟发出联网的请求。
 
-## 准备工作
+# 准备工作
 
 需要
 
@@ -27,7 +25,7 @@ code: true
 
 + python的`requests`模块
 
-## 抓包
+# 抓包
 
 在这里以某大学校园网为例
 
@@ -45,7 +43,7 @@ code: true
 
 ![]({{site.url}}/_posts/Python/autoConnector/header.png)
 
-## 程序
+# 程序
 
 将`Request Headers`和`Query String Parameters`里面的内容填入下面的代码里
 
@@ -138,7 +136,7 @@ login.main()
 
 运行程序，大功告成。
 
-## 开机启动
+# 开机启动
 
 建立一个`.bat`文件,在里面写上 
 ```bat
@@ -153,7 +151,7 @@ python "{PyFilePath}"
 这里的`启动程序`就是你之前建立的`.bat`文件.
 
 其余的按默认设置即可.
-## 说明
+# 说明
 
 本程序针对校园网的登陆请求为`get`，一般还有很多使用`post`请求的。请求类型同样可以在上面的header里查看。
 

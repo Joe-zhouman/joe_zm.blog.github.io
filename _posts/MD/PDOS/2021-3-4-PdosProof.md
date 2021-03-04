@@ -19,8 +19,8 @@ code: false
 
 公式不好打，这里只贴上图片，后面会附上pdf。
 
-![]({{site.url}}/_posts/MD/PDOS/p1.png)
-![]({{site.url}}/_posts/MD/PDOS/p2.png)
+![]({{site.url}}/figures/MD/PDOS/p1.png)
+![]({{site.url}}/figures/MD/PDOS/p2.png)
 
 ## pdf文档下载
 

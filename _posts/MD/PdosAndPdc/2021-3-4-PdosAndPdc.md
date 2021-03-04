@@ -24,7 +24,7 @@ code: false
 
 # PDOS与PDC的关系
 
-![]({{site.url}}/_posts/MD/PdosAndPdc/pdc.png)
+![]({{site.url}}/figures/MD/PdosAndPdc/pdc.png)
 以上为六方氮化硼的声子色散曲线，曲线上的每一个点都代表一种声子模，统计一下以上点的概率分布，与PDOS相比较，可以看到，两者的形状神相似。
 理论上，如果体系足够大，声子模足够多，这两个曲线应该是重合的。
-![]({{site.url}}/_posts/MD/PdosAndPdc/PdosAndPdc.png)
+![]({{site.url}}/figures/MD/PdosAndPdc/PdosAndPdc.png)

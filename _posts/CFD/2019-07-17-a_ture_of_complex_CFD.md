@@ -3,7 +3,7 @@ layout: blog
 istop : true
 book : true
 title: 大型工程CFD仿真--经历,体会与感悟(一)
-category: favour
+category: knowledge
 tags: CFD fluent
 background-image: CFD.jpg
 date: 2019-07-17 19:07:46 + 0800

@@ -17,8 +17,8 @@ links:
   - name:         Code|代码
     url:          /code
     external:     false
-  - name:         Paper|文章
-    url:          /paper
+  - name:         Knowledge|知识
+    url:          /knowledge
     external:     false
   - name:         Favour|兴趣
     url:          /favour

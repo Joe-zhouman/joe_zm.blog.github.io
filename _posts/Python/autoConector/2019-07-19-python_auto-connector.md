@@ -31,7 +31,7 @@ code: true
 
 1. 用`Chrome`打开校园网登陆页面，并按`F12`进入开发者模式
 
-![]({{site.url}}/_posts/Python/autoConnector/ac1.png)
+![](./ac1.png)
 
 2. 进入`network`选项卡，并勾选`Preserve log`选项
 

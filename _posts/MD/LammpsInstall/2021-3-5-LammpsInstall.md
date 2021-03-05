@@ -53,7 +53,7 @@ sudo make install
 修改`~/.bashrc`文件，将类库安装文件夹下的`bin`和`lib`文件夹加入路径中。
 
 
-```bash
+```shell
 #My Path
 export PATH=$PATH:/usr/local/fftw/3.3.8/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/fftw/3.3.8/lib
@@ -86,7 +86,7 @@ sudo make install
 ```
 ## 配置路径
 
-```bash
+```shell
 #My Path
 export PATH=$PATH:/usr/local/fftw/3.3.8/bin:/usr/local/mpich/3.3.2/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/fftw/3.3.8/lib:/usr/local/mpich/3.3.2/lib
@@ -157,7 +157,7 @@ sudo make mpi -j40
 sudo cp ./lmp_mpi /opt/lammps/lmp_3Mar20_std #std 在我这里指没有任何附加文件，按yes-all+no-lib编译出来的版本
 ```
 然后把对应的路径加入环境变量中
-```bash
+```shell
 export PATH=$PATH:/usr/local/fftw/3.3.8/bin:/usr/local/mpich/3.3.2/bin:/opt/lammps
 ```
 大功告成

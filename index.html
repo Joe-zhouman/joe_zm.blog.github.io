@@ -14,11 +14,11 @@
 							<p>{{  posts.excerpt | strip_html  }}</p>
 						</div>
 					</a>
-					{% if posts.code %}
+					{% if posts.category=='code' %}
 					<div class="item-slant reverse-slant  bg-blue"></div>
-					{% elsif posts.favour %}
+					{% elsif posts.category=='favour' %}
 					<div class="item-slant reverse-slant  bg-red"></div>
-					{% else %}
+					{% elseif posts.category=='knowledge' %}
 					<div class="item-slant reverse-slant  bg-yellow"></div>
 					{% endif %}
 					

@@ -6,11 +6,11 @@ title: 波动方程解
 category: code
 tags: 傅里叶分析 matlab
 background-image: WaveSignal.png
-date: 2021-3-5 16:37:23 + 0800
+date: 2021-3-9 17:54:39 + 0800
 code: false
 ---
 
-波动方程的两种解法可视化<!--more-->
+波动方程的两种解法可视化<!-- more -->
 
 # 波动方程
 [波动方程](https://baike.baidu.com/item/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B)主要用以描述自然界中的各种的波动现象。

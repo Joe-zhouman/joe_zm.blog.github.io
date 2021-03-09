@@ -9,7 +9,6 @@ background-image: WaveSignal.png
 date: 2021-3-9 17:54:39 + 0800
 code: false
 ---
-
 波动方程的两种解法可视化 <!-- more -->
 
 # 波动方程

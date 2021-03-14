@@ -6,8 +6,7 @@ title: 由NaN引起的错误
 category: code
 tags: C#
 background-image: CSharpDotNet.png
-date: 时间
-
+date: 2021-3-14 17:17:41 + 0800
 ---
 由NaN引发的错误。<!-- more -->
 

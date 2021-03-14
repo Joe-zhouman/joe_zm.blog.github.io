@@ -7,7 +7,7 @@ category: knowledge
 tags: CFD fluent
 background-image: CFD.jpg
 date: 2019-07-17 19:07:46 + 0800
-favour: true
+
 ---
 做了一次很复杂的工程问题的仿真。讲讲经历，谈谈体会。<!-- more -->
 

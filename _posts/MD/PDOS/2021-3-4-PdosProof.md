@@ -7,7 +7,6 @@ category: knowledge
 tags: 分子动力学
 background-image: graphene.jpg
 date: 2021-3-4 16:48:06 + 0800
-code: false
 ---
 
 由速度自相关函数（VACF）计算态密度（PDOS）的公式推导<!-- more -->

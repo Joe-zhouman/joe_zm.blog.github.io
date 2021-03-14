@@ -7,7 +7,6 @@ category: code
 tags: python 爬虫
 background-image: python.jpeg
 date: 2021-1-13 10:15:16 + 0800
-code: true
 ---
 更新后的校园网老断，用python写了个自动联网的脚本。<!-- more -->
 

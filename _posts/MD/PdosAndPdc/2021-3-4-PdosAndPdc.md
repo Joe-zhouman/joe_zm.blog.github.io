@@ -7,7 +7,6 @@ category: knowledge
 tags: 分子动力学
 background-image: graphene.jpg
 date: 2021-3-4 19:02:42 + 0800
-code: false
 ---
 态密度（PDOS）曲线和声子色散曲线（PDC）之间是相互关联的，这里讲讲他们的关联性<!-- more -->
 

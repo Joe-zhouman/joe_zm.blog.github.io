@@ -121,7 +121,7 @@ private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataR
 |-待机-|-待命中-|DDDDDDDE|SDDD|SDDD|
 |发送数据|触发事件|DDDDDDDESDDD|SDDD|SDDDSDDD|
 
-看，原本应该接收到`SDDDDDDDDDDE`，现在真正这组收到的是`SDDDSDDD`，部分数据丢失。
+看，原本应该接收到`SDDDDDDDDDDESDDD...`，现在真正这组收到的是`SDDDSDDD...`，部分数据丢失。
 
 对源代码进行修改太麻烦，故而选择直接重构该部分功能。
 
@@ -153,8 +153,10 @@ private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataR
 
 根据以上特点，我们自然而然的想到了一种`先入先出`的数据结构--[`队列`](https://baike.baidu.com/item/%E9%98%9F%E5%88%97/14580481?fr=aladdin)。
 
+---
 说句题外话，老有人说小学时的问题`一个池子，一边注水，一边放水`这种问题很傻，没有现实意义。。。其实现实中处处都有。
 不一定是真实的`池`，也可以是抽象的`池`。
+---
 
 话不多说，上代码。
 
@@ -208,5 +210,6 @@ public void SolveDataThread(){
         }
 }
 
-信息说明都在代码注释里。
+
 ```
+信息说明都在代码注释里。

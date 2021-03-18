@@ -2,13 +2,13 @@
 layout: code
 istop : true
 book : true
-title: 由NaN引起的错误
+title: C#中由NaN引起的错误
 category: code
 tags: C#
 background-image: CSharpDotNet.png
 date: 2021-3-14 17:17:41 + 0800
 ---
-由NaN引发的错误。<!-- more -->
+C#中由NaN引发的错误及其修改。<!-- more -->
 
 # 简述
 

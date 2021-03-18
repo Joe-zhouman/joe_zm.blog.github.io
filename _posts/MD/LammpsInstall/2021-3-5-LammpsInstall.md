@@ -5,7 +5,7 @@ book : true
 title: LAMMPS安装
 category: knowledge
 tags: 分子动力学 LAMMPS
-background-image: graphene.jpg
+background-image: Lammps.jpg
 date: 2021-3-5 16:37:23 + 0800
 ---
 

@@ -16,8 +16,8 @@ date: 2021-3-4 16:48:06 + 0800
 
 公式不好打，这里只贴上图片，后面会附上pdf。
 
-![]({{site.url}}/figures/MD/PDOS/p1.png)
-![]({{site.url}}/figures/MD/PDOS/p2.png)
+![p1.png](https://i.loli.net/2021/03/18/e1ruAChWsGJkBwn.png)
+![p2.png](https://i.loli.net/2021/03/18/tLGDdW5hez1fNrE.png)
 
 # pdf文档下载
 

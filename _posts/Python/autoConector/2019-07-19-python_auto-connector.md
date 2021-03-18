@@ -30,17 +30,17 @@ date: 2021-1-13 10:15:16 + 0800
 
 1. 用`Chrome`打开校园网登陆页面，并按`F12`进入开发者模式
 
-![]({{site.url}}/figures/Python/autoConnector/ac1.png)
+![ac1.png](https://i.loli.net/2021/03/18/sEp7wCRVW5Kl6XD.png)
 
 2. 进入`network`选项卡，并勾选`Preserve log`选项
 
-![]({{site.url}}/figures/Python/autoConnector/ac2.png)
+![ac2.png](https://i.loli.net/2021/03/18/fvyx8ER5HkMichz.png)
 
 3. 登陆校园网，可以看到下面出来很多东西，这些其实是我们登陆过程中发送和接受到的所有请求
 
 4. 找到含`login`的请求，点击查看，打开header选项卡，找到`Request Headers`和`Query String Parameters`两部分
 
-![]({{site.url}}/figures/Python/autoConnector/header.png)
+![header.png](https://i.loli.net/2021/03/18/34MIJjbqVv8egk1.png)
 
 # 程序
 
@@ -142,11 +142,11 @@ login.main()
 python "{PyFilePath}"
 ```
 如我的
-![bat]({{site.url}}/figures/Python/autoConnector/bat.png)
+![bat.png](https://i.loli.net/2021/03/18/RdIaDTl1rQJYPw7.png)
 在windows的`任务计划程序`中新建一个定时启动的任务,按下图设置:
-![计划任务设置-常规]({{site.url}}/figures/Python/autoConnector/TimerGeneral.png)
-![计划任务设置-触发器]({{site.url}}/figures/Python/autoConnector/TimerTrigger.png)
-![计划任务设置-操作]({{site.url}}/figures/Python/autoConnector/TimerTrigger.png)
+![计划任务设置-常规](https://i.loli.net/2021/03/18/Y1Dcs6iVTRJyOpz.png))
+![计划任务设置-触发器](https://i.loli.net/2021/03/18/bv4DsOauxHK7FNY.png)
+![计划任务设置-操作](https://i.loli.net/2021/03/18/rQuCvUA3HBTegFk.png)
 这里的`启动程序`就是你之前建立的`.bat`文件.
 
 其余的按默认设置即可.
@@ -154,6 +154,6 @@ python "{PyFilePath}"
 
 本程序针对校园网的登陆请求为`get`，一般还有很多使用`post`请求的。请求类型同样可以在上面的header里查看。
 
-![]({{site.url}}/figures/Python/autoConnector/get.png)
+![get.png](https://i.loli.net/2021/03/18/GXKDUlWjypVTCch.png)
 
 如果有需要的话，可以再写个程序。

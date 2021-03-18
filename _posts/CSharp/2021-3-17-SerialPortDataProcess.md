@@ -104,20 +104,21 @@ private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataR
 |---|---|---|---|---|
 |开始|待命中|null|null|null|
 |发送数据|触发事件|SDDD|SDDD|SDDD|
-|发送数据|处理中|DDDD|SDDD|SDDD|
-||处理完成|DDDD|SDDD|SDDD|
+|发送数据|-处理中-|DDDD|SDDD|SDDD|
+|-发送间隔-|处理完成|DDDD|SDDD|SDDD|
 |发送数据|触发事件|DDDDDDDE|DDDDDDDE|SDDDDDDDDDDE|
 |开始休息|处理完成|null|null|null|
+
 产生错误时:
 
 |采集仪动作|接收事件|当前缓存区|str|recvstr|
 |---|---|---|---|---|
 |开始|待命中|null|null|null|
 |发送数据|触发事件|SDDD|SDDD|SDDD|
-|发送数据|处理中|DDDD|SDDD|SDDD|
-|发送数据|处理中|DDDDDDDE|SDDD|SDDD|
-|开始休息|处理完成|DDDDDDDE|SDDD|SDDD|
-|休息中|待命中|DDDDDDDE|SDDD|SDDD|
+|发送数据|-处理中-|DDDD|SDDD|SDDD|
+|发送数据|-处理中-|DDDDDDDE|SDDD|SDDD|
+|-待机-|处理完成|DDDDDDDE|SDDD|SDDD|
+|-待机-|-待命中-|DDDDDDDE|SDDD|SDDD|
 |发送数据|触发事件|DDDDDDDESDDD|SDDD|SDDDSDDD|
 
 看，原本应该接收到`SDDDDDDDDDDE`，现在真正这组收到的是`SDDDSDDD`，部分数据丢失。

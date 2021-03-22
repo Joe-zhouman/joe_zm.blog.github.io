@@ -14,6 +14,8 @@ date: 2021-3-4 16:48:06 + 0800
 # 证明
 基本思想来自于 [DICKEY (1969)](https://journals.aps.org/pr/abstract/10.1103/PhysRev.188.1407)
 
+这里不做非常严谨的推导，不然的话写不下。
+
 公式不好打，这里只贴上图片，后面会附上pdf。
 
 ![p1.png](https://i.loli.net/2021/03/18/e1ruAChWsGJkBwn.png)

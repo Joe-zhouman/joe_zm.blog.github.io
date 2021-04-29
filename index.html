@@ -21,7 +21,7 @@
 					{% elsif posts.category=='knowledge' %}
 					<div class="item-slant reverse-slant  bg-yellow"></div>
 					{% endif %}
-					
+
 					<div class="item-slant">
 						<div class="joezhouman-title">
 							原创
@@ -37,16 +37,17 @@
 							<div class="item-meta-cat">
 								<a href="/{{ posts.category }}" title="访问 {{ posts.category }}"
 									data-hover="{{ posts.category }}">{{ posts.category }}</a>
-								<a href="/archives#{{ posts.date | date: "%Y"}}"
-									title="访问 {{ posts.date | date: "%Y" }} "
-									data-hover="{{ posts.date | date: "%F %H:%M"}}">{{ posts.date | date: "%F %H:%M"}}</a>
+								<a href="/archives#{{ posts.date | date: '%Y'}}"
+									title="访问 {{ posts.date | date: '%Y' }} "
+									data-hover="{{ posts.date | date: '%F %H:%M'}}">{{ posts.date | date: '%F %H:%M'}}</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			{% endfor %}
-			{% include pagination.html %}
+			{% endfor %}			
 		</div>
 	</div>
-	
+</div>
+
+{% include pagination.html %}

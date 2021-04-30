@@ -223,12 +223,18 @@ pre {
 }
 
 code {
-   font-family: "Abril Fatface", serif，Menlo, Bitstream Vera Sans Mono, DejaVu Sans Mono, Monaco, Consolas, monospace;
+   font-family: "Fira Code",
+      "Roboto Mono", serif，Menlo,
+      Bitstream Vera Sans Mono,
+      DejaVu Sans Mono,
+      Monaco,
+      Consolas,
+      monospace;
    font-size: 13px;
    background-color: rgb(244, 244, 244);
    border: 1px solid #eaeaea;
    border-radius: 2px;
-   color: #716f6f;
+   color: #d63200;
    margin: 0 6px;
 }
 
@@ -237,17 +243,18 @@ pre code {
    overflow: auto;
    border: 0;
 }
-
-blockquote {
-   border-left: 2px solid rgba(235, 80, 85, 0.62);
-   position: relative;
-   color: #000;
-   font-size: 1.5rem;
-   background: #f4f4f4;
-   margin: 20px 0;
-   padding: 16px 24px 16px 35px
+.content blockquote {
+   margin: 2em 0;
+   padding-left: 20px;
+   border-left: 4px solid #42b983;
 }
-
+blockquote {
+   display: block;
+   margin-block-start: 1em;
+   margin-block-end: 1em;
+   margin-inline-start: 40px;
+   margin-inline-end: 40px;
+}
 blockquote>:first-child {
    margin-top: 0;
 }
@@ -1231,8 +1238,8 @@ textarea:-ms-input-placeholder {
    position: absolute;
    top: 0;
    left: -15px;
-   content: '#';
-   color: #eb5055;
+   content: '▼';
+   color: #42b983;
 }
 
 .post-content pre {

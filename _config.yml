@@ -8,8 +8,7 @@ google_analytics: UA-143789738-1
 share:            true 
 # 分页
 paginate: 15
-paginate_path: "page:num"
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 links:
   - name:         Homepage|首页
     url:          /

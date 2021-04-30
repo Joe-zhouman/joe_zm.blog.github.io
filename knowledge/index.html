@@ -6,8 +6,7 @@ description: "那小子又在不务正业了->_->"
 <div class="main-content index-page clearfix ">
 	<div class="post-lists">
 		<div class="post-lists-body">
-			{% for posts in site.posts %}
-			{% if posts.category=='knowledge'%}
+			{% for posts in site.categories.knowledge %}
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-{{posts.background }}"
@@ -32,7 +31,7 @@ description: "那小子又在不务正业了->_->"
 					</div>
 				</div>
 			</div>
-			{% endif %}
 			{% endfor %}
 		</div>
 	</div>
+</div>

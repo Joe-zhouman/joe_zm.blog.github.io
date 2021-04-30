@@ -6,8 +6,7 @@ description: "做人呢，最重要的就是，开~心~~啦~~~"
 <div class="main-content index-page clearfix ">
 	<div class="post-lists">
 		<div class="post-lists-body">
-			{% for posts in site.posts %}
-			{% if posts.category=='favour'%}
+			{% for posts in site.categories.favour %}
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-{{posts.background }}"
@@ -32,7 +31,7 @@ description: "做人呢，最重要的就是，开~心~~啦~~~"
 					</div>
 				</div>
 			</div>
-			{% endif %}
 			{% endfor %}
 		</div>
 	</div>
+</div>

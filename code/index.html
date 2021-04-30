@@ -6,8 +6,7 @@ description: "我变强了，也变秃了QAQ"
 <div class="main-content index-page clearfix ">
 	<div class="post-lists">
 		<div class="post-lists-body">
-			{% for posts in site.posts %}
-			{% if posts.category=='code'%}
+			{% for posts in site.categories.code %}
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-{{ posts.background }}"
@@ -32,7 +31,7 @@ description: "我变强了，也变秃了QAQ"
 					</div>
 				</div>
 			</div>
-			{% endif %}
 			{% endfor %}
 		</div>
 	</div>
+</div>

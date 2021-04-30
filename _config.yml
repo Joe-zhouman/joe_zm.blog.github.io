@@ -35,10 +35,6 @@ links:
 
 excerpt_separator:  '<!-- more -->'
 
-# ------------ BACKGROUND ------------------
-
-bgtext: "αβγδεζηθικλμνξοπρστυφχψω∷∫∮∝∞∧∨∑∏∪∩∈∵∴⊥‖∠⌒⊙≌∽√"
-
 # ------------ CONFIGURABLE END ------------
 
 #permalink:        /:categories/:title.html

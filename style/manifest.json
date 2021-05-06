@@ -10,7 +10,7 @@
 
     // 建议提供的字段3个
 
-    "description": "My Blog", // 描述。132个字符以内
+    "description": "My Blog" // 描述。132个字符以内
 
 //     "icons": {
 
@@ -167,3 +167,4 @@
 //         "run_at": "document_idle"
 
 //     }],
+}

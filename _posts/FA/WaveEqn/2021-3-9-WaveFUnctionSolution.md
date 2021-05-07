@@ -15,7 +15,9 @@ date: 2021-3-9 17:54:39 + 0800
 [波动方程](https://baike.baidu.com/item/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B)主要用以描述自然界中的各种的波动现象。
 
 二维平面波动方程形式如下：
-![](https://i.loli.net/2021/03/09/s7fuR2tMhQXnqab.png)
+
+$$\large\frac{\partial^2u}{\partial t^2} = \frac{\partial^2u}{\partial x^2} \quad on \quad 0 \le x\le \pi, \quad with \quad t\ge0 $$
+
 注：上述方程将系数简化为一，不是标准的波动方程
 # 行波解
 
@@ -28,29 +30,37 @@ date: 2021-3-9 17:54:39 + 0800
 
 右行波方程
 
-![](https://i.loli.net/2021/03/09/wKUj5o3vFDquTnL.png)
+$$\large u(x,t)=F(x+t)$$
 
 左行波方程
 
-![](https://i.loli.net/2021/03/09/1IvwcJPkDZqA5SL.png)
+$$\large u(x,t)=F(x-t)$$
 
 则行波形式的方程为
-![](https://i.loli.net/2021/03/09/ShjrunivPAMsyEU.png)
+
+$$\large u(x,t)=F(x+t)+G(x-t)$$
 
 此方程的通解为
 
-![](https://i.loli.net/2021/03/09/9C5rvMZItFVj3xQ.png)
+$$\large u(x,t)=\frac{1}{2}[f(x+t)+f(x-t)]+\frac{1}{2}\int_{x-t}^{x+t}g(y)dy$$
+
 上述解也被称为[达朗贝尔公式](https://baike.baidu.com/item/%E8%BE%BE%E6%9C%97%E8%B4%9D%E5%B0%94%E5%85%AC%E5%BC%8F)
 
 ## 特解
 
 在达朗贝尔公式中，取
 
-![](https://i.loli.net/2021/03/09/hmR9YXIKsVzxlbr.png)
+$$\large f(x)=2\sin x,\quad g(x) = 4\cos 2x$$
+
+$$\large u(x,t)=\sin (x+t)+\sin (x-t)+\sin 2(x+t) - \sin 2(x-t)$$
+
+$$\large F(x+t)=\sin (x+t)+\sin 2(x+t)$$
+
+S$$\large G(x-t)=\sin (x-t)-\sin 2(x-t)$$
 
 ## 代码
 
-```matlab
+``` matlab
 clc,clear,close all
 
 x = -pi:0.1:3*pi;
@@ -89,10 +99,12 @@ end
 波节和波腹的位置始终是不变的，给人“驻立不动”的印象。
 
 驻波可表示为
-![](https://i.loli.net/2021/03/09/OqCF8GXpZPU6xlW.png)
+
+$$\large u(x,t)=\varphi(x)\psi(t)$$
 
 其通解为
-![](https://i.loli.net/2021/03/09/2VFjm3CKRDnYLw4.png)
+
+$$\large u(x,t) = \sum ^{\infty}_{m=1}(A_m \cos mt + B_m \sin mt)\sin mx$$
 
 ## 代码
 

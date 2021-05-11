@@ -137,7 +137,7 @@ private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataR
 一直读到结束位标识后，再这一组数据放到指定的参数中，底层肯定有一些细节，总而言之，可以保证每次读到一组完整的数据。
 
 其用法为
-~~~CSharp
+~~~cs
     string endStr = ((char)13).ToString
     string targetStr = SerialPort.ReadTo("endStr");
 ~~~
@@ -161,7 +161,7 @@ private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataR
 话不多说，上代码。
 
 ### 代码
-~~~CSharp
+~~~cs
 private char _start; // 起始位标志
 private char _end ;   // 结束位标志
 private private Queue<string> _serialPortData; // 数据池

@@ -1,11 +1,14 @@
-<!--highlight -->
-<link rel="stylesheet" href="{{site.url}}/style/darculaHighlighter.css">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script> -->
-<!--  additional languages -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/go.min.js"></script>
+
+{% if site.google_analytics %}
+<!-- Google Analytics -->
 <script>
-    hljs.highlightAll();
-</script> -->
-<!--equations mathjax v3 -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    window.ga = window.ga || function () {
+        (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', '{{ site.google_analytics }}', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+{% endif %}

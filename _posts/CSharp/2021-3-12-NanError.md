@@ -14,7 +14,7 @@ C#中由NaN引发的错误及其修改。<!-- more -->
 
 以下是出错的代码
 
-```CSharp
+~~~cs
 public double Temp { get=>_temp;
             set {
                 if(value == double.NaN){
@@ -23,7 +23,7 @@ public double Temp { get=>_temp;
                 _temp = value;               
             }
         }
-```
+~~~
 原意是在属性`Temp`上添加`setter`，如果要将`Temp`设为`NaN`则抛出异常。
 
 结果任然可以将`Temp`设为`NaN`。
@@ -34,16 +34,16 @@ public double Temp { get=>_temp;
 
 运行如下代码
 
-```CSharp
+~~~cs
 Console.WriteLine($"{double.NaN==double.NaN}");
-```
+~~~
 其结果是`False`。
 
 # 解决
 
 用`double.IsNaN`判断
 
-```CSharp
+~~~cs
 public double Temp { get=>_temp;
             set {
                 if(double.IsNaN(value)){
@@ -52,7 +52,7 @@ public double Temp { get=>_temp;
                 _temp = value;               
             }
         }
-```
+~~~
 
 # 延伸
 

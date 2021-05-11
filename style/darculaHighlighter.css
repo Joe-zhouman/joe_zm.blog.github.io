@@ -23,7 +23,7 @@ pre .k {
 
 /* Keyword */
 pre .o {
-  color: #666666
+  color: #ff79c6
 }
 
 /* Operator */
@@ -145,7 +145,7 @@ pre .m {
 
 /* Literal.Number */
 pre .s {
-  color: #f1fa8c
+  color: #bd93f9
 }
 
 /* Literal.String */
@@ -534,7 +534,7 @@ pre .il {
 
 /* Name.Variable */
   {
-  color: #f1fa8c
+  color: #50fa7b
 }
 
 .highlight pre .ow {

@@ -13,7 +13,7 @@ date: 2021-3-5 16:37:23 + 0800
 
 # 基本需求
 
-* gcc, g++, gfortran
+* gcc, g++, gfortran, make
 * [fftw](http://www.fftw.org/download.html)
 * [mpich](https://www.mpich.org/downloads/)
 * [lammps](https://lammps.sandia.gov/download.html)
@@ -41,7 +41,7 @@ cd fftw*
 比如这次放在`/usr/local/fftw/3.3.8`
 
 ```shell
-sudo ./configure --prefix=/usr/local/fftw/3.3.8
+sudo ./configure --prefix=/usr/local/fftw/3.3.8 --enable-shared=yes
 sudo make -j4 #(这是并行编译，4为编译的线程数，可以加快编译速度)
 sudo make install
 ```
@@ -79,7 +79,7 @@ cd mpich*
 
 基本思想与上面一样，这里只列出命令
 ```shell
-sudo ./configure --prefix=/usr/local/mpich/3.3.2
+sudo ./configure --prefix=/usr/local/mpich/3.3.2 --enable-shared=yes
 sudo make -j4 #(这是并行编译，4为编译的线程数，可以加快编译速度)
 sudo make install
 ```
@@ -134,6 +134,14 @@ FFT_LIB =	-lfftw3
 #JPG_PATH = 	
 #JPG_LIB =
 ```
+## 切换用户
+lammps 需要使用root用户进行安装
+```shell
+sudo su
+```
+切换至root用户。
+将上面的`fftw`及·`mpich`的路径同样添加在`/root/.bashrc`中，方法同上。
+>安装时出现`mpicxx:cammond not found`错误的可能是没做这一步。
 ## 编译
 修改完后，返回`src`文件夹，进行编译
 ```shell
@@ -160,3 +168,10 @@ sudo cp ./lmp_mpi /opt/lammps/lmp_3Mar20_std #std 在我这里指没有任何附
 export PATH=$PATH:/usr/local/fftw/3.3.8/bin:/usr/local/mpich/3.3.2/bin:/opt/lammps
 ```
 大功告成
+
+## 可能出现的问题及解决
+`mpicxx:cammond not found`
+
+1. 见上方``切换用户``部分
+2. 在安装`fftw`及`mpich`时加上配置`--enable-shared=yes`
+3. 将`fftw`及`mpich`安装至`lammps`的默认目录，即`/usr/local/`

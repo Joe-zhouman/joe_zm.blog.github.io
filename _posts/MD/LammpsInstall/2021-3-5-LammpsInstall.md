@@ -24,7 +24,7 @@ date: 2021-3-5 16:37:23 + 0800
 
 我一般用的Ubuntu，所以直接
 ```shell
-sudo apt-get install gcc g++ gfortran
+sudo apt-get install gcc g++ gfortran make
 ```
 
 # 安装fftw

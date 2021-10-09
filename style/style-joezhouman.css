@@ -1228,8 +1228,22 @@ textarea:-ms-input-placeholder {
    margin: 20px 0;
 }
 
-.post-content h1::before,
-.post-content h2::before,
+.post-content h1::before{
+   font-weight: 600;
+   position: absolute;
+   top: 0;
+   left: -15px;
+   content: '●';
+   color: #cf202f;
+}
+.post-content h2::before {
+   font-weight: 600;
+   position: absolute;
+   top: 0;
+   left: -15px;
+   content: '#';
+   color: #42b983;
+}
 .post-content h3::before,
 .post-content h4::before,
 .post-content h5::before,
@@ -1239,7 +1253,7 @@ textarea:-ms-input-placeholder {
    top: 0;
    left: -15px;
    content: '▼';
-   color: #42b983;
+   color: #82868d;
 }
 
 .post-content pre {

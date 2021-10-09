@@ -12,7 +12,7 @@ date: 2021-9-25 08:45:38 + 0800
 常用的距离空间及其距离 <!-- more -->
 # 距离空间定义
 
-> $$X\ne \emptyset, \forall x,y \in X,\exist \rho (x,y),$$满足
+> $$X\ne \emptyset, \forall x,y \in X,\exists \rho (x,y),$$满足
 > * 非负性：$$\rho(x,y)\le 0,\rho(x,t)=0 \Leftrightarrow x=y$$
 > * 对称性: $$\rho(x,y)=\rho(y,x)$$
 > * 三角不等式:$$\forall z\in X, \rho(x,y)\le \rho(x,z)+\rho(z,y)$$
@@ -28,17 +28,18 @@ $$\rho(x,y)=\left(\sum\limits_{k=1}^n|\xi_k-\eta_k|^2\right)^{1/2}$$
 $$\rho(x,y)=\max\limits_{1\le k\le n}|\xi_k-\eta_k|$$
 
 ### 证明
-> $$\sum\limits_{k=1}^n(a_k+b_k)^2=\sum\limits_{k=1}^na_k^2+2\sum\limits_{k=1}^n
-> a_kb_k+\sum\limits_{k=1}^nb_k^2$$
-> $$\qquad\qquad\qquad\le\sum\limits_{k=1}^na_k^2+2(\sum\limits_{k=1}^na_k^2
-> +\sum\limits_{k=1}^n b_k^2)^{1/2}+\sum\limits_{k=1}^nb_k^2 （柯西不等式)$$
-> $$\qquad\qquad\qquad=\left[\left(\sum\limits_{k=1}^na_k^2\right)^{1/2}
-> +\left(\sum\limits_{k=1}^nb_k^2\right)^{1/2}\right]^2$$
+$$\sum\limits_{k=1}^n(a_k+b_k)^2=\sum\limits_{k=1}^na_k^2+2\sum\limits_{k=1}^n
+ a_kb_k+\sum\limits_{k=1}^nb_k^2$$
+
+$$\qquad\qquad\qquad\le\sum\limits_{k=1}^na_k^2+2(\sum\limits_{k=1}^na_k^2
++\sum\limits_{k=1}^n b_k^2)^{1/2}+\sum\limits_{k=1}^nb_k^2 (柯西不等式)$$
+
+$$\qquad\qquad\qquad=\left[\left(\sum\limits_{k=1}^na_k^2\right)^{1/2}
++\left(\sum\limits_{k=1}^nb_k^2\right)^{1/2}\right]^2$$
 
 
 ## $$C[a,b]$$
 ### 定义
-
 $$C[a,b]\{x|t\in [a,b],f(t)\in R,f(t)连续\}$$
 
 ### 距离

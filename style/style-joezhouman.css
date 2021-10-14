@@ -1233,7 +1233,7 @@ textarea:-ms-input-placeholder {
    position: absolute;
    top: 0;
    left: -15px;
-   content: '●';
+   content: '※';
    color: #cf202f;
 }
 .post-content h2::before {
@@ -1252,7 +1252,7 @@ textarea:-ms-input-placeholder {
    position: absolute;
    top: 0;
    left: -15px;
-   content: '▼';
+   content: '▪';
    color: #82868d;
 }
 

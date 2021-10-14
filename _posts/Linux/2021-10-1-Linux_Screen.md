@@ -35,7 +35,8 @@ $> screen [-AmRvx -ls -wipe][-d <作业名称>][-h <行数>][-r <作业名称>][
 * -x 　恢复之前离线的screen作业。
 * -ls或--list 　显示目前所有的screen作业。
 * -wipe 　检查目前所有的screen作业，并删除已经无法使用的screen作业。
-* 
+
+
 # 快捷键
 
 * Ctrl+A ? -> 显示所有键绑定信息

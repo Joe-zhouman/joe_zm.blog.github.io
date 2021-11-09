@@ -142,13 +142,14 @@ sudo su
 切换至root用户。
 将上面的`fftw`及·`mpich`的路径同样添加在`/root/.bashrc`中，方法同上。
 >安装时出现`mpicxx:cammond not found`错误的可能是没做这一步。
+
 ## 编译
 修改完后，返回`src`文件夹，进行编译
 ```shell
 cd ..
 make yes-all #安装所有包
 make no-lib #取消安装需要外链的包
-sudo make mpi -j40
+make mpi -j40
 ```
 成功的话`src`路径下会有一个`lmp_mpi`可执行文件
 

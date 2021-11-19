@@ -40,10 +40,10 @@ $$\qquad\qquad\qquad=\left[\left(\sum\limits_{k=1}^na_k^2\right)^{1/2}
 
 ## $$C[a,b]$$
 ### 定义
-$$C[a,b]\{x|t\in [a,b],f(t)\in R,f(t)连续\}$$
+$$C[a,b]\{x|t\in [a,b],f(t)\in R,f(t)连续\}$$ 
 
 ### 距离
-$$\rho(x,y)=\max\limits_{a\le t\le b}|x(t)-y(t)|$$
+$$\rho(x,y)=\max\limits_{a\le t\le b}|x(t)-y(t)|$$ 
 
 ## $$L^p(F)$$
 ## $$L^\infty(F)$$

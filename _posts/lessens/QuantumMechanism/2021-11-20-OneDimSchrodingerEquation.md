@@ -1,11 +1,13 @@
 layout: code
 istop : true
 book : true
-title: 量子力学：一维定态薛定谔方程波函数的性质
+title: 一维定态薛定谔方程波函数的性质
 category: knowledge
 tags: 量子力学 matlab
 background-image: quantum.jpg
 date: 2021-3-9 17:54:39 + 0800
+
+一维定态薛定谔方程解的一些性质 <!-- more -->
 
 # 束缚态与游离态
 

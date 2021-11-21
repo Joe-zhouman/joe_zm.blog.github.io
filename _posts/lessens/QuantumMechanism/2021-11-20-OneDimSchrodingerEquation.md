@@ -4,9 +4,9 @@ istop : true
 book : true
 title: 一维定态薛定谔方程波函数的性质
 category: knowledge
-tags: 量子力学 matlab
+tags: 量子力学
 background-image: quantum.jpg
-date: 2021-3-9 17:54:39 + 0800
+date: 2021-11-20 13:17:58 + 0800
 ---
 一维定态薛定谔方程解的一些性质 <!-- more -->
 
@@ -63,10 +63,17 @@ $$
 > $V(x)\rightarrow\infty$,$\psi(x)\rightarrow 0$,$\psi^\prime(x)$可能不连续；
 > $V(x)\rightarrow-\infty$,可能有$\psi(x)\rightarrow \infty$,$\psi^\prime(x)$可能不连续；
 
+
+
 $$
-\frac{2 m}{\hbar^{2}}\left(E_{2}-E_{1}\right) \int_{-\infty}^{+\infty} \psi_{1} \psi_{2} \mathrm{~d} x 
-=\int_{-\infty}^{+\infty} \frac{\mathrm{d}}{\mathrm{d} x}\left(\psi_{2} \psi_{1}^{\prime}-\psi_{1} \psi_{2}^{\prime}\right) 
-\mathrm{d} x =\left.\left(\psi_{2} \psi_{1}^{\prime}-\psi_{1} \psi_{2}^{\prime}\right)\right|_{-\infty} ^{+\infty}=0
+\frac{2 m}{\hbar^{2}} \int_{x_{0}-\varepsilon}^{x_{0}+\varepsilon}[V(x)-E] \psi(x) \mathrm{d} x =\int_{x_{0}-\varepsilon}^{x_{0}+\varepsilon} \psi^{\prime \prime}(x) \mathrm{d} x 
+=\psi^{\prime}\left(x_{0}+\varepsilon\right)-\psi^{\prime}\left(x_{0}-\varepsilon\right)
+
+$$
+
+
+$$
+\int_{x_{0}-\varepsilon}^{x_{0}+\varepsilon} \psi^{\prime}(x) \mathrm{d} x=\psi\left(x_{0}+\varepsilon\right)-\psi\left(x_{0}-\varepsilon\right)
 
 $$
 
@@ -109,6 +116,8 @@ $$
 
 > 束缚态基态波函数在有限处无奇点
 
+`证明见希尔伯特的数学物理方法第一卷第六章`
+
 > 束缚态基态波函数无简并（与之前的相关结论比较，这里对势场没有要求）
 
 若有简并，$\psi_1$,$\psi_2$,则$c_1 \psi_{1}+c_2 \psi_{2}$也是一个本征函数。可以通过改变常数项使其等于0。
@@ -140,3 +149,5 @@ $$
 同之前的证明由这一假设不成立。故推论得证。
 
 > 第n+1个能级的波函数有n个奇点
+
+`证明见希尔伯特的数学物理方法第一卷第六章`

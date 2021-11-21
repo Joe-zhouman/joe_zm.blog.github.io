@@ -228,3 +228,11 @@ $$
 E_{n}=\frac{1}{2 m}\left(\frac{n \pi \hbar}{2 a}\right)^{2}, \quad n=1,2,3, \cdots
 $$
 
+# $\delta$势阱
+## 势能
+对有限深方势阱，令$V_0\rightarrow \infty$,$a\rightarrow 0$，但仍保持
+$$
+\int_{-\infty}^{\infty} V(x) \mathrm{d} x=-2 V_{0} a :=-\gamma
+$$
+即
+$$V(x)=-\gamma\delta(x)$$

@@ -11,20 +11,25 @@ date: 2021-11-21 17:13:05 + 0800
 对于迭代法求解线性方程的算法做了一个基本的总结 <!-- more -->
 
 # 定常迭代法
+
 ## 原理
+
 对于方程$Ax=b$
 A可分解为$A = M-N$
 迭代格式$Mx^{(k+1)}=Nx^{(k)}+b$
+
 ## 收敛性
+
 迭代法收敛$\Leftrightarrow \rho(M)<1 \Rightarrow ||M||<1$
+
 ## 收敛速度
 
-
 ## 基本迭代法
+
 对于基本迭代法，从另一方面，A可分解为$A = D+L+U$，其中
-$D := diag(diag(A))$,即为A的对角元组成的对角阵
-$L := tril(A)-D$,即为A的严格下三角阵（对角元为0）
-$U := triu(A)-D$,即为A的严格上三角阵（对角元为0.
+$D := diag(diag(A))$, 即为A的对角元组成的对角阵
+$L := tril(A)-D$, 即为A的严格下三角阵（对角元为0）
+$U := triu(A)-D$, 即为A的严格上三角阵（对角元为0.
 以下列出的迭代法中$M$均可用以上的三个矩阵表示
 
 ## 常用基本迭代法
@@ -36,24 +41,29 @@ $x^{(k+1)}=-D^{-1}(L+U)x^{(k)}+D^{-1}b$
 $x^{(k+1)}_i = (b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$
 
 #### 收敛性
+
 * 充要条件:$\rho(D^{-1}(L+U))<1$
 * 充分条件:$a_{ii}>\sum\limits_{j\ne i}a_{ij}$，即A为严格对角占优矩阵
 * 充分条件:$a_{ii}\ge\sum\limits_{j\ne i}a_{ij}$，即A为弱对角占优矩阵，且A为不可约矩阵
 
 ### Damped (weighted) Jacobi method
+
 $M:=\frac{1}{\omega}D$
 $x^{(k+1)}=-D^{-1}((\omega-1)D+L+U)x^{(k)}+\omega D^{-1}b$
 $x^{(k+1)}_i = (1-\omega)x_i^{(k)}+
 \omega(b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$
 
 #### 收敛性
+
 * $\rho(I-\omega D^{-1}A)\lt 1 \Leftrightarrow 0\lt \omega \lt 2/\rho(D^{-1}A)$
 * 最小谱半径 
 
 $$\rho_{min} = 1-\frac{2}{cond(D^{-1}A)+1} $$
 $$when: \omega = \frac{2}{\lambda_{max}(D^{-1}A)+\lambda_{min}(D^{-1}A)}$$
 $$cond(A) =||A^{-1}||_p||A||_p $$
+
 #### 代码
+
 ```matlab
 function [x,err,kI] = Jacobi(A,b,N,err0,x0)
 %JACOBI Jocobi迭代的迭代形式
@@ -84,6 +94,7 @@ while err > err0 && kI <N
     err = norm(A*x-b);
 end
 ```
+
 ### Gauss-Seidel method
 
 $M:=D+L$
@@ -92,11 +103,14 @@ $x^{(k+1)}_i = (b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
 -\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$
 
 #### 收敛性
+
 * 充要条件:$\rho((D+L)^{-1}U)<1$
 * 充分条件:$a_{ii}>\sum\limits_{j\ne i}a_{ij}$，即A为严格对角占优矩阵
 * 充分条件:$a_{ii}\ge\sum\limits_{j\ne i}a_{ij}$，即A为弱对角占优矩阵，且A为不可约矩阵
 * 充分条件：A为对称正定矩阵
+
 #### 代码
+
 ```matlab
 function [x0,err,kI] = GaussSeidel(A,b,N,err0,x0)
 %GaussSeidel 高斯-赛德尔迭代的迭代形式
@@ -126,6 +140,7 @@ while err > err0 && kI < N
 end
 end
 ```
+
 ### Successive over-relaxation (SOR) method
 
 $M:=\frac{1}{\omega}D+L$
@@ -135,10 +150,12 @@ $x^{(k+1)}_i =(1-\omega)x_i^{(k)}+\omega(b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{
 -\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$
 
 #### 收敛性
+
 * 充要条件:$\rho((D+\omega L)^{-1}((\omega -1)D+\omega U))<1$
 * 充分条件：A为对称正定矩阵且$0<\omega<2$
 
 #### 收敛速度
+
 假定满足
 1. $0<\omega<2$
 2. $D^{-1}(L+U)$ 仅有实特征值
@@ -146,11 +163,13 @@ $x^{(k+1)}_i =(1-\omega)x_i^{(k)}+\omega(b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{
 4. $det(A)\ne 0$
 
 则收敛速度
-$$\rho = (\omega\mu+\sqrt{\omega^2\mu^2-4(\omega-1)^2})^2/2,0\lt \omega\le\omega_{opt}$$ 
-$$\rho = \omega-1,\omega_{opt}\le\omega<2$$
+$$\rho = (\omega\mu+\sqrt{\omega^2\mu^2-4(\omega-1)^2})^2/2, 0\lt \omega\le\omega_{opt}$$ 
+$$\rho = \omega-1, \omega_{opt}\le\omega<2$$
 其中
 $$\omega_{opt}=1+\left(\frac{\mu}{1+\sqrt{1-\mu^2}} \right)^2$$
+
 #### 代码
+
 ```matlab
 function [x0,err,kI] = SOR(A,b,omega,N,err0,x0)
 %SOR 逐次超松弛迭代
@@ -187,8 +206,8 @@ while err > err0 && kI < N
     kI = kI+1;
 end
 end
-
 ```
+
 ### Accelerated Overrelaxation (AOR) Method
 
 $M:=(1-\omega)I-\omega(D+rL)^{-1}((1-r)L+U)$
@@ -199,7 +218,9 @@ $x^{(k+1)}_i=(1-\omega)x^{(k)}_i+(\omega b-\sum\limits_{j=1}^{i-1}(ra_{ij}x^{(k+
 ### 收敛性
 
 ### Symmetric successive over-relaxation (SSOR) method
+
 $M:=\frac{1}{\omega(2-\omega)}(D+\omega L)D^{-1}(D+\omega U)$
+
 > 适用于对称矩阵
 
 ### (Modified) Richardson method
@@ -209,8 +230,11 @@ $x^{(k+1)}=-(\omega A-I)x^{(k)}+\omega b =x^{(k)}+\omega(b-Ax^{(k)})$
 $x^{(k+1)}_i=x^{(k)}_i+\omega(b_i-\sum\limits_{j=1}^na_{ij}x_j^{(k)})$
 
 #### 收敛性
+
 * $||I-\omega A||<1$
+
 #### 代码
+
 ```matlab
 function [x0,err,kI] = AOR(A,b,omega,r,N,err0,x0)
 %AOR Accelerated Overrelaxation Method迭代形式
@@ -251,20 +275,25 @@ end
 end
 
 ```
+
 # 优化方法
+
 ## 原理
+
 对泛函$f(\mathbf{x})=\frac12(\mathbf{x^TAx})-\mathbf{x^Tb}$
 $\nabla f = \mathbf{Ax-b}$
 $\nabla^2f = \mathbf{A}$
 将其看做一个优化问题，由于A为正定矩阵，则当$f(\mathbf{x})$取最小值时，有$\mathbf{Ax-b=0}$
 
 ## 最速下降法
+
 > 适用于实正定对称矩阵
 
 ![](https://bkimg.cdn.bcebos.com/pic/f31fbe096b63f62440e517b18644ebf81b4ca3c3?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto)
 核心思想：**在一点下降最快的方向为该点的负梯度方向**
 
 ### 代码
+
 ```matlab
 function [x,r,kI] = GD(A,b,N,err0,x)
 %GD Gradient Descent method 最速下降法
@@ -296,24 +325,31 @@ end
 end
 
 ```
+
 # Krylov子空间方法
+
 ## 原理
-考虑一系列向量$\{\mathbf{b,Ab,A^2b,...,A^nb}\}$, 其属于一个n维空间(n为A的阶数)，则这n+1个向量一定线性相关。
-即$\exist \alpha_0,\alpha_1,...,\alpha_n$，使得
+
+考虑一系列向量$\{\mathbf{b, Ab, A^2b, ..., A^nb}\}$, 其属于一个n维空间(n为A的阶数)，则这n+1个向量一定线性相关。
+即$\exist \alpha_0, \alpha_1, ..., \alpha_n$，使得
 $$\alpha_0\mathbf{b}+\alpha_1\mathbf{Ab}+...+\alpha_n\mathbf{A^nb}=0$$
 令k为满足$\alpha_k\ne0$的最小整数，则
 $$\mathbf{x=A^{-1}b}=-\frac{1}{\alpha_k}(\alpha_{k+1}\mathbf{b}+...+\alpha_n\mathbf{A^{n-k-1}b})$$
 
 ## 一些具体方法
+
 ### 共轭梯度法
+
 > 无舍入误差时，可作为直接法。实际均用作迭代法
 > 适用于实正定对称矩阵
 
 ![](https://pic1.zhimg.com/80/v2-689ed1a932880c333084208d25602408_720w.jpg)
 
-核心思想：**当前的误差跟上一步的方向正交,意味着这个方向彻底走到了极致** 
+核心思想：**当前的误差跟上一步的方向正交, 意味着这个方向彻底走到了极致** 
 (偏小或偏大都会导致误差变大)
+
 #### 代码
+
 ```matlab
 function [x,r,kI] = CG(A,b,N,err0,x)
 %CG Conjugate gradient method 共轭梯度法
@@ -349,16 +385,21 @@ end
 end
 
 ```
+
 #### 预调试共轭梯度法
 
 **通过预调试使算法更快的收敛**
 具体做法为在每一次计算p，$\alpha$和$\beta$时，用$M^{-1}r$替代$r$($r^T$不做改变）。$M$即为预调试子。
+
 #### 柔性预调试共轭梯度法
+
 与上面的算法相比，在计算$\beta$时，使用如下计算式替代：
 $$\beta_k := \frac{r_k^T(z_{k+1}-z_k)}{r^T_kz_k}$$
 
 ### Biconjugate gradient stabilized (BiCGSTAB) Method
+
 #### 代码
+
 ```matlab
 function [x,r,kI] = BiCGSTAB_T(A,b,M1,M2,N,err0,x)
 %BiCGSTAB_T Biconjugate gradient stabilized method
@@ -444,17 +485,28 @@ for kI = 1:N
 end
 end
 
-
 ```
+
 # 小结
+
 ## 迭代法的选取
+
 效率最高的显然是**共轭梯度法**，matlab自己也有封装。
+
 ## 对称矩阵与一般矩阵的关系
-以上有几种方法只适用于对称矩阵，但对一个一般的方程$Ax=b$,可求其等价方程$A^TAx=A^Tb$,$A^TA$为对称矩阵。
+
+以上有几种方法只适用于对称矩阵，但对一个一般的方程$Ax=b$, 可求其等价方程$A^TAx=A^Tb$, $A^TA$为对称矩阵。
+
 # 附录
+
 ## A. 对角占优矩阵
+
 ## B. 正定矩阵
+
 ## C. （不）可约矩阵
+
 ## D. 谱半径
+
 ## E. 条件数
+
 ## F. 预调试

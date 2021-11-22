@@ -53,7 +53,7 @@ $x^{(k+1)}=-D^{-1}((\omega-1)D+L+U)x^{(k)}+\omega D^{-1}b$
 $x^{(k+1)}_i = (1-\omega)x_i^{(k)}+
 \omega(b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$
 
-#### 收敛性
+* 收敛性
 
 * $\rho(I-\omega D^{-1}A)\lt 1 \Leftrightarrow 0\lt \omega \lt 2/\rho(D^{-1}A)$
 * 最小谱半径 
@@ -62,7 +62,7 @@ $$\rho_{min} = 1-\frac{2}{cond(D^{-1}A)+1} $$
 $$when: \omega = \frac{2}{\lambda_{max}(D^{-1}A)+\lambda_{min}(D^{-1}A)}$$
 $$cond(A) =||A^{-1}||_p||A||_p $$
 
-#### 代码
+* 代码
 
 ```matlab
 function [x,err,kI] = Jacobi(A,b,N,err0,x0)
@@ -102,14 +102,14 @@ $x^{(k+1)}=-(D+L)^{-1}Ux^{(k)}+(D+L)^{-1}b$
 $x^{(k+1)}_i = (b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
 -\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$
 
-#### 收敛性
+* 收敛性
 
 * 充要条件:$\rho((D+L)^{-1}U)<1$
 * 充分条件:$a_{ii}>\sum\limits_{j\ne i}a_{ij}$，即A为严格对角占优矩阵
 * 充分条件:$a_{ii}\ge\sum\limits_{j\ne i}a_{ij}$，即A为弱对角占优矩阵，且A为不可约矩阵
 * 充分条件：A为对称正定矩阵
 
-#### 代码
+* 代码
 
 ```matlab
 function [x0,err,kI] = GaussSeidel(A,b,N,err0,x0)
@@ -149,12 +149,12 @@ $x^{(k+1)}=-(\frac{1}{\omega}D+L)^{-1}((1-\frac{1}{\omega})D+U)x^{(k)}+
 $x^{(k+1)}_i =(1-\omega)x_i^{(k)}+\omega(b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
 -\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$
 
-#### 收敛性
+* 收敛性
 
 * 充要条件:$\rho((D+\omega L)^{-1}((\omega -1)D+\omega U))<1$
 * 充分条件：A为对称正定矩阵且$0<\omega<2$
 
-#### 收敛速度
+* 收敛速度
 
 假定满足
 1. $0<\omega<2$
@@ -168,7 +168,7 @@ $$\rho = \omega-1, \omega_{opt}\le\omega<2$$
 其中
 $$\omega_{opt}=1+\left(\frac{\mu}{1+\sqrt{1-\mu^2}} \right)^2$$
 
-#### 代码
+* 代码
 
 ```matlab
 function [x0,err,kI] = SOR(A,b,omega,N,err0,x0)
@@ -215,7 +215,7 @@ $x^{(k+1)}=(1-\omega)Ix^{(k)}-\omega(D+rL)^{-1}((1-r)L+U)x^{(k)}+\omega(D+rL)^{-
 $x^{(k+1)}_i=(1-\omega)x^{(k)}_i+(\omega b-\sum\limits_{j=1}^{i-1}(ra_{ij}x^{(k+1)}_j+
 (\omega-r)x_j^{(k)})-\sum\limits_{j = i+1}^n\omega a_{ij}x^{(k)}_j)$
 
-### 收敛性
+* 收敛性
 
 ### Symmetric successive over-relaxation (SSOR) method
 
@@ -229,11 +229,11 @@ $M:=\frac{1}{\omega}I$
 $x^{(k+1)}=-(\omega A-I)x^{(k)}+\omega b =x^{(k)}+\omega(b-Ax^{(k)})$
 $x^{(k+1)}_i=x^{(k)}_i+\omega(b_i-\sum\limits_{j=1}^na_{ij}x_j^{(k)})$
 
-#### 收敛性
+* 收敛性
 
 * $||I-\omega A||<1$
 
-#### 代码
+* 代码
 
 ```matlab
 function [x0,err,kI] = AOR(A,b,omega,r,N,err0,x0)

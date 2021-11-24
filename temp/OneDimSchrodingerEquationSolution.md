@@ -227,7 +227,45 @@ $$
 $$
 E_{n}=\frac{1}{2 m}\left(\frac{n \pi \hbar}{2 a}\right)^{2}, \quad n=1,2,3, \cdots
 $$
+## 无限深方势阱的态密度
+### 一维
+$$
+\varepsilon_{n}=\frac{\pi^{2} \hbar^{2} n^{2}}{2 m L^{2}}, \quad n=1,2, \cdots
+$$
+$$
+D(\varepsilon)=\frac{\mathrm{d} n}{\mathrm{~d} \varepsilon}=\frac{2 L}{h}\left(\frac{m}{2 \varepsilon}\right)^{1 / 2}
+$$
+### 二维
+$$
+r^2=n_{x}^{2}+n_{y}^{2}=\frac{2 m L^{2}}{\pi^{2} \hbar^{2}} \varepsilon
+,n_x,n_y=1,2,3,\cdots
+$$
 
+$$
+\mathrm{d} r=\left(\frac{2 m L^{2}}{\pi^{2} \hbar^{2}}\right)^{1 / 2} \frac{1}{2} \varepsilon^{-1 / 2} \mathrm{~d} \varepsilon
+$$
+换至极坐标中运算,每个量子态占据一个单位面积,r变化dr时，面积变化为
+$$
+dn =\int_0^{\frac{\pi}{2}}rdrd\theta = \frac{1}{2}\pi rdr
+$$
+$$
+D(\varepsilon)=\frac{\mathrm{d} n}{\mathrm{~d} \varepsilon}=\frac{\mathrm{d} n}{\mathrm{d}r}\frac{\mathrm{d} r}{\mathrm{~d} \varepsilon}=\frac{ L^{2}}{2 \pi \hbar^{2}} m
+$$
+### 三维
+$$
+r^2 = n_{x}^{2}+n_{y}^{2}+n_{z}^{2}=\frac{2 m L^{2}}{\pi^{2} \hbar^{2}} \varepsilon
+$$
+$$
+\mathrm{d} r=\left(\frac{2 m L^{2}}{\pi^{2} \hbar^{2}}\right)^{1 / 2} \frac{1}{2} \varepsilon^{-1 / 2} \mathrm{~d} \varepsilon
+$$
+每个量子态占据一个单位面积,r变化dr时，面积变化为
+$$
+dn = \int_0^{\frac{\pi}{2}}\int_0^{\frac{\pi}{2}}r^2sin\theta drd\theta d\varphi= \frac{1}{2}\pi r^2dr
+$$
+$$
+D(\varepsilon)=\frac{\mathrm{d} n}{\mathrm{~d} \varepsilon}=\frac{\mathrm{d} n}{\mathrm{d}r}\frac{\mathrm{d} r}{\mathrm{~d} \varepsilon}=\frac{ L^{2}}{2 \pi \hbar^{2}} m
+=\frac{ L^{3}}{4\pi^2\hbar^{3}}(2 m)^{3 / 2} \varepsilon^{1 / 2}
+$$
 # $\delta$势阱
 ## 势能
 对有限深方势阱，令$V_0\rightarrow \infty$,$a\rightarrow 0$，但仍保持

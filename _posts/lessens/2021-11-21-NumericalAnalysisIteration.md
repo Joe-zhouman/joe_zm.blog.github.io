@@ -36,9 +36,9 @@ $U := triu(A)-D$, 即为A的严格上三角阵（对角元为0.
 
 ### Jacobi method
 
-$M:=D$
-$x^{(k+1)}=-D^{-1}(L+U)x^{(k)}+D^{-1}b$
-$x^{(k+1)}_i = (b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$
+$$M:=D$$
+$$x^{(k+1)}=-D^{-1}(L+U)x^{(k)}+D^{-1}b$$
+$$x^{(k+1)}_i = (b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$$
 
 #### 收敛性
 
@@ -48,10 +48,10 @@ $x^{(k+1)}_i = (b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$
 
 ### Damped (weighted) Jacobi method
 
-$M:=\frac{1}{\omega}D$
-$x^{(k+1)}=-D^{-1}((\omega-1)D+L+U)x^{(k)}+\omega D^{-1}b$
-$x^{(k+1)}_i = (1-\omega)x_i^{(k)}+
-\omega(b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$
+$$M:=\frac{1}{\omega}D$$
+$$x^{(k+1)}=-D^{-1}((\omega-1)D+L+U)x^{(k)}+\omega D^{-1}b$$
+$$x^{(k+1)}_i = (1-\omega)x_i^{(k)}+
+\omega(b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$$
 
 * 收敛性
 
@@ -97,10 +97,10 @@ end
 
 ### Gauss-Seidel method
 
-$M:=D+L$
-$x^{(k+1)}=-(D+L)^{-1}Ux^{(k)}+(D+L)^{-1}b$
-$x^{(k+1)}_i = (b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
--\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$
+$$M:=D+L$$
+$$x^{(k+1)}=-(D+L)^{-1}Ux^{(k)}+(D+L)^{-1}b$$
+$$x^{(k+1)}_i = (b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
+-\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$$
 
 * 收敛性
 
@@ -143,11 +143,11 @@ end
 
 ### Successive over-relaxation (SOR) method
 
-$M:=\frac{1}{\omega}D+L$
-$x^{(k+1)}=-(\frac{1}{\omega}D+L)^{-1}((1-\frac{1}{\omega})D+U)x^{(k)}+
-(\frac{1}{\omega}D+L)^{-1}b$
-$x^{(k+1)}_i =(1-\omega)x_i^{(k)}+\omega(b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
--\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$
+$$M:=\frac{1}{\omega}D+L$$
+$$x^{(k+1)}=-(\frac{1}{\omega}D+L)^{-1}((1-\frac{1}{\omega})D+U)x^{(k)}+
+(\frac{1}{\omega}D+L)^{-1}b$$
+$$x^{(k+1)}_i =(1-\omega)x_i^{(k)}+\omega(b_i-\sum\limits_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
+-\sum\limits_{j=i+1}^{n} a_{ij}x_j^{(k)})/a_{ii}$$
 
 * 收敛性
 
@@ -210,28 +210,28 @@ end
 
 ### Accelerated Overrelaxation (AOR) Method
 
-$M:=(1-\omega)I-\omega(D+rL)^{-1}((1-r)L+U)$
-$x^{(k+1)}=(1-\omega)Ix^{(k)}-\omega(D+rL)^{-1}((1-r)L+U)x^{(k)}+\omega(D+rL)^{-1} b$
-$x^{(k+1)}_i=(1-\omega)x^{(k)}_i+(\omega b-\sum\limits_{j=1}^{i-1}(ra_{ij}x^{(k+1)}_j+
-(\omega-r)x_j^{(k)})-\sum\limits_{j = i+1}^n\omega a_{ij}x^{(k)}_j)$
+$$M:=(1-\omega)I-\omega(D+rL)^{-1}((1-r)L+U)$$
+$$x^{(k+1)}=(1-\omega)Ix^{(k)}-\omega(D+rL)^{-1}((1-r)L+U)x^{(k)}+\omega(D+rL)^{-1} b$$
+$$x^{(k+1)}_i=(1-\omega)x^{(k)}_i+(\omega b-\sum\limits_{j=1}^{i-1}(ra_{ij}x^{(k+1)}_j+
+(\omega-r)x_j^{(k)})-\sum\limits_{j = i+1}^n\omega a_{ij}x^{(k)}_j)$$
 
 * 收敛性
 
 ### Symmetric successive over-relaxation (SSOR) method
 
-$M:=\frac{1}{\omega(2-\omega)}(D+\omega L)D^{-1}(D+\omega U)$
+$$M:=\frac{1}{\omega(2-\omega)}(D+\omega L)D^{-1}(D+\omega U)$$
 
 > 适用于对称矩阵
 
 ### (Modified) Richardson method
 
-$M:=\frac{1}{\omega}I$
-$x^{(k+1)}=-(\omega A-I)x^{(k)}+\omega b =x^{(k)}+\omega(b-Ax^{(k)})$
-$x^{(k+1)}_i=x^{(k)}_i+\omega(b_i-\sum\limits_{j=1}^na_{ij}x_j^{(k)})$
+$$M:=\frac{1}{\omega}I$$
+$$x^{(k+1)}=-(\omega A-I)x^{(k)}+\omega b =x^{(k)}+\omega(b-Ax^{(k)})$$
+$$x^{(k+1)}_i=x^{(k)}_i+\omega(b_i-\sum\limits_{j=1}^na_{ij}x_j^{(k)})$$
 
 * 收敛性
 
-* $||I-\omega A||<1$
+$$||I-\omega A||<1$$
 
 * 代码
 
@@ -280,9 +280,10 @@ end
 
 ## 原理
 
-对泛函$f(\mathbf{x})=\frac12(\mathbf{x^TAx})-\mathbf{x^Tb}$
-$\nabla f = \mathbf{Ax-b}$
-$\nabla^2f = \mathbf{A}$
+对泛函
+$$f(\mathbf{x})=\frac12(\mathbf{x^TAx})-\mathbf{x^Tb}$$
+$$\nabla f = \mathbf{Ax-b}$$
+$$\nabla^2f = \mathbf{A}$$
 将其看做一个优化问题，由于A为正定矩阵，则当$f(\mathbf{x})$取最小值时，有$\mathbf{Ax-b=0}$
 
 ## 最速下降法
@@ -331,7 +332,7 @@ end
 ## 原理
 
 考虑一系列向量$\{\mathbf{b, Ab, A^2b, ..., A^nb}\}$, 其属于一个n维空间(n为A的阶数)，则这n+1个向量一定线性相关。
-即$\exist \alpha_0, \alpha_1, ..., \alpha_n$，使得
+即$\exists \alpha_0, \alpha_1, ..., \alpha_n$，使得
 $$\alpha_0\mathbf{b}+\alpha_1\mathbf{Ab}+...+\alpha_n\mathbf{A^nb}=0$$
 令k为满足$\alpha_k\ne0$的最小整数，则
 $$\mathbf{x=A^{-1}b}=-\frac{1}{\alpha_k}(\alpha_{k+1}\mathbf{b}+...+\alpha_n\mathbf{A^{n-k-1}b})$$

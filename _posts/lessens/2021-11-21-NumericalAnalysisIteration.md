@@ -15,21 +15,26 @@ date: 2021-11-21 17:13:05 + 0800
 ## 原理
 
 对于方程$Ax=b$
+
 A可分解为$A = M-N$
+
 迭代格式$Mx^{(k+1)}=Nx^{(k)}+b$
 
-## 收敛性
-
-迭代法收敛$\Leftrightarrow \rho(M)<1 \Rightarrow ||M||<1$
+迭代法收敛:
+$$\Leftrightarrow \rho(M)<1 \Rightarrow ||M||<1$$
 
 ## 收敛速度
 
 ## 基本迭代法
 
 对于基本迭代法，从另一方面，A可分解为$A = D+L+U$，其中
+
 $D := diag(diag(A))$, 即为A的对角元组成的对角阵
+
 $L := tril(A)-D$, 即为A的严格下三角阵（对角元为0）
+
 $U := triu(A)-D$, 即为A的严格上三角阵（对角元为0.
+
 以下列出的迭代法中$M$均可用以上的三个矩阵表示
 
 ## 常用基本迭代法
@@ -37,7 +42,9 @@ $U := triu(A)-D$, 即为A的严格上三角阵（对角元为0.
 ### Jacobi method
 
 $$M:=D$$
+
 $$x^{(k+1)}=-D^{-1}(L+U)x^{(k)}+D^{-1}b$$
+
 $$x^{(k+1)}_i = (b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$$
 
 #### 收敛性
@@ -53,7 +60,7 @@ $$x^{(k+1)}=-D^{-1}((\omega-1)D+L+U)x^{(k)}+\omega D^{-1}b$$
 $$x^{(k+1)}_i = (1-\omega)x_i^{(k)}+
 \omega(b_i-\sum\limits_{j\ne i} a_{ij}x_j^{(k)})/a_{ii}$$
 
-* 收敛性
+**收敛性**
 
 * $\rho(I-\omega D^{-1}A)\lt 1 \Leftrightarrow 0\lt \omega \lt 2/\rho(D^{-1}A)$
 * 最小谱半径 
@@ -62,7 +69,7 @@ $$\rho_{min} = 1-\frac{2}{cond(D^{-1}A)+1} $$
 $$when: \omega = \frac{2}{\lambda_{max}(D^{-1}A)+\lambda_{min}(D^{-1}A)}$$
 $$cond(A) =||A^{-1}||_p||A||_p $$
 
-* 代码
+**代码**
 
 ```matlab
 function [x,err,kI] = Jacobi(A,b,N,err0,x0)

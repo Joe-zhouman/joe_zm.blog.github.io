@@ -3,7 +3,7 @@ layout: code
 istop : true
 book : true
 title: 常用拉普拉斯变换
-category: code
+category: knowledge
 tags: math 拉普拉斯变换 傅里叶变换
 background-image: math.jpg
 date: 2021-11-22 21:13:53 + 0800

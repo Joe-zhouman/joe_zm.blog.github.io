@@ -3,7 +3,7 @@ layout: code
 istop : true
 book : true
 title: 对易子及其性质
-category: code
+category: knowledge
 tags: 量子力学
 background-image: quantum.jpg
 date: 2021-11-23 20:16:51 + 0800

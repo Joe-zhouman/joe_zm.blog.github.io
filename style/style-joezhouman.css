@@ -1235,7 +1235,7 @@ textarea:-ms-input-placeholder {
 .post-content h4,
 .post-content h5,
 .post-content h6 {
-   font-weight: 500;
+   font-weight: bold;
    position: relative;
    margin: 20px 0;
 }
@@ -1264,8 +1264,8 @@ textarea:-ms-input-placeholder {
    position: absolute;
    top: 0;
    left: -15px;
-   content: '▪';
-   color: #82868d;
+   content: '□';
+   color: #e58152;
 }
 
 .post-content pre {
@@ -1294,8 +1294,11 @@ pre code::after {
 }
 
 .post-content p a {
-   color: #313131;
-   border-bottom: 1px solid #ccc;
+   color: #2ccb64;
+   font-weight: bold;
+   border-block: inherit;
+   border-block-color: revert;
+   border-bottom: 1px solid #2ccb64;
 }
 
 .post-content p a:hover {
@@ -2013,7 +2016,7 @@ directory-content:after {
    padding: 20px;
    text-align: center;
    font-size: 1.3em;
-   font-family: "Abril Fatface", serif;
+   font-family: "Fira Code", "Noto SansCJK";
 }
 
 .footer-social .social-list a {
@@ -2027,7 +2030,8 @@ directory-content:after {
    padding: 50px 0 0;
    list-style: none;
    font-size: 1.3em;
-   font-family: "Abril Fatface", serif;
+   font-family: "Fira Code",
+   "Noto SansCJK";
 }
 
 .footer-meta .footer-container {

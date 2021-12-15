@@ -164,3 +164,97 @@ $$
 Q_{N}(\beta)=\left(e^{\beta \varepsilon}+e^{-\beta \varepsilon}\right)^{N}=\{2 \cosh (\beta \varepsilon)\}^{N}
 $$
 
+---
+
+物理量
+
+$$
+A=-N k T \ln \{2 \cosh (\varepsilon / k T)\}
+$$
+
+$$
+S=-\left(\frac{\partial A}{\partial T}\right)_{H}=N k\left[\ln \left\{2 \cosh \left(\frac{\varepsilon}{k T}\right)\right\}-\frac{\varepsilon}{k T} \tanh \left(\frac{\varepsilon}{k T}\right)\right]
+$$
+
+![20211207083004](https://s2.loli.net/2021/12/07/Ab9t3lVmWsd741w.png)
+
+> 注意到, 当 $k T \ll \varepsilon$ 时, 系统的嫡很小, 接近于零; 当 $k T$ 为 $\varepsilon$ 的量级 时, 系统的樀迅速地升高; 而当 $k T \gg \&$ 时, 它接近于极限值 $N k \ln 2$.
+> (完全随机，状态数为$2^N$)
+
+$$
+U=A+T S=-N \varepsilon \tanh \left(\frac{\varepsilon}{k T}\right)
+$$
+
+![20211207083033](https://s2.loli.net/2021/12/07/cqpdRb1GKHItE49.png)
+
+> $T \rightarrow 0 \mathrm{~K}$ 时, 该系统的能量达到它的最小值 $-N \varepsilon$. 这显然对应于 磁饱和状态, 
+> 也就是对应于系统的一个理想有序状态. 接近高温 时, 能量就趋向于零; 这意味着偶极子具有完全随机性的取向,
+
+$$
+M=-\left(\frac{\partial A}{\partial H}\right)_{T}=N \mu_{B} \tanh \left(\frac{\varepsilon}{k T}\right)
+$$
+
+![20211207083052](https://s2.loli.net/2021/12/07/1EjuMckIJt5Wh8a.png)
+
+$$
+C=\left(\frac{\partial U}{\partial T}\right)_{H}=N k\left(\frac{\varepsilon}{k T}\right)^{2} \operatorname{sech}^{2}\left(\frac{\varepsilon}{k T}\right)
+$$
+
+![20211207083206](https://s2.loli.net/2021/12/07/gC5Zdp1KJkyWsiV.png)
+
+> 比热在低温及高温时变为零. 在 $T=\varepsilon / k$ 附近的某个地方, 
+> 比热曲线呈现出一个最大值. 当我们把偶极子的两个允计状态之间的能量差写成 $\Delta$ 时, 比热公式可以写成:
+
+$$
+C=N k\left(\frac{\Delta}{k T}\right)^{2} e^{\Delta / k T}\left(1+e^{\Delta / k T}\right)^{-2}
+$$
+
+> 这种形式的比热通常称为**肖脱基比热**(*Schottky anomaly*); 其特征是有一个反常的峰值, 
+> 这在具有激发能隙 $\Delta$ 的所有系统中都可观测到.
+
+
+---
+
+$$
+E=\left(N_{+}-N_{-}\right) \varepsilon_{1}
+$$
+
+$$
+N_{+}+N_{-}=N_{0}
+$$
+
+$$
+N_{+}=\frac{1}{2}\left(N+\frac{E}{\varepsilon}\right)_{3} \quad N_{-}=\frac{1}{2}\left(N-\frac{E}{\varepsilon}\right)
+$$
+
+> 其对应一个随机游走问题。$N$个偶极子中，若$N_+$的位置确定了，那么$N_-$的分布也确定了
+> 于是其一个排列问题，结果为
+
+$$
+\Omega(N, E)=C_N^{N_+}=\frac{N !}{N_{+} ! N_{-}!}=\frac{N!}{\left\{\frac{1}{2}\left(N+\frac{E}{\varepsilon}\right)\right\} !\left\{\frac{1}{2}\left(N-\frac{E}{\varepsilon}\right)\right\}!} .
+$$
+
+$$
+S(N, E) =k \operatorname{In} \Omega 
+ \simeq k\left[N \ln N-\frac{1}{2}\left(N+\frac{E}{\varepsilon}\right) \ln \left\{\frac{1}{2}\left(N+\frac{E}{\varepsilon}\right)\right\}\right.
+\left.-\frac{1}{2}\left(N-\frac{E}{\varepsilon}\right) \ln \left\{\frac{1}{2}\left(N-\frac{E}{\varepsilon}\right)\right\}\right]
+$$
+
+$$
+\frac{1}{T}=\left(\frac{\partial S}{\partial E}\right)_{N}=\frac{k}{2 \varepsilon} \ln \left\{\frac{N-E / \varepsilon}{N+E / \varepsilon}\right\}
+$$
+
+当$E\lt 0$,就有温度$T<0$
+
+> $E>0$ 的区域 $($ 因而 $T<0)$ 确实是反常的, 因为它相应于在与外 场相反方向上的磁化：尽管如此, 这一反常现象能够在晶体核矩 系统中从实验上米实现, 只要晶体中核自旋间相互作用的弛豫时间 $t_{1}$ 跟自旋与点阵相互作用的弛豫时间 $t_{2}$ 比较起来非常之小. 
+> 
+> 让这样的晶体在强磁场中进行磁化, 然后将磁场迅速反向, 快得使自旋跟不上这种转向. 这将使系统处在非平衡态之中, 其能量高 于新的平衡态的能量值 $U$. 
+> 在 $t_{1}$ 量级的期间, 核自旋子系统应该 徍㿟达到一种内部平衡状态; 此态将具有负磁化强度, 因而将对应 于一个负温度．点阵子系统 (其能量原则上是不受限制的), 确实 处于正温度. 在 $t_{2}$ 量级的剘间, 两个子系统将达到一个相互平衡 的状态, 此吋又具有正温度, 
+> 
+> 这类型的实验最早是由珀塞尔和 庞德任 1951 年用氟化锂 $(\mathrm{LiF})$ 晶体成功地做出的.
+
+![反向磁化实验](https://s2.loli.net/2021/12/07/bLxD7N1suGYIAti.png)
+
+> 只有当给定系统的能量存在上 限时, 才有可能开始出现负温度. 在大多数的物理系统中并不存 在这种情况, 因为大多数的物理系统具有显然不受限制的动能.同理, 开始出现正温度是与系统能量存在下限有关. 
+
+处于负温度的系统比处于正温度的系统更热. 确实, 所有负温度是在 $+\infty$ 以 上, 而不是在零以下!

@@ -10,6 +10,8 @@ date: 2021-12-5 00:20:01 + 0800
 ---
 谐振子模型的统计力学推演 <!-- more -->
 
+
+
 # 微正则系综
 
 $$
@@ -160,3 +162,101 @@ $$
 当系统的能量 $E$ 具有分立值 $\left(R+\frac{1}{2} N\right) \hbar \omega$ (其中 $R=0,1,2 \cdots$ )之时, 
 则该系统可资用的状态数为 $(N+R-1) ! / R !(N-1) !$ 而对于其他的 $E$ 值, 
 根本没有任何可资用的状态。相当于把$R$个不可分辨量子，放到$N$个可分辨的能级之中，为一个组合问题。
+
+# 巨正则系综
+
+定域粒子系统，在某些方面可作为固体的近似。从数学上与谐振子类似。组成系统的微观实体相互**可分辨**
+$$
+Q_{N}(V, T)=\left[Q_{1}(V, T)\right]^{N}
+$$
+定域下单粒子配分函数与体积无关
+$$
+Q_{1}(V, T)=\varphi(T)
+$$
+
+$$
+\mathcal{Q}(z, V, T)=\sum_{N_{r}=0}^{\infty}[z \phi(T)]^{N_{r}}=[1-z \phi(T)]^{-1}
+$$
+
+ 量 $z \varphi(T)$ 必须保持小于 1 , 使得对 $N_{\text {r }}$ 的求和仍然是收敛的.
+$$
+P \equiv \frac{k T}{V} q(z, T)=-\frac{k T}{V} \ln \{1-z \phi(T)\}
+$$
+
+$$
+N=\frac{z \phi(T)}{1-z \phi(T)}
+$$
+
+$$
+U=\frac{z k T^{2} \phi^{\prime}(T)}{1-z \phi(T)}
+$$
+
+$$
+A=N k T \ln z+k T \ln \{1-z \phi(T)\}
+$$
+
+$$
+S=-N k \ln z-k \ln \{1-z \phi(T)\}+\frac{z k T \phi^{\prime}(T)}{1-z \phi(T)}
+$$
+
+$$
+z \phi(T)=\frac{N}{N+1} \simeq 1-\frac{1}{N} \quad(N \gg 1)
+$$
+
+$$
+U / N=k T^{2} \phi^{\prime}(T) / \phi(T)
+$$
+
+$$
+A / N=-k T \ln \phi(T)+O\left(\frac{\ln N}{N}\right)
+$$
+
+$$
+S / N k=\ln \phi(T)+T \phi^{\prime}(T) / \phi(T)+O\left(\frac{\ln N}{N}\right)
+$$
+
+对**一维量子谐振子**
+$$
+\phi(T)=[2 \sinh (\hbar \omega / 2 k T)]^{-1}
+$$
+对**一维经典谐振子**
+$$
+\phi(T)=k T / \hbar \omega
+$$
+
+## 固汽平衡
+
+$$
+z_{g}=\frac{N_{g}}{V_{g} f(T)}
+$$
+
+$$
+z_{s} \simeq \frac{1}{\phi(T)}
+$$
+
+封闭体积下，系统处于平衡状态，气固两相化学势相等，逸度相等$z_g=z_s$
+$$
+N_{g} / V_{g}=f(T) / \phi(T)
+$$
+此式给出固相形成的条件
+$$
+N \geqslant V \frac{f(T)}{\varphi(T)}
+$$
+$N$为总粒子数。
+
+气相密度很低，温度很高，则
+$$
+P_v=\frac{N_{g}}{V_{g}} k T=k T \frac{f(T)}{\varphi(T)}
+$$
+气相为单原子气体
+$$
+f(T)=(2 \pi m k T)^{3 / 2} / h^{3}
+$$
+固相为爱因斯坦模型下的三维谐振子
+$$
+\phi(T)=[2 \sinh (h \omega / 2 k T)]^{-3} .
+$$
+粒子由固相到自由相需要分离能$\varepsilon$.气相与固相之间的能量相差一个因子，在严格考虑下不能忽略。
+$$
+P_{v}=k T\left(\frac{2 \pi m k T}{h^{2}}\right)^{3 / 2}[2 \sinh (\hbar \omega / 2 k T)]^{3} e^{-\varepsilon / k T} .
+$$

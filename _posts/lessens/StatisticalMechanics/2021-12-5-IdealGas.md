@@ -299,3 +299,58 @@ $$
 同样得到相同的表达式。
 
 也可以利用反拉普拉斯变换从配分函数得到态密度。
+
+# 巨正则系综
+
+粒子可以处于空间任意位置
+$$
+Q_{1}(V, T)=V f(T)
+$$
+
+$$
+Q_{N}(V, T)=\frac{\left[Q_{1}(V, T)\right]^{N}}{N !},
+$$
+
+$$
+\mathcal{Q}(z, V, T) =\sum_{N_{r}=0}^{\infty} z^{N_{r}} Q_{N_{r}}(V, T)=\sum_{N_{r}=0}^{\infty} \frac{\{z V f(T)\}^{N_{r}}}{N_{r} !} 
+=\exp \{z V f(T)\},
+$$
+
+$$
+q(z, V, T)=z V f(T)
+$$
+
+$$
+\begin{array}{l}
+P=z k T f(T), \\
+N=z V f(T), \\
+U=z V k T^{2} f^{\prime}(T), \\
+A=N k T \ln z-z V k T f(T),
+\end{array}
+$$
+
+$$
+S=-N k \ln z+z V k\left\{T f^{\prime}(T)+f(T)\right\}
+$$
+
+$$
+U=N k T^{2} f^{\prime}(T) / f(T)
+$$
+
+$$
+C_{V}=N k \frac{2 T f(T) f^{\prime}(T)+T^{2}\left\{f(T) f^{\prime \prime}(T)-\left[f^{\prime}(T)\right]^{2}\right\}}{[f(T)]^{2}} .
+$$
+
+假定$f(T) \propto T^{n}$
+$$
+U=n(N k T)
+$$
+
+$$
+C_{V}=n(N k) .
+$$
+
+ $n=3 / 2$ 时对应于非相对论性气体, 而 $n=3$ 时对应于极端相对论性气体.
+
+
+

@@ -56,7 +56,7 @@ $$
 # 正则系综中的系统
 
 $n_{r}$ 表示在任意时刻 $t$ 具有能量为 $E_{r}$ 的系统的数目, 
-则这些数的集合 $\left\{n_{i}\right\}$ 必须满足以下这些明显的条件
+则这些数的集合 $n_{i}$ 必须满足以下这些明显的条件
 
 $$
 \left.\begin{array}{l}
@@ -68,7 +68,7 @@ $$
 满足上面关系的分布有很多，同时，每一个分布分配给系综中不同的系统，会得到不同的分布，这是一个组合问题。
 
 $$
-W\left\{n_{r}\right\}=\frac{\mathscr{N}_{1}}{\Pi_rn_i!}
+W\left\{n_{r}\right\}=\frac{\mathscr{N}！}{\Pi_rn_i!}
 $$
 
 $W_r$越大，处于该状态的系统数越多，则系综处于这一状态的概率越大。
@@ -80,13 +80,13 @@ $$
 ## 最可几值推导
 
 $$
-\ln W=\ln \left(\mathcal{N}_{1}\right)-\sum_{r} \ln \left(n_{r !}\right)
+\ln W=\ln \left(\mathscr{N}！\right)-\sum_{r} \ln \left(n_{r !}\right)
 $$
 
 根据斯特林公式
 
 $$
-\ln W=\mathcal{N} \ln \mathscr{N}-\sum_{r} n_r \ln n_{r}
+\ln W=\mathscr{N} \ln \mathscr{N}-\sum_{r} n_r \ln n_{r}
 $$
 
 同时要满足上面的约束方程，按拉格朗日算子法，即求以下方程$V(n,\alpha,\beta)$的极值：

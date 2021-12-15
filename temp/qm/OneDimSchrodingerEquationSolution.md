@@ -1,4 +1,5 @@
 # 势阶
+
 ## 势能
 $$
 V(x)=\left\{\begin{array}{cl}

@@ -1,0 +1,268 @@
+# 角动量的量子化
+
+## 施特恩-格拉赫实验
+
+![image-20211222230417110](https://s2.loli.net/2021/12/22/i8vaMA4fCchUIN9.png)
+
+高温炉 $E$ 中的银原子经过一个小孔射出后, 在实验装置内部的高真空环 境中沿直线前进. 准直狭缝 $F$ 选出速度平行于某一指定方向 (在图中取此方 向为 $O y$ 轴) 的原子; 这样构成的原子注穿过电磁铁 $A$ 的磁极间隙, 最终冷凝 在板 $P$ 上.
+
+我们再将电磁铁 $A$ 所产生的磁场 $B$ 的特征叙述得精确一些. 磁场具有 一个对称面 (在图中取此平面为 $y O z$ 面), 它包含着原子注的原始方向 $O y$; 在 磁极间隙中, 在平行于 $O y$ 轴的任何直线上的所有各点, 磁场都一样 (磁极的 棱脊平行于 $O y$ 轴, 边缘效应可以忽略不计). 磁场 $\boldsymbol{B}$ 沿 $O y$ 方向没有分量, 其 最大的分量在 $O z$ 方向上. 这个分量随 $z$ 剧烈变化：磁力线在北极附近比在南极附近更为密集. 当然, 由于磁场的通量保持恒 定 $(\operatorname{div} B=0)$, 它在 $O x$ 方向上也应该有分量, 这个分量随着从对称面算起的 距离 $x$ 而变化.
+
+### 经典计算
+
+首先注意, 银原子是中性的, 它们不受洛伦茨力的作用. 但是, 它们 (是 顺磁性原子) 具有永久磁矩 $\mathscr{M}$, 由此而产生的力可以从势能导出：
+$$
+W=-\mathscr{M} \cdot B
+$$
+就一个原子而言, 电子磁矩 $\mathscr{M}$ 和角动量 $\mathscr{S}$ 的存在有两个来源: 一是电 子绕核的运动 (电荷的旋转导致轨道磁矩的出现), 二是电子的内禀角动量或 自旋, 也有与之相联系的自旋磁矩. 我们可以证明 (但在这里不 予证明), 在原子的一个特定的能级中, $\mathscr{M}$ 与 $\mathscr{S}$ 成正比 .
+$$
+\mathscr{M}=\gamma \mathscr{S}
+$$
+$\gamma$为该能级的磁旋比。
+
+在银原子注通过电磁铁以前, 诸原子的磁矩的取向是无规的 (各向同性 的). 我们来研究磁场对原子注中某一个原子的影响, 在磁极间隙的人口处, 这 个原子的磁矩 $\mathscr{M}$ 有确定的方向. 从势能的表达式 很容易导出原子所受 的合力为:
+$$
+\boldsymbol{F}=\nabla(\mathscr{M} \cdot \boldsymbol{B})
+$$
+按角动量定理
+$$
+\frac{\mathrm{d} \mathscr{S}}{\mathrm{d} t}=\gamma \mathscr{S} \times \boldsymbol{B}
+$$
+![image-20211222233544218](https://s2.loli.net/2021/12/22/4mfMwYRyCBNHp1W.png)
+
+银原子具有磁矩 $\mathscr{M}$ 以及与之成比例的角动量 $\mathscr{S}$; 因而, 均匀磁场 $\boldsymbol{B}$ 的作用 就是使 $\mathscr{M}$ 以恒定角速度围绕 $\boldsymbol{B}$ 旋转 (即拉莫尔进动).
+
+将 $\mathscr{M}_{z}$ 取作常数。 由于 $\mathscr{M}$ 的旋转而出 现的振荡频率非常高, 以至于 $\mathscr{M}_{x}$ 和 $\mathscr{M}_{y}$ 只能以它们对时间的平均值出现在 $W$ 中, 而这些平均值都等于零. 因此, 实际情况相当于原子只受下面这个力的 作用:
+$$
+\boldsymbol{F}^{\prime}=\nabla\left(\mathscr{M}_{z} B_{z}\right)=\mathscr{M}_{z} \nabla B_{z}
+$$
+另一方面, $\nabla B_{z}$ 沿 $O x$ 轴和 $O y$ 轴的分量都等于零: $\partial B_{z} / \partial y=0$, 这是因为磁 场与 $y$ 无关 ; 此外, 在对称面 $y O z$ 上各点 $\partial B_{z} / \partial x=0$. 因此, 原子受到的力平行于 $O z$ 轴而正比于磁矩 $\mathscr{M}_{z}$. 使原子发生偏转 $H N$ 的就是这 个力, 所以偏转量 $H N$ 正比于 $\mathscr{M}_{z}$, 亦即正比于 $\mathscr{S}_{z}$; 由此可见, 测量 $H N$ 就相当于测量 $\mathscr{M}_{z}$ 或 $\mathscr{S}_{z}$.
+
+在磁极间隙的人口处, 原子注中诸原子的磁矩分布在一切方向上 $\left(\mathscr{M}_{z}\right.$ 的 大小可以是 $-|\mathscr{M}|$ 与 $|\mathscr{M}|$ 之间的任何数值), 因此我们预料原子注应该在板 $P$ 上形成一个对称于 $H$ 的图案. 从原则上说, 图案的上限 $N_{1}$ 和下限 $N_{2}$ 应分别 对应于 $\mathscr{M}_{z}$ 的极大值 $|\mathscr{M}|$ 和极小值 $-|\mathscr{M}|$. 实际上, 由于速度的弥散以及狭缝 $F$ 的有限宽度, $\mathscr{M}_{z}$ 为某一数值的那些原子并不凝聚在同一点, 而是形成一个 斑点, 它的中心对应于原子以平均速度注人时形成的凝聚点.
+
+### 结果和解释
+
+![image-20211222234951459](https://s2.loli.net/2021/12/22/UfYkbvByoSwP4jG.png)
+
+在施特恩-格拉赫实验中的板 $P$ 上观察到的斑点. 从高温炉 $E$ 中射出的原子 的磁矩 $\mathscr{M}$ 在空间中的取向是无规的. 经典力学预言, 测量 $\mathscr{M}_{z}$ 得到 $-|\mathscr{M}|$ 和 $+|\mathscr{M}|$ 之 间的一切值的概率相等. 因而我们应该只观察到一个斑点 (图中的虚线). 实际上, 实验 结果完全不是这样, 我们观察到两个玨点, 其中心分别在 $N_{1}$ 及 $N_{2}$ 点. 这个结果表明, 测量 $\mathscr{M}_{z}$ 只能得到两种可能的结果 (测量结果是量子化的).
+
+矢量 $\mathscr{S}$ 并不能和磁场成任意角 $\theta$ ,  $\mathscr{S}_{z}$ 是一个量子化的物理量, 它的离散谱只包含两个本征值。
+
+## 理论分析
+
+### 自旋态空间
+
+$\mathscr{L}_z$对应一个观察算符$S_z$，其具有本征值$\pm\hbar/2$。对应正交归一本征矢为$\ket{\pm}$
+$$
+\left\{\begin{array}{l}
+S_{z}|+\rangle=+\frac{\hbar}{2}|+\rangle \\
+S_{z}|-\rangle=-\frac{\hbar}{2}|-\rangle
+\end{array}\right.
+$$
+
+$$
+\left\{\begin{array}{l}
+\langle+\mid+\rangle=\langle-\mid-\rangle=1 \\
+\langle+\mid-\rangle=0
+\end{array}\right.
+$$
+
+封闭性关系
+$$
+|+\rangle\langle+|+|-\rangle\langle-|=\mathbb{1}
+$$
+因此, $S_{z}$ 本身就单独构成一个 ECOC, 而自旋态空间就是由它的本征矢 $|+\rangle$ 和 $|-\rangle$ 所张成的二维空间 $\mathscr{E}_{S} .$ 这两个右矢构成 $\mathscr{E}_{S}$ 中的一个基。
+$$
+|\psi\rangle=\alpha|+\rangle+\beta|-\rangle
+$$
+
+$$
+|\alpha|^{2}+|\beta|^{2}=1
+$$
+
+在基 $\{|+\rangle,|-\rangle\}$ 中, 表示 $S_{z}$ 的矩阵显然是对角的, 可将它写作:
+$$
+\left(S_{z}\right)=\frac{\hbar}{2}\left(\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right)
+$$
+
+### 自旋的其他分量
+
+在 $S_{z}$ 的本征矢 $|+\rangle$ 和 $|-\rangle$ 所构成的基中, $S_{x}$ 和 $S_{y}$ 的矩阵是:
+$$
+
+\left(S_{x}\right)=\frac{\hbar}{2}\left(\begin{array}{ll}
+0 & 1 \\
+1 & 0
+\end{array}\right) 
+$$
+
+$$
+\left(S_{y}\right)=\frac{\hbar}{2}\left(\begin{array}{cc}
+0 & -\mathrm{i} \\
+\mathrm{i} & 0
+\end{array}\right)
+$$
+
+在极角为 $\theta, \varphi$ 的单位矢 $u$ 的方向上 (图 4-4), $\mathscr{S}$ 的分量 $\mathscr{S}_{u}$ 应该写作:
+$$
+\mathscr{S}_{u}=\mathscr{S} \cdot \boldsymbol{u}=\mathscr{S}_{x} \sin \theta \cos \varphi+\mathscr{S}_{y} \sin \theta \sin \varphi+\mathscr{S}_{z} \cos \theta
+$$
+
+$$
+
+\left(S_{u}\right)=\boldsymbol{S\cdot u} =\frac{\hbar}{2}\left(\begin{array}{cc}
+\cos \theta & \sin \theta \mathrm{e}^{-\mathrm{i} \varphi} \\
+\sin \theta \mathrm{e}^{\mathrm{i} \varphi} & -\cos \theta
+\end{array}\right)
+$$
+
+$S_{x}, S_{y}, S_{u}$ 的本征矢分别记作 $|\pm\rangle_{x},|\pm\rangle_{y},|\pm\rangle_{u}$
+$$
+|\pm\rangle_{x}=\frac{1}{\sqrt{2}}[|+\rangle \pm|-\rangle]
+$$
+
+$$
+|\pm\rangle_{y}=\frac{1}{\sqrt{2}}[|+\rangle \pm \mathrm{i}|-\rangle]
+$$
+
+$$
+|+\rangle_{u}=\cos \frac{\theta}{2} \mathrm{e}^{-\mathrm{i} \varphi / 2}|+\rangle+\sin \frac{\theta}{2} \mathrm{e}^{\mathrm{i} \varphi / 2}|-\rangle
+$$
+
+$$
+|-\rangle_{u}=-\sin \frac{\theta}{2} \mathrm{e}^{-\mathrm{i} \varphi / 2}|+\rangle+\cos \frac{\theta}{2} \mathrm{e}^{\mathrm{i} \varphi / 2}|-\rangle
+$$
+
+## 态的制备
+
+$\ket{\pm}$的制备：在原设备上，分别在$N_1,N_2$上开口。
+
+![image-20211223002558568](https://s2.loli.net/2021/12/23/yLW8Nk4ixraznv3.png)
+
+调整施特恩 -格拉赫设备的方位, 使磁场方向平 行于任意单位矢 $\boldsymbol{u}$, 并在障板上的点 $N_{1}$ 处或点 $N_{2}$ 处开一个孔, 就可制备出 处于自旋态 $|+\rangle_{u}$ 或 $|-\rangle_{u}$ 的银原子.
+
+对任意态矢量
+$$
+|\psi\rangle=\alpha|+\rangle+\beta|-\rangle
+$$
+可以找到一个单位矢$\boldsymbol{u}$,该右矢与$\ket{+}_u$共线。
+
+## 自旋的测量
+
+实验一
+
+![image-20211223200931660](https://s2.loli.net/2021/12/23/Bc4SlG9RNHrCWju.png)
+
+我们使两套设备的轴线平行于 $O z$ 轴 (图 4-7). 第一套设备制备处于态 $1+\rangle$ 的原子, 第二套设备测量 $\mathscr{S}_{\mathrm{z}}$. 第二套设备的板上全部为自旋为$\hbar/2$的粒子。
+
+所有的原子都落在第二块板的点 $N_{1}$ 周围, 没有一个 落在点 $N_{2}$ 附近.
+
+实验二
+
+![image-20211223203431210](https://s2.loli.net/2021/12/23/Fw4Qx2E9ZYdtIAe.png)
+
+初始态
+$$
+|\psi\rangle=\cos \frac{\theta}{2}|+\rangle+\sin \frac{\theta}{2}|-\rangle
+$$
+斑点 $N_{1}$ 和 $N_{2}$ 所对应的原子数分别正比于 $\cos ^{2} \frac{\theta}{2}$ 和 $\sin ^{2} \frac{\theta}{2}$.
+
+实验三
+
+第二个装置轴线平行于$Ox$轴。即角动量$\mathscr{L}_x$。
+$$
+{ }_{x}\langle+\mid \psi\rangle=\frac{1}{\sqrt{2}}\left(\cos \frac{\theta}{2}+\sin \frac{\theta}{2}\right)=\cos \left(\frac{\pi}{4}-\frac{\theta}{2}\right)
+$$
+
+$$
+{ }_{x}\langle-\mid \psi\rangle=\frac{1}{\sqrt{2}}\left(\cos \frac{\theta}{2}-\sin \frac{\theta}{2}\right)=\sin \left(\frac{\pi}{4}-\frac{\theta}{2}\right)
+$$
+
+由此可以看出, 得到 $S_{x}$ 的本征值 $+\frac{\hbar}{2}$ 的概率是 $\cos ^{2}\left(\frac{\pi}{4}-\frac{\theta}{2}\right)$, 得到 $-\frac{\hbar}{2}$ 的概 率是 $\sin ^{2}\left(\frac{\pi}{4}-\frac{\theta}{2}\right)$.
+
+当原子数充分大时
+$$
+
+\left\langle S_{z}\right\rangle =\frac{1}{\mathscr{N}}\left[\frac{\hbar}{2} \times \mathscr{N} \cos ^{2} \frac{\theta}{2}-\frac{\hbar}{2} \times \mathscr{N} \sin ^{2} \frac{\theta}{2}\right] =\frac{\hbar}{2} \cos \theta
+$$
+
+$$
+
+\left\langle\psi\left|S_{x}\right| \psi\right\rangle =\frac{\hbar}{2}\left(\begin{array}{ll}
+\cos \frac{\theta}{2} & \sin \frac{\theta}{2}
+\end{array}\right)\left(\begin{array}{ll}
+0 & 1 \\
+1 & 0
+\end{array}\right)\left(\begin{array}{l}
+\cos \theta / 2 \\
+\sin \theta / 2
+\end{array}\right) 
+=\frac{\hbar}{2} \sin \theta
+$$
+
+$\mathscr{S}_{x}$ 的平均值正好等于相关的可观察量 $S_{x}$ 在态 $|\psi\rangle$ 中的矩阵元.
+$$
+\left\{\begin{aligned}
+u\left\langle+\left|S_{x}\right|+\right\rangle_{u} &=\frac{\hbar}{2} \sin \theta \cos \varphi \\
+u\left\langle+\left|S_{y}\right|+\right\rangle_{u} &=\frac{\hbar}{2} \sin \theta \sin \varphi \\
+u\left\langle+\left|S_{z}\right|+\right\rangle_{u} &=\frac{\hbar}{2} \cos \theta
+\end{aligned}\right.
+$$
+对一个给定的原子所作的测量 (嬖如测 $\mathscr{S}_{.}{ }_{x}$ ), 绝不会得到 $\frac{\hbar}{2} \sin \theta \cos \varphi$; 可能得到的结果只是 $+\frac{\hbar}{2}$ 和 $-\frac{\hbar}{2}$. 只有计算许多次全 同测量 (对于体系的同一个态, 在这里是 $|+\rangle_{u}$; 所测量的是同一个可观察量, 在 这里是 $S_{x}$ ) 给出的结果的平均值时, 我们才会得到 $\frac{\hbar}{2} \sin \theta \cos \varphi$.
+
+## 态的演变
+
+势能
+$$
+W=-\mathscr{M} \cdot \boldsymbol{B}_{0}=-\mathscr{M}_{z} B_{0}=-\gamma B_{0} \mathscr{S}_{z}
+$$
+
+$$
+\omega_{0}=-\gamma B_{0}
+$$
+
+哈密顿算符
+$$
+H=\omega_{0} S_{z}
+$$
+
+$$
+H|+\rangle=+\frac{\hbar \omega_{0}}{2}|+\rangle
+$$
+
+$$
+H|-\rangle=-\frac{\hbar \omega_{0}}{2}|-\rangle
+$$
+
+波尔频率
+$$
+\nu_{+-}=\frac{1}{h}\left(E_{+}-E_{-}\right)=\frac{\omega_{0}}{2 \pi}
+$$
+![image-20211223214059247](https://s2.loli.net/2021/12/23/bp45hdeklP9U7m2.png)
+
+### 拉莫尔进动
+
+$$
+|\psi(0)\rangle=\cos \frac{\theta}{2} \mathrm{e}^{-\mathrm{i} \varphi / 2}|+\rangle+\sin \frac{\theta}{2} \mathrm{e}^{\mathrm{i} \varphi / 2}|-\rangle
+$$
+
+$$
+|\psi(t)\rangle=\cos \frac{\theta}{2} \mathrm{e}^{-\mathrm{i} \varphi / 2} \mathrm{e}^{-\mathrm{i} E_{+} t / \hbar}|+\rangle+\sin \frac{\theta}{2} \mathrm{e}^{\mathrm{i} \varphi / 2} \mathrm{e}^{-\mathrm{i} E_{-} \mathrm{i} / \hbar}|-\rangle
+$$
+
+利用$E_\pm$
+$$
+|\psi(t)\rangle=\cos \frac{\theta}{2} \mathrm{e}^{-\mathrm{i}\left(\varphi+\omega_{0} t\right) / 2}|+\rangle+\sin \frac{\theta}{2} \mathrm{e}^{\mathrm{i}\left(\varphi+\omega_{0} t\right) / 2}|-\rangle
+$$
+
+$$
+\left\{\begin{array}{l}
+\theta(t)=\theta \\
+\varphi(t)=\varphi+\omega_{0} t
+\end{array}\right.
+$$
+
+ 自旋在其上的分量大小肯定为 $+\frac{\hbar}{2}$ ，方向 $\boldsymbol{u}(t)$ 由以上极角确定。这就是说, $\boldsymbol{u}(t)$ 与 $O z$ 轴 (即磁场 $\boldsymbol{B}_{0}$ 的方向) 之间的夹角保持不变, 但 $\boldsymbol{u}(t)$ 却 以 (正比于磁场的大小的) 角速度 $\omega_{0}$ 绕 $O z$ 轴旋转， 这个现象叫做拉莫尔进动.

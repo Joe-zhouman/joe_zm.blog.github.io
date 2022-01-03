@@ -42,13 +42,20 @@ date: 2021-1-13 10:15:16 + 0800
 
 ![header.png](https://i.loli.net/2021/03/18/34MIJjbqVv8egk1.png)
 
+# 准备
+
+安装`requests`模块
+
+```bash
+pip install requests
+```
+
 # 程序
 
 将`Request Headers`和`Query String Parameters`里面的内容填入下面的代码里
 
 ```python
 
-#-*- coding:utf-8 -*-
 # -*- coding:utf-8 -*-
 __author__ = 'joe_zhouman'
 
@@ -68,7 +75,7 @@ class Login:
     def login(self):
         print(self.getCurrentTime(), u"拼命连网中...")
 
-        url = "http://10.36.254.11/drcom/login"
+        url = "http://10.0.1.5/drcom/login"
         # 消息头
         headers = {
             'Accept': "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01",
@@ -76,8 +83,8 @@ class Login:
             'Accept-Language': "zh-CN,zh;q=0.9",
             'Connection': "keep-alive",
             'Cookie': "PHPSESSID=p743j2ds11nc93vn0vg8f5vs46",
-            'Host': "10.36.254.11",
-            'Referer': "http://10.36.254.11/a79.htm?isReback=1",
+            'Host': "10.0.1.5",
+            'Referer': "http://10.0.1.5/a79.htm?isReback=1",
             'User-Agent': "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36",
             'X-Requested-With': "XMLHttpRequest"
         }
@@ -131,6 +138,7 @@ class Login:
 login = Login()
 login.main()
 
+
 ```
 
 运行程序，大功告成。
@@ -157,3 +165,9 @@ python "{PyFilePath}"
 ![get.png](https://i.loli.net/2021/03/18/GXKDUlWjypVTCch.png)
 
 如果有需要的话，可以再写个程序。
+
+# 问题
+Q: `python`,`pip`命令无效？
+
+A: 把`python`,`pip`路径加入环境变量`path`中，`pip`一般在`python`安装路径下面的`Scripts`文件夹中
+

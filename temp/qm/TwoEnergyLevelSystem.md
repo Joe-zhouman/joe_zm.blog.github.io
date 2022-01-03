@@ -230,3 +230,149 @@ $\mathscr{P}_{12}(t)$ 以 $\left(E_{+}-E_{-}\right) / h$ 为频率随着时间�
 当 $E_{1}-E_{2}$ 增大时, $\left(E_{+}-E_{-}\right) / h$ 也增大, 而 $\sin ^{2} \theta$ 却减小了. 对于弱耦合 $\left(E_{1}-E_{2} \gg W_{12}\right), E_{+}-E_{-}$和 $E_{1}-E_{2}$ 相差很小, $\sin ^{2} \theta$ 则变得很小. 因为在弱 耦合的情况下, 态 $\left|\varphi_{1}\right\rangle$ 非常接近定态 $\left|\psi_{+}\right\rangle$, 得到后一种结果 就不足为奇了: 从初态 $\left|\varphi_{1}\right\rangle$ 出发, 体系的态只有十分微小的变化.
 
 我们再回到离子 $\mathrm{H}_{2}^{+}$的例子. 现在假设在某一时刻电子定域在质子 $p_{1}$ 周 围:  我们知道电子将 在两个质子之间振荡, 其频率就是与离子的两个定态 $\left|\psi_{+}\right\rangle$和 $\left|\varphi_{-}\right\rangle$相联系的 玻尔频率. 两个态之间的电子振荡对应着 分子的电偶极矩的平均值的振荡 (当电子定域在两个质子之一的周围时, 偶极 矩不等于零; 依所论的质子为 $p_{1}$ 或 $p_{2}$, 偶极矩有不同的符号). 于是我们具体 地看到, 当这离子的态并非定态时, 一个振荡的电偶极矩是怎样出现的. 我们 知道, 这样一个振荡的偶极子可以和同频率的电磁波交换能量; 因此, 这个频 率应该出现在 $\mathrm{H}_{2}^{+}$离子的吸收谱和发射谱中.
+
+## 虚设自旋
+
+$$
+(H)=\left(\begin{array}{cc}
+\frac{1}{2}\left(H_{11}-H_{22}\right) & H_{12} \\
+H_{21} & -\frac{1}{2}\left(H_{11}-H_{22}\right)
+\end{array}\right)
+$$
+
+虽然我们所要讨论的二能级体系不一定是自旋 $\frac{1}{2}$, 但我们总可以给它联 系上一个自旋 $\frac{1}{2}$, 在由这个自旋的分量 $S_{z}$ 的本征矢所构成的基 $\{|+\rangle,|-\rangle\}$ 中, 此自旋的哈密顿算符 $H$ 可用上面的矩阵 $(H)$ 来表示. 我们即将看到, 可以将总可以给它联 系上一个自旋 $\frac{1}{2}$, 在由这个自旋的分量 $S_{z}$ 的本征矢所构成的基 $\{|+\rangle,|-\rangle\}$ 中, 此自旋的哈密顿算符 $H$ 可用上面的矩阵 $(H)$ 来表示. 我们即将看到, 可以将算符 $H$ 可用上面的矩阵 $(H)$ 来表示. 
+
+表示自旋 $\frac{1}{2}$ 和分量为 $B_{x} 、 B_{y} 、 B_{z}$ 的磁场 $\boldsymbol{B}$ 之间的耦合的哈密顿算符可以写作:
+$$
+\widetilde{H}=-\gamma \boldsymbol{B} \cdot \boldsymbol{S}=-\gamma\left(B_{x} S_{x}+B_{y} S_{y}+B_{z} S_{z}\right)
+$$
+
+$$
+(\widetilde{H})=-\frac{\gamma \hbar}{2}\left(\begin{array}{cc}
+B_{z} & B_{x}-\mathrm{i} B_{y} \\
+B_{x}+\mathrm{i} B_{y} & -B_{z}
+\end{array}\right)
+$$
+
+引入虚设磁场
+$$
+\left\{\begin{array}{l}
+B_{x}=-\frac{2}{\gamma \hbar} \operatorname{Re} H_{12} \\
+B_{y}=\frac{2}{\gamma \hbar} \operatorname{Im} H_{12} \\
+B_{z}=\frac{1}{\gamma \hbar}\left(H_{22}-H_{11}\right)
+\end{array}\right.
+$$
+注意 $\boldsymbol{B}$ 在 $x O y$ 平面上的投影 $\boldsymbol{B}_{\perp}$ 的模为
+$$
+B_{\perp}=\frac{2}{\hbar}\left|\frac{H_{12}}{\gamma}\right|
+$$
+
+$$
+\left\{\begin{array}{ll}
+\tan \theta=-\frac{\left|\gamma \beta_{\perp}\right|}{\gamma B_{z}} & 0 \leqslant \theta<\pi \\
+-\gamma\left(B_{x}+\mathrm{i} B_{y}\right)=\left|\gamma B_{\perp}\right| \mathrm{e}^{\mathrm{i} \varphi} & 0 \leqslant \varphi<2 \pi
+\end{array}\right.
+$$
+
+这里的旋磁比 $\gamma$ 不过是计算中的一个辅助量, 它事先可以取定任意值. 如果我 们约定 $\gamma$ 取负值, 那么, 与矩阵 $(H)$ 相联系的角 $\theta$ 和 $\varphi$ 实际上就 是磁场 $\boldsymbol{B}$ 的方向的极角 (如果假设 $\gamma$ 取正值, 则方向刚好反过来).
+
+最后, 可以看出, 我们可以忘却作为出发点的那个二能级体系, 而认为在 $S_{z}$ 的本征态 $|+\rangle$ 和 $\ket{-}$ 构成的基中, 矩阵 $(H)$ 所表示的就是磁场 $\boldsymbol{B}$ 中的自旋 $\frac{1}{2}$ 的哈密顿算符 $\widetilde{H}$, 而 $\boldsymbol{B}$ 的分量则由 上面给出. 我们又可将 $\widetilde{H}$ 写作:
+$$
+\widetilde{H}=\omega S_{u}
+$$
+式中 $S_{u}$ 是算符 $\boldsymbol{S} \cdot \boldsymbol{u}$, 它是自旋在极角为 $\theta 、 \varphi$ 的方向 $\boldsymbol{u}$ 上的分量, $\omega$ 是拉莫尔 角频率:
+$$
+\omega=|\gamma||\boldsymbol{B}|
+$$
+![image-20211228084812470](https://s2.loli.net/2021/12/28/1rZSngXLBaCTwxo.png)
+
+### 二能级系统的虚设磁场解释
+
+令
+$$
+\left\{\begin{array}{l}
+B_{0 z}=\frac{E_{2}-E_{1}}{\gamma \hbar} \\
+B_{0 \perp}=0
+\end{array}\right.
+$$
+
+$$
+\left\{\begin{array}{l}
+b_{z}=0 \\
+b_{\perp}=\frac{2}{\hbar}\left|\frac{W_{12}}{\gamma}\right|
+\end{array}\right.
+$$
+
+这就是说, $\boldsymbol{B}_{0}$ 平行于 $O z$ 轴并正比于 $\frac{1}{2}\left(E_{1}-E_{2}\right) ; \boldsymbol{b}$ 则垂直于 $O z$ 轴并正比于 $\left|W_{12}\right|$. 由于 $(H)=\left(H_{0}\right)+(W)$, 故与总哈密顿算符相联系的磁场 $\boldsymbol{B}$ 是 $\boldsymbol{B}_{0}$ 与 $\boldsymbol{b}$ 的矢量和:
+$$
+\boldsymbol{B}=\boldsymbol{B}_{0}+\boldsymbol{b}
+$$
+![image-20211228085246758](https://s2.loli.net/2021/12/28/tTi1N4jK7MaFsAU.png)
+
+强耦合条件 $\left(\left|W_{12}\right| \gg\left|E_{1}-E_{2}\right|\right)$ 相当于 $|\boldsymbol{b}| \gg\left|\boldsymbol{B}_{0}\right|$; 弱耦合条件 $\left(\left|W_{12}\right| \ll\left|E_{1}-E_{2}\right|\right)$ 则相当于 $|b| \ll\left|B_{0}\right|$ 。
+
+![image-20211228085613322](https://s2.loli.net/2021/12/28/jJBsPtYLgIeZfhq.png)
+
+$E_{1}-E_{2}$ 和 $E_{+}-E_{-}$分别对应于磁场 $\boldsymbol{B}_{0}$ 和 $\boldsymbol{B}$ 中的拉莫尔角频率 $\omega_{0}=$ $|\gamma|\left|\boldsymbol{B}_{0}\right|$ 和 $\omega=|\gamma||\boldsymbol{B}|$. 我们看到, $\boldsymbol{B}_{0} 、 \boldsymbol{b}$ 及 $\boldsymbol{B}$ 构成一个直角三角 形, 其斜边为 $\boldsymbol{B}$; 因而永远有 $|\boldsymbol{B}| \geqslant\left|\boldsymbol{B}_{0}\right|$, 从而我们再次证明了 $E_{+}-E_{-}$永远 大于 $\left|E_{1}-E_{2}\right|$.
+
+在弱耦合的情况下 $|\boldsymbol{B}|$ 与 $\left|\boldsymbol{B}_{0}\right|$ 之差的相对数值很小, 属于 $|\boldsymbol{b}| /\left|\boldsymbol{B}_{0}\right|$ 的二级小量. 由此我们立即推知, 就相对数值而言, $E_{+}-E_{-}$与 $E_{1}-E_{2}$ 之差属于 $\left|W_{12}\right| /\left(E_{1}-E_{2}\right)$ 的二级小量. 反之, 在强耦合情况下, $|\boldsymbol{B}|$ 甚大于 $\left|\boldsymbol{B}_{0}\right|$, 几乎等于 $|\boldsymbol{b}|$; 因而 $E_{+}-E_{-}$也甚大于 $\left|E_{1}-E_{2}\right|$, 实际上正比于 $\left|W_{12}\right|$. 这样我们就再次证明了全部结果.
+
+利用虚设自旋的概念可将问题陈述如下: 在 $t=0$ 时, 与二能级体系相联系的虚设自旋处于 $S_{z}$ 的本征态 $|+\rangle$; 给 $\boldsymbol{B}_{0}$ 加上 ，$\boldsymbol{b}$在时刻 $t$ 发现该自旋处于态 $|-\rangle$ 的概率 $\mathscr{P}_{+-}(t)$ 是多大? 根据表中 列出的对应关系, $\mathscr{P}_{12}(t)$ 应该全同于 $\mathscr{P}_{+-}(t)$.
+
+![image-20211231083225504](https://s2.loli.net/2021/12/31/h4v5SyJElPmOUxD.png)
+
+由于自旋随时间的演变归结为绕 $B$ 的拉莫尔进动 , 于是 $\mathscr{P}_{+-}(t)$ 的计算就非常简单. 在进动过程中, 自旋与 $B$ 的方向 $O u$ 之间的夹角 $\theta$ 保持 不变. 在 $t$ 时刻, 自旋指向方向 $O n$, 而与 $O z$ 构成一个角 $\alpha$; 平面 $(O z, O u)$ 与平 面 $(O u, O n)$ 之间的二面角则等于 $\omega t$. 根据球面三角学中的经典公式, 我们可 以写出:
+$$
+\cos \alpha=\cos ^{2} \theta+\sin ^{2} \theta \cos \omega t
+$$
+而当自旋的方向与 $O z$ 轴的夹角为 $\alpha$ 时, 发现该自旋处于 $S_{z}$ 的本征态 $|-\rangle$ 的 概率等于 $\sin ^{2} \frac{\alpha}{2}=(1-\cos \alpha) / 2$ . 由此, 便 可推知:
+$$
+\mathscr{P}_{+-}(t)=\sin ^{2} \frac{\alpha}{2}=\frac{1}{2} \sin ^{2} \theta(1-\cos \omega t)
+$$
+$\omega$ 换成 $\left(E_{+}-E_{-}\right) / \hbar$,
+
+## 两个自旋体系
+
+态空间 $\mathscr{E}_{S}(1)$ 中的普遍的右矢写作:
+$$
+|\varphi(1)\rangle=\alpha_{1}|1:+\rangle+\beta_{1}|1:-\rangle
+$$
+在态空间 $\mathscr{E}_{S}(2)$ 中则有:
+$$
+|\chi(2)\rangle=\alpha_{2}|2:+\rangle+\beta_{2}|2:-\rangle
+$$
+如果使这两个粒子结合成一个体系, 则该体系的态空间 $\mathscr{E}_{S}$ 应为上列两 个态空间的张量积:
+$$
+\mathscr{E}_{S}=\mathscr{E}_{S}(1) \otimes \mathscr{E}_{S}(2)
+$$
+
+$$
+\begin{array}{l}
+|++\rangle=|1:+\rangle|2:+\rangle \\
+|+-\rangle=|1:+\rangle|2:-\rangle \\
+|-+\rangle=|1:-\rangle|2:+\rangle \\
+|--\rangle=|1:-\rangle|2:-\rangle
+\end{array}
+$$
+
+孹如, 在态 $|+-\rangle$ 中, 粒子 (1) 的自旋在 $O z$ 轴上的分量确定地是 $+\frac{\hbar}{2}$, 粒子 (2) 的自旋在 $O z$ 轴上的分量确定地是 $-\frac{\hbar}{2}$. 现在我们约定用 $\langle+-|$ 来表示右矢 $1+-\rangle$ 的共轭左矢; 第一个符号总是对应于粒子 (1), 第二个符号总是对应于 粒子 (2).
+$$
+\left\langle\varepsilon_{1} \varepsilon_{2} \mid \varepsilon_{1}^{\prime} \varepsilon_{2}^{\prime}\right\rangle=\delta_{\varepsilon_{1} \varepsilon_{1}^{\prime}} \delta_{\varepsilon_{2} \varepsilon_{2}^{\prime}}
+$$
+
+$$
+\sum_{\varepsilon_{1}, \varepsilon_{2}}\left|\varepsilon_{1} \varepsilon_{2}\right\rangle\left\langle\varepsilon_{1} \varepsilon_{2}|=|++\right\rangle\langle++|+|+-\rangle\langle+-|+|-+\rangle\langle-+|+|--\rangle\langle--|=\mathbb{1}
+$$
+
+空间 $\mathscr{E}_{S}$ 中的一个右矢:
+$$
+|\varphi(1)\rangle|\chi(2)\rangle=\alpha_{1} \alpha_{2}|++\rangle+\alpha_{1} \beta_{2}|+-\rangle+\alpha_{2} \beta_{1}|-+\rangle+\beta_{1} \beta_{2}|--\rangle
+$$
+但是, 空间 $\mathscr{E}_{S}$ 中的右矢并不都是张量积. 空间 $\mathscr{E}_{S}$ 中的最一般的右矢是基 矢的任意的线性组合:
+$$
+|\psi\rangle=\alpha|++\rangle+\beta|+-\rangle+\gamma|-+\rangle+\delta|--\rangle
+$$
+
+$$
+|\alpha|^{2}+|\beta|^{2}+|\gamma|^{2}+|\delta|^{2}=1
+$$

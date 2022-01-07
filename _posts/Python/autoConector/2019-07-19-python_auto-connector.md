@@ -10,6 +10,10 @@ date: 2021-1-13 10:15:16 + 0800
 ---
 更新后的校园网老断，用python写了个自动联网的脚本。<!-- more -->
 
+# 更新
+
+* 2022-1-7 09:27:49 学校的联网入口改了，故而改成最新的了。
+
 # 问题简述
 
 本问题的实质是利用python的requests模块模拟发出联网的请求。
@@ -19,9 +23,7 @@ date: 2021-1-13 10:15:16 + 0800
 需要
 
 + `Chrome`浏览器
-
 + `python` 3.6及以上版本
-
 + python的`requests`模块
 
 # 抓包
@@ -37,7 +39,6 @@ date: 2021-1-13 10:15:16 + 0800
 ![ac2.png](https://i.loli.net/2021/03/18/fvyx8ER5HkMichz.png)
 
 3. 登陆校园网，可以看到下面出来很多东西，这些其实是我们登陆过程中发送和接受到的所有请求
-
 4. 找到含`login`的请求，点击查看，打开header选项卡，找到`Request Headers`和`Query String Parameters`两部分
 
 ![header.png](https://i.loli.net/2021/03/18/34MIJjbqVv8egk1.png)
@@ -129,8 +130,8 @@ class Login:
         while not can_connect:
             print(self.getCurrentTime(), u"未能连接网络,请重试...")
             self.login()
-        
-            can_connect = self.CanConnect()            
+      
+            can_connect = self.CanConnect()          
             time.sleep(self.every)
         print(self.getCurrentTime(), u"联网成功...")
 
@@ -145,10 +146,12 @@ login.main()
 
 # 开机启动
 
-建立一个`.bat`文件,在里面写上 
+建立一个`.bat`文件,在里面写上
+
 ```bat
 python "{PyFilePath}"
 ```
+
 如我的
 ![bat.png](https://i.loli.net/2021/03/18/RdIaDTl1rQJYPw7.png)
 在windows的`任务计划程序`中新建一个定时启动的任务,按下图设置:
@@ -158,6 +161,7 @@ python "{PyFilePath}"
 这里的`启动程序`就是你之前建立的`.bat`文件.
 
 其余的按默认设置即可.
+
 # 说明
 
 本程序针对校园网的登陆请求为`get`，一般还有很多使用`post`请求的。请求类型同样可以在上面的header里查看。
@@ -167,7 +171,7 @@ python "{PyFilePath}"
 如果有需要的话，可以再写个程序。
 
 # 问题
+
 Q: `python`,`pip`命令无效？
 
 A: 把`python`,`pip`路径加入环境变量`path`中，`pip`一般在`python`安装路径下面的`Scripts`文件夹中
-

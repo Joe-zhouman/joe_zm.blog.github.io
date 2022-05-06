@@ -207,7 +207,7 @@ $\kappa_T$为等温压缩系数。
 > 很显然, 在这样的情况下, 致使巨正则系综的表述形式给出的结 果, 与从正则系综的表述形式所得出的结果从原则上讲末必是相同的. 在这样的情况下, 我们将愿意用巨正则系综的表述形式, 因为只有它才能为实际物理状况提供正确图象.
 
 $$
-\left(\frac{\partial U}{\partial T}\right)_{z, V}=\left(\frac{\partial U}{\partial T}\right)_{N, V}+\left(\frac{\partial U}{\partial N}\right)_{T, V}\left(\frac{\partial N}{\partial T}\right)_{z, V}
+\left(\frac{\partial U}{\partial T}\right)_{z, V}=\left(\frac{\partial U}{\partial T}\right)_{N, V}+\left(\frac{\partial U}{\partial N}\right)_{T, V}\left(\frac{\partial N}{\partial T}\right)_{z, V}
 $$
 
 $$

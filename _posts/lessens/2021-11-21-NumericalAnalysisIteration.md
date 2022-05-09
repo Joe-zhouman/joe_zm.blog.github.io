@@ -206,7 +206,7 @@ while err > err0 && kI < N
         end
         % x(i)=(1-omega)*x0(i)+omega/A(i,i)*(b(i)-s);
         x(i)=x0(i)+omega*((b(i)-s)/A(i,i)-x0(i));
-        % 相对上面的写法，少一次乘法计算。[
+        % 相对上面的写法，少一次乘法计算。
     end
     err = norm(x-x0);
     x0 = x;
@@ -283,19 +283,19 @@ end
 
 ```
 
-# 优化方法
+# 泛函优化方法
 
 ## 原理
 
 对泛函
-$$f(\mathbf{x})=\frac12(\mathbf{x^TAx})-\mathbf{x^Tb}$$
+$$f(\mathbf{x})=\frac12(\mathbf{x^T}A\mathbf{x})-\mathbf{x^T}b$$
 $$\nabla f = \mathbf{Ax-b}$$
 $$\nabla^2f = \mathbf{A}$$
 将其看做一个优化问题，由于A为正定矩阵，则当$f(\mathbf{x})$取最小值时，有$\mathbf{Ax-b=0}$
 
 ## 最速下降法
 
-> 适用于实正定对称矩阵
+> 适用于实正定对称矩阵，对于一些非正定矩阵，可以转化为等价问题$\mathbf{A^{T}Ax-A^{T}b=0}$
 
 ![](https://bkimg.cdn.bcebos.com/pic/f31fbe096b63f62440e517b18644ebf81b4ca3c3?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto)
 核心思想：**在一点下降最快的方向为该点的负梯度方向**

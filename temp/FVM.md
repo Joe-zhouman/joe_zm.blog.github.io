@@ -59,7 +59,7 @@ fluent里面对梯度项的处理有三种方式，可在**Solution->Methods-> S
 $$
 \frac{\partial \varphi}{\partial x}=\lim\limits_{V\rightarrow 0}\frac{1}{V}\int_V\frac{\partial \varphi}{\partial x}dV=\lim\limits_{V\rightarrow 0}\frac{1}{V}\oint_{\partial V}\boldsymbol{n}_x\varphi dS\approx \frac{1}{\Delta V}\sum\limits_{i=1}^{n}\varphi_f A_i^x
 $$
-![image-20220424163314467](https://s2.loli.net/2022/04/24/TeBLYa4oh5uNwUA.png)
+![image-20220424163314467](C:/Users/Joe/Desktop/TeBLYa4oh5uNwUA.png)
 
 $\varphi_f$为网格界面的物理量，其需要通过周围网格的相应物理量重构（restriction）得到。
 

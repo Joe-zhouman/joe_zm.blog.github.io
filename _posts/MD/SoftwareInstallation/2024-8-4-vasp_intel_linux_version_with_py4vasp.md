@@ -2,7 +2,7 @@
 layout: blog
 istop : true
 book : true
-title: 在linux中安装vasp6.3.2 intel并行版本 (包括py4vasp)
+title: vasp安装
 category: knowledge
 tags: 分子动力学 VASP
 background-image: vasp.png

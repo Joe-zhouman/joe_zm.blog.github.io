@@ -6,7 +6,7 @@ title: vasp安装
 category: knowledge
 tags: 分子动力学 VASP
 background-image: vasp.png
-date:2024-8-4 17:39:42 + 0800
+date: 2024-8-4 17:39:42 + 0800
 ---
 
 记录VASP的编译过程，方便自己使用。<!-- more -->

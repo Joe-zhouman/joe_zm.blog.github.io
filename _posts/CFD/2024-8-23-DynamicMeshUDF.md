@@ -1,13 +1,14 @@
 ---
 layout: blog
-istop : true
-book : true
+istop: true
+book: true
 title: fluent动网格UDF
 category: knowledge
 tags: CFD fluent UDF 动网格
 background-image: CFD.jpg
 date: 2024-8-23 16:37:48 + 0800
 ---
+
 介绍了一下fluent里的动网格相关UDF<!-- more -->
 
 # 动网格相关宏
@@ -939,17 +940,14 @@ if (rv == 0 && nrOfvalues) {
 
 $$
 \dot{\vec{v}}_G=\frac{1}{m} \sum \left(\vec{f}_{G,e}+\vec{G}\right )
-
 $$
 
 $$
 \dot{\vec{\omega}}_B=L^{-1}\left(\sum \vec{M}_B-\vec{\omega}_B \times L \vec{\omega}_B\right)
-
 $$
 
 $$
 \vec{M}_B=R \vec{M}_G
-
 $$
 
 $$
@@ -959,7 +957,6 @@ C_\theta C_\psi & C_\theta S_\psi & -S_\theta \\
 S_\phi S_\theta C_\psi-C_\phi S_\psi & S_\phi S_\theta S_\psi+C_\phi C_\psi & S_\phi C_\theta \\
 C_\phi S_\theta C_\psi+S_\phi S_\psi & C_\phi S_\theta S_\psi-S_\phi C_\psi & C_\phi C_\theta
 \end{array}\right]
-
 $$
 
 一般来说$C_\chi=\cos (\chi)$ ， $S_\chi=\sin (\chi)$ ; $\phi$, $\theta$,$\psi$为欧拉角。
@@ -1187,24 +1184,20 @@ DEFINE_SDOF_PROPERTIES(sdof_prop, prop,dt,time,dtime)
 
 $$
 F_z=1N;
-
 $$
 
 $$
 M_z=1N\cdot m
-
 $$
 
 ![image-20220916160004534](https://s2.loli.net/2022/09/16/Rk4EfLTyF2mKrUV.png)
 
 $$
 F_z=1N;
-
 $$
 
 $$
 M_z=F_z\frac{\cos{(\theta + 45^o)}}{\cos{45^o}}
-
 $$
 
 ```c
@@ -1608,7 +1601,6 @@ typedef struct dynamic_thread_rigid_body_state
 
 $$
 \mathrm{Re}_{\mathrm{gap}}=\frac{\rho_{\mathrm{avg}} u_{\mathrm{avg}} L}{\mu_{\mathrm{avg}}}
-
 $$
 
 通过设置的雷诺数控制gap区域的流动

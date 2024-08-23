@@ -8,6 +8,8 @@ tags: CFD fluent UDF 动网格
 background-image: CFD.jpg
 date: 2024-8-23 16:37:48 + 0800
 ---
+介绍了一下fluent里的动网格相关UDF<!-- more -->
+
 # 动网格相关宏
 
 ## DEFINE_CG_MOTION
@@ -21,7 +23,7 @@ date: 2024-8-23 16:37:48 + 0800
 
 
 | Type            | Parameter | Notes                                   |
-| --------------- | --------- | --------------------------------------- |
+| ----------------- | ----------- | ----------------------------------------- |
 | symbol          | name      | UDF名字                                 |
 | Dynamic_Thread* | dt        | 指向动网格相关属性结构体的指针          |
 | real            | vel[ ]    | 线速度。三个分量为xyz方向速度           |
@@ -923,7 +925,7 @@ if (rv == 0 && nrOfvalues) {
 ```
 
 | Type            | Parameter  | Notes                          |
-| --------------- | ---------- | ------------------------------ |
+| ----------------- | ------------ | -------------------------------- |
 | symbol          | name       | UDF名字                        |
 | real*           | properties | 指向六自由度属性数组的指针     |
 | Dynamic_Thread* | dt         | 指向动网格相关属性结构体的指针 |
@@ -1561,7 +1563,7 @@ typedef struct dynamic_thread_rigid_body_state
 ```
 
 | Type            | Parameter | Notes                                    |
-| --------------- | --------- | ---------------------------------------- |
+| ----------------- | ----------- | ------------------------------------------ |
 | symbol          | name      | UDF名字                                  |
 | Dynamic_Thread* | dt        | 指向动网格相关属性结构体的指针           |
 | real *          | lh        | 指向网格层高的指针或旋转中心数组的指针。 |
@@ -1576,7 +1578,7 @@ typedef struct dynamic_thread_rigid_body_state
 ```
 
 | Type            | Parameter | Notes                                                  |
-| --------------- | --------- | ------------------------------------------------------ |
+| ----------------- | ----------- | -------------------------------------------------------- |
 | symbol          | name      | UDF名字                                                |
 | Dynamic_Thread* | dt        | 指向动网格相关属性结构体的指针                         |
 | Objp *          | contacts  | 指向接触检测事件中涉及的单元的链表的指针。以 NULL 结尾 |
@@ -1682,14 +1684,14 @@ $$
 
 
 | 方法                            | 是否完全阻止流动 | 是否适用于周期运动 |
-| ------------------------------- | :--------------: | :----------------: |
-| Gap Model Flow-Blocking         |        √         |         √          |
-| Gap Model Flow-Modeling         |        ×         |         √          |
-| Contact Detection Contact Marks |        √         |         √          |
-| Contact Detection Contact Zones |        ×         |         √          |
-| Dynamic Mesh Events             |        √         |         x          |
-| 手动边界                        |        √         |         √          |
-| 手动多孔介质                    |        ×         |         √          |
+| --------------------------------- | :----------------: | :------------------: |
+| Gap Model Flow-Blocking         |        √        |         √         |
+| Gap Model Flow-Modeling         |        ×        |         √         |
+| Contact Detection Contact Marks |        √        |         √         |
+| Contact Detection Contact Zones |        ×        |         √         |
+| Dynamic Mesh Events             |        √        |         x         |
+| 手动边界                        |        √        |         √         |
+| 手动多孔介质                    |        ×        |         √         |
 
 周期运动：窄缝变宽后还会变窄
 
